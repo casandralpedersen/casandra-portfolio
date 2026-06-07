@@ -314,6 +314,9 @@ export default function Home() {
       {/* Om mig-teaser */}
       <AboutTeaser t={t} />
 
+      {/* Det her laver jeg */}
+      <Services t={t} />
+
       {/* Projekter */}
       <section id="arbejde" className="px-10 py-20">
         <p className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-16">
@@ -324,9 +327,6 @@ export default function Home() {
         ))}
         <div className="border-t border-[var(--color-text)]/10" />
       </section>
-
-      {/* Det her laver jeg */}
-      <Services t={t} />
 
     </main>
   )
