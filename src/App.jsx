@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { LanguageProvider } from './context/LanguageContext'
 import Nav from './components/Nav'
-import CustomCursor from './components/CustomCursor'
 import Home from './pages/Home'
 import Work from './pages/Work'
 import WorkDetail from './pages/WorkDetail'
@@ -11,7 +10,6 @@ import CV from './pages/CV'
 export default function App() {
   return (
     <LanguageProvider>
-      <CustomCursor />
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />

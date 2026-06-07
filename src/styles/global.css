@@ -42,12 +42,6 @@ body {
   margin: 0;
 }
 
-@media (pointer: fine) {
-  body, a, button {
-    cursor: none;
-  }
-}
-
 .texture {
   position: relative;
 }
