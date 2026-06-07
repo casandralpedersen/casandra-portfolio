@@ -94,7 +94,7 @@ export default function Home() {
       {/* Hero */}
       <section
         ref={constraintsRef}
-        className="relative min-h-screen overflow-hidden px-10 pt-0 pb-24 flex flex-col justify-end"
+        className="texture relative min-h-screen overflow-hidden px-10 pt-0 pb-24 flex flex-col justify-end"
       >
         <motion.div
           initial={{ opacity: 0, x: 30 }}
