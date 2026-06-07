@@ -2,8 +2,8 @@
 
 ## Status
 Sidst opdateret: 2026-06-07
-Færdigt: Forside, /arbejde, /om, /cv (med expand/collapse), navigation, GitHub repo, Vercel deployment
-Næste: Projektbilleder uploades til /arbejde, WorkDetail-sider bygges når billeder er klar
+Færdigt: Forside, /arbejde, /om, /cv (med expand/collapse, justerede tekststørrelser), navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite (fixer 404 på direkte route-navigation), tekstur/grain på Home og About hero
+Næste: Projektbilleder uploades til /arbejde, WorkDetail-sider bygges når billeder er klar. GitHub→Vercel auto-deploy kræver stadig at Casandra forbinder GitHub Login Connection på vercel.com/account/login-connections (CLI-forbindelse fejler indtil da)
 
 ---
 
@@ -80,4 +80,4 @@ Ligger i `src/data/experience.js` — bruges af både `/om` og `/cv`.
 - VSOP-fonten har ikke Ø-tegnet — "Ø Bar" vises som "O Bar" i display-font
 - WorkDetail (`/arbejde/:slug`) er stub — bygges når projektbilleder er klar
 - Projektbilleder mangler (`cover: null` på alle projekter)
-- Ingen custom cursor implementeret endnu (nævnt i original brief som "overvej")
+- Custom cursor blev bygget og testet, men Casandra foretrak almindelig browser-cursor — fjernet igen. Brug ikke custom cursor fremover medmindre hun selv beder om det.
