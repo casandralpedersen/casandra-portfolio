@@ -16,6 +16,8 @@ const letterVariants = {
   show: { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.65 } },
 }
 
+const EMAIL = 'casandralpedersen@gmail.com'
+
 const services = [
   {
     title: { da: 'Visuel identitet & grafisk design', en: 'Visual identity & graphic design' },
@@ -139,6 +141,55 @@ function Services({ t }) {
         <ServiceRow key={i} service={service} index={i} t={t} />
       ))}
       <div className="border-t border-[var(--color-text)]/10" />
+    </section>
+  )
+}
+
+function Contact({ t }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <section ref={ref} className="texture px-10 py-32 flex flex-col items-start" style={{ backgroundColor: 'var(--color-blue)' }}>
+      <motion.p
+        initial={{ y: 20, opacity: 0 }}
+        animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } } : {}}
+        className="text-[11px] tracking-[0.16em] uppercase mb-8"
+        style={{ color: 'var(--color-base)', opacity: 0.6 }}
+      >
+        {t('Kontakt', 'Contact')}
+      </motion.p>
+
+      <motion.h2
+        initial={{ y: 30, opacity: 0 }}
+        animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.8, delay: 0.1 } } : {}}
+        className="leading-[1.05] max-w-2xl"
+        style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(36px, 6vw, 80px)', color: 'var(--color-burgundy)' }}
+      >
+        {t('Har du et projekt i tankerne?', 'Got a project in mind?')}
+      </motion.h2>
+
+      <motion.p
+        initial={{ y: 20, opacity: 0 }}
+        animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay: 0.25 } } : {}}
+        className="mt-6 text-[15px] leading-relaxed max-w-md"
+        style={{ color: 'var(--color-base)', opacity: 0.8 }}
+      >
+        {t(
+          'Skriv til mig - jeg svarer altid. Lad os finde ud af hvad jeg kan hjælpe med.',
+          'Send me a message - I always reply. Let\'s figure out how I can help.'
+        )}
+      </motion.p>
+
+      <motion.a
+        href={`mailto:${EMAIL}`}
+        initial={{ y: 16, opacity: 0 }}
+        animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: 0.4 } } : {}}
+        className="mt-10 px-8 py-4 text-[14px] tracking-wide hover:opacity-85 transition-opacity"
+        style={{ backgroundColor: 'var(--color-burgundy)', color: 'var(--color-base)' }}
+      >
+        {t('Skriv til mig', 'Email me')}
+      </motion.a>
     </section>
   )
 }
@@ -327,6 +378,9 @@ export default function Home() {
         ))}
         <div className="border-t border-[var(--color-text)]/10" />
       </section>
+
+      {/* Kontakt */}
+      <Contact t={t} />
 
     </main>
   )
