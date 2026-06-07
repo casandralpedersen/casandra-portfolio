@@ -84,6 +84,73 @@ function ProjectRow({ project, index, t }) {
   )
 }
 
+function AboutTeaser({ t }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <section ref={ref} className="px-10 py-24 flex items-center gap-16">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.8 } } : {}}
+        className="flex-1 max-w-md relative overflow-hidden"
+        style={{ height: 420 }}
+      >
+        <img
+          src="/images/sitwavemepic.png"
+          alt="Casandra"
+          className="w-full h-full object-cover object-top"
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, var(--color-base) 0%, transparent 30%)' }}
+        />
+      </motion.div>
+
+      <div className="flex-1 max-w-md">
+        <motion.p
+          initial={{ y: 20, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } } : {}}
+          className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-6"
+        >
+          {t('Om mig', 'About me')}
+        </motion.p>
+
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay: 0.1 } } : {}}
+          className="space-y-4 text-[15px] leading-relaxed opacity-75"
+        >
+          <p>
+            {t(
+              'Jeg kom til design via forretning, ikke omvendt. Baggrunden spænder fra grafisk design og fotografi til UX og erfaring som COO.',
+              'I came to design through business, not the other way around. My background spans graphic design, photography, UX, and experience as COO.'
+            )}
+          </p>
+          <p>
+            {t(
+              'Det giver et blik for hvad der faktisk virker - ikke kun hvad der ser godt ud.',
+              'It gives me an eye for what actually works - not just what looks good.'
+            )}
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ y: 16, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: 0.25 } } : {}}
+        >
+          <Link
+            to="/om"
+            className="inline-block mt-7 text-[13px] tracking-wide border-b border-[var(--color-text)]/30 pb-0.5 hover:border-[var(--color-text)] transition-colors"
+          >
+            {t('Læs hele historien →', 'Read the full story →')}
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
 export default function Home() {
   const { t } = useLanguage()
   const constraintsRef = useRef(null)
@@ -184,6 +251,9 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+
+      {/* Om mig-teaser */}
+      <AboutTeaser t={t} />
 
       {/* Projekter */}
       <section id="arbejde" className="px-10 py-20">
