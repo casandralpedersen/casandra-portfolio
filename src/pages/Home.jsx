@@ -134,7 +134,7 @@ export default function Home() {
                   fontFamily: i === 0 ? 'Montigny, cursive' : 'VSOP, serif',
                   fontSize: i === 0 ? '15vw' : '8.5vw',
                   lineHeight: 0.9,
-                  color: 'var(--color-text)',
+                  color: 'var(--color-burgundy)',
                 }}
               >
                 {letter}
@@ -175,7 +175,7 @@ export default function Home() {
           className="absolute z-10 cursor-grab select-none"
           style={{ top: '18%', left: '56%' }}
         >
-          <div className="px-5 py-4 border border-[var(--color-text)]/30 bg-[var(--color-base)]" style={{ width: 160 }}>
+          <div className="px-5 py-4 border border-[var(--color-burgundy)] bg-[var(--color-base)]" style={{ width: 160 }}>
             <p className="text-[10px] tracking-[0.12em] uppercase opacity-40 mb-1">
               {t('ITU København', 'ITU Copenhagen')}
             </p>
