@@ -175,11 +175,11 @@ export default function Home() {
           className="absolute z-10 cursor-grab select-none"
           style={{ top: '18%', left: '56%' }}
         >
-          <div className="px-5 py-4 border-2 border-[var(--color-blue)] bg-[var(--color-base)]" style={{ width: 160 }}>
-            <p className="text-[10px] tracking-[0.12em] uppercase mb-1" style={{ color: 'var(--color-blue)' }}>
+          <div className="px-5 py-4 border border-[var(--color-text)]/30 bg-[var(--color-base)]" style={{ width: 160 }}>
+            <p className="text-[10px] tracking-[0.12em] uppercase opacity-40 mb-1">
               {t('ITU København', 'ITU Copenhagen')}
             </p>
-            <p style={{ fontFamily: 'VSOP, serif', fontSize: 25, lineHeight: 1.1 }}>B-DDIT</p>
+            <p style={{ fontFamily: 'VSOP, serif', fontSize: 25, lineHeight: 1.1, color: 'var(--color-blue)' }}>B-DDIT</p>
             <p className="text-[10px] opacity-40 mt-2">{t('Design & Digital IT', 'Design & Digital IT')}</p>
           </div>
         </motion.div>
