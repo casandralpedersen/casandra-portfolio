@@ -34,7 +34,7 @@ function Section({ label, children, delay = 0 }) {
       className="grid grid-cols-[180px_1fr] gap-x-12 py-8 border-t border-[var(--color-text)]/10"
     >
       <span
-        className="text-[68px] leading-none opacity-40"
+        className="text-[54px] leading-none opacity-40"
         style={{ fontFamily: 'Montigny, cursive' }}
       >
         {label}
