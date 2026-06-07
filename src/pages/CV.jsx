@@ -34,7 +34,7 @@ function Section({ label, children, delay = 0 }) {
       className="grid grid-cols-[180px_1fr] gap-x-12 py-8 border-t border-[var(--color-text)]/10"
     >
       <span
-        className="text-[18px] opacity-40 pt-0.5"
+        className="text-[52px] leading-none opacity-40"
         style={{ fontFamily: 'Montigny, cursive' }}
       >
         {label}
@@ -57,7 +57,7 @@ function ExperienceRow({ item, t, open, onToggle }) {
           {item.year}
         </span>
         <div className="flex-1 min-w-0">
-          <p className="text-[18px] leading-snug transition-opacity group-hover:opacity-60">
+          <p className="text-[15px] leading-snug transition-opacity group-hover:opacity-60">
             {t(item.title.da, item.title.en)}
           </p>
           {item.note && (
