@@ -16,6 +16,25 @@ const letterVariants = {
   show: { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.65 } },
 }
 
+const services = [
+  {
+    title: { da: 'Visuel identitet & grafisk design', en: 'Visual identity & graphic design' },
+    desc: { da: 'Logo, farvepalet, typografi og retningslinjer der hænger sammen', en: 'Logo, color palette, typography and guidelines that hold together' },
+  },
+  {
+    title: { da: 'E-handel & branding', en: 'E-commerce & branding' },
+    desc: { da: 'Webshops, produktfoto og mærkevareopbygning der konverterer', en: 'Webshops, product photography and brand building that converts' },
+  },
+  {
+    title: { da: 'Fotografi', en: 'Photography' },
+    desc: { da: 'Portræt-, produkt- og stemningsfotografi', en: 'Portrait, product and mood photography' },
+  },
+  {
+    title: { da: 'Strategi & drift', en: 'Strategy & operations' },
+    desc: { da: 'Marketing og forretningsforståelse der løfter designet', en: 'Marketing and business insight that elevates the design' },
+  },
+]
+
 const fadeUp = (delay) => ({
   hidden: { y: 20, opacity: 0 },
   show: { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay } },
@@ -81,6 +100,46 @@ function ProjectRow({ project, index, t }) {
         </div>
       </Link>
     </motion.div>
+  )
+}
+
+function ServiceRow({ service, index, t }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ y: 24, opacity: 0 }}
+      animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: index * 0.06 } } : {}}
+      className="border-t border-[var(--color-text)]/10 py-7 flex items-baseline gap-6"
+    >
+      <span className="text-[11px] opacity-25 w-6 shrink-0">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+      <div>
+        <h3 style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(22px, 2.6vw, 36px)' }}>
+          {t(service.title.da, service.title.en)}
+        </h3>
+        <p className="text-[14px] opacity-50 mt-1">
+          {t(service.desc.da, service.desc.en)}
+        </p>
+      </div>
+    </motion.div>
+  )
+}
+
+function Services({ t }) {
+  return (
+    <section className="px-10 py-20">
+      <p className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-16">
+        {t('Det her laver jeg', 'What I do')}
+      </p>
+      {services.map((service, i) => (
+        <ServiceRow key={i} service={service} index={i} t={t} />
+      ))}
+      <div className="border-t border-[var(--color-text)]/10" />
+    </section>
   )
 }
 
@@ -265,6 +324,9 @@ export default function Home() {
         ))}
         <div className="border-t border-[var(--color-text)]/10" />
       </section>
+
+      {/* Det her laver jeg */}
+      <Services t={t} />
 
     </main>
   )
