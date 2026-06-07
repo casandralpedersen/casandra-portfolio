@@ -17,10 +17,10 @@
 }
 
 @theme {
-  --color-base: #F7F1DC;
-  --color-burgundy: #8B2A2A;
-  --color-blue: #5C7E9C;
-  --color-text: #1A1A1A;
+  --color-base: #F7F2D5;
+  --color-burgundy: #913C27;
+  --color-blue: #5A86AB;
+  --color-text: #295C7D;
 
   --font-display: "VSOP", serif;
   --font-script: "Montigny", cursive;

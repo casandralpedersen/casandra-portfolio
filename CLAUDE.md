@@ -25,10 +25,10 @@ Næste: Projektbilleder uploades til /arbejde, WorkDetail-sider bygges når bill
 
 ## Farvepalette
 ```css
---color-base:     #F5F0E8   /* creme baggrund */
---color-burgundy: #8B2A2A   /* primær accent */
---color-blue:     #7A9BB5   /* sekundær accent */
---color-text:     #1A1A1A   /* næsten sort */
+--color-base:     #F7F2D5   /* lys cremegul baggrund */
+--color-burgundy: #913C27   /* primær accent, varm rødbrun */
+--color-blue:     #5A86AB   /* sekundær accent */
+--color-text:     #295C7D   /* mørk navy */
 ```
 Defineret i `src/styles/global.css` under `@theme`.
 
