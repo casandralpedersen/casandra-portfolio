@@ -1,0 +1,262 @@
+<style>
+  .hero-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero-card {
+    border: 2px solid transparent;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    background: #fff;
+  }
+  .hero-card.selected { border-color: #8B2A2A; }
+  .hero-card:hover { border-color: #8B2A2A88; }
+
+  .card-label {
+    padding: 10px 16px;
+    background: #1A1A1A;
+    color: #F5F0E8;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-label span { opacity: 0.5; font-size: 11px; }
+
+  .mock-hero {
+    height: 240px;
+    background: #F5F0E8;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Georgia', serif;
+  }
+
+  /* CONCEPT A — Diagonal overlap */
+  .concept-a .name-block {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 0 28px 20px;
+  }
+  .concept-a .display-name {
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    color: #1A1A1A;
+    text-transform: uppercase;
+  }
+  .concept-a .subtitle {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #1A1A1A;
+    opacity: 0.6;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+  .concept-a .photo-block {
+    position: absolute;
+    top: 0; right: 0;
+    width: 42%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .concept-a .photo-block img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .concept-a .polaroid {
+    position: absolute;
+    bottom: 48px;
+    right: 36%;
+    width: 64px; height: 76px;
+    background: white;
+    padding: 5px 5px 14px;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.18);
+    transform: rotate(-6deg);
+    font-size: 7px;
+    text-align: center;
+    color: #888;
+  }
+  .concept-a .polaroid img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  /* CONCEPT B — Name fills width, photo crops through */
+  .concept-b .display-name {
+    font-size: 80px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #1A1A1A;
+    text-transform: uppercase;
+    position: absolute;
+    top: 16px; left: 24px; right: 24px;
+    z-index: 2;
+    mix-blend-mode: multiply;
+  }
+  .concept-b .photo-block {
+    position: absolute;
+    top: 0; right: 0;
+    width: 38%;
+    height: 85%;
+    z-index: 1;
+  }
+  .concept-b .photo-block img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .concept-b .bottom-row {
+    position: absolute;
+    bottom: 0; left: 24px; right: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 16px;
+  }
+  .concept-b .subtitle {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    max-width: 200px;
+  }
+  .concept-b .drag-hint {
+    font-size: 9px;
+    color: #8B2A2A;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  /* CONCEPT C — Vertical editorial split */
+  .concept-c .left-col {
+    position: absolute;
+    top: 0; left: 0;
+    width: 30%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .concept-c .left-col img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .concept-c .right-col {
+    position: absolute;
+    top: 0; left: 30%; right: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 24px;
+  }
+  .concept-c .display-name {
+    font-size: 58px;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 0.88;
+    text-transform: uppercase;
+    color: #1A1A1A;
+  }
+  .concept-c .subtitle {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-top: 8px;
+  }
+  .concept-c .intro {
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 10px;
+    max-width: 240px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .concept-c .burgundy-bar {
+    position: absolute;
+    top: 0; left: 30%;
+    width: 3px; height: 100%;
+    background: #8B2A2A;
+  }
+
+  .tag { background: #8B2A2A22; color: #8B2A2A; padding: 2px 8px; border-radius: 3px; font-size: 10px; margin-left: 8px; }
+  .card-desc { padding: 10px 16px; font-size: 12px; opacity: 0.7; background: #fafafa; border-top: 1px solid #eee; }
+</style>
+
+<h2>Hero-koncepter</h2>
+<p class="subtitle">Tre layouts til forsiden. Klik på et for at vælge — vi itererer derfra.</p>
+
+<div class="hero-cards">
+
+  <!-- CONCEPT A -->
+  <div class="hero-card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-label">
+      A — Diagonal overlap
+      <span>Navn nedenfor · foto øverst til højre · draggable polaroid i midten</span>
+    </div>
+    <div class="mock-hero concept-a">
+      <div class="photo-block">
+        <img src="http://localhost:5173/images/mefinalpic.png" alt="" />
+      </div>
+      <div class="polaroid">
+        <img src="http://localhost:5173/images/mefinalpic.png" alt="" />
+      </div>
+      <div class="name-block">
+        <div class="display-name">Casandra</div>
+        <div class="subtitle">Grafisk designer med forretningsforståelse</div>
+      </div>
+    </div>
+    <div class="card-desc">Navn sidder tungt i bunden og ankrer siden. Foto overlapper fra højre. Den draggable polaroid flyder i grænsefeltet — kan trækkes rundt. Animation: navn stagger-reveals bogstav for bogstav nedefra.</div>
+  </div>
+
+  <!-- CONCEPT B -->
+  <div class="hero-card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-label">
+      B — Navn fylder siden
+      <span>Kæmpe navn øverst · foto bag · tekst nedenunder</span>
+    </div>
+    <div class="mock-hero concept-b">
+      <div class="photo-block">
+        <img src="http://localhost:5173/images/mefinalpic.png" alt="" />
+      </div>
+      <div class="display-name">Casandra</div>
+      <div class="bottom-row">
+        <div class="subtitle">Grafisk designer med forretningsforståelse</div>
+        <div class="drag-hint">↙ træk mig</div>
+      </div>
+    </div>
+    <div class="card-desc">Navn dominerer hele toppen, foto sidder bag som et lag. Asymmetrisk og ekspressivt. Animation: navn clipper ind fra top, foto fader op. Draggable element: et løst kort nede til højre.</div>
+  </div>
+
+  <!-- CONCEPT C -->
+  <div class="hero-card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-label">
+      C — Vertikal editorial split
+      <span>Foto venstre kolonne · navn + tekst højre kolonne</span>
+    </div>
+    <div class="mock-hero concept-c">
+      <div class="left-col">
+        <img src="http://localhost:5173/images/mefinalpic.png" alt="" />
+      </div>
+      <div class="burgundy-bar"></div>
+      <div class="right-col">
+        <div class="display-name">Casp<br/>andra</div>
+        <div class="subtitle">Grafisk designer · forretningsforståelse</div>
+        <div class="intro">Jeg kom til design via forretning, ikke omvendt.</div>
+      </div>
+    </div>
+    <div class="card-desc">Magazine-split med tynd burgundy streg. Navn bryder over to linjer. Intro-tekst synlig med det samme. Draggable element: et polaroid-foto oven på foto-kolonnen. Animation: kolonner glider ind fra hver sin side.</div>
+  </div>
+
+</div>

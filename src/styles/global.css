@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "VSOP";
+  src: url("/fonts/VSOP.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montigny";
+  src: url("/fonts/Montigny-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-base: #F5F0E8;
+  --color-burgundy: #8B2A2A;
+  --color-blue: #7A9BB5;
+  --color-text: #1A1A1A;
+
+  --font-display: "VSOP", serif;
+  --font-script: "Montigny", cursive;
+  --font-body: "DM Sans", "Inter", system-ui, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--color-base);
+  color: var(--color-text);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-base);
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
