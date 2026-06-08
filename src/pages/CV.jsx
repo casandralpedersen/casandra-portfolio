@@ -121,13 +121,13 @@ export default function CV() {
       ref={constraintsRef}
       className="min-h-screen bg-[var(--color-base)] relative overflow-hidden"
     >
-      <div className="max-w-4xl mx-auto px-10 pt-16 pb-24">
+      <div className="max-w-4xl mx-auto px-10 pt-8 pb-24">
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.7 } }}
-          className="flex justify-between items-start mb-2"
+          className="flex justify-between items-start mb-1"
         >
           <div>
             <h1
@@ -138,7 +138,7 @@ export default function CV() {
               <br />
               Linde Pedersen
             </h1>
-            <p className="mt-5 text-[15px] opacity-60 max-w-xs leading-snug">
+            <p className="mt-4 text-[15px] opacity-60 max-w-xs leading-snug">
               {t(
                 'Grafisk designer med forretningsforståelse',
                 'Graphic designer with a business mindset'
@@ -171,7 +171,7 @@ export default function CV() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.6, delay: 0.15 } }}
-          className="flex gap-4 items-center mt-8 mb-2"
+          className="flex gap-4 items-center mt-6 mb-2"
         >
           <a
             href="mailto:casandralpedersen@gmail.com"
