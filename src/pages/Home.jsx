@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import { projects } from '../data/projects'
 
@@ -20,20 +20,45 @@ const EMAIL = 'casandralpedersen@gmail.com'
 
 const services = [
   {
-    title: { da: 'Visuel identitet & grafisk design', en: 'Visual identity & graphic design' },
-    desc: { da: 'Logo, farvepalet, typografi og retningslinjer der hænger sammen', en: 'Logo, color palette, typography and guidelines that hold together' },
+    title: { da: 'Design', en: 'Design' },
+    desc: { da: '', en: '' },
+    aside: [
+      { da: 'Brand', en: 'Brand' },
+      { da: 'Digitalt', en: 'Digital' },
+      { da: 'Fysisk', en: 'Physical' },
+    ],
+    children: [
+      {
+        title: { da: 'UX & brand identitet', en: 'UX & brand identity' },
+        desc: { da: 'Brugercentreret tænkning, konceptudvikling og optimering af digitale og fysiske oplevelser - logo, farvepalette, typografi og brandretningslinjer, der hænger sammen - både for kunden ved kassen og brugeren bag skærmen.', en: 'User-centered thinking, concept development, and optimization of digital and physical experiences - logo, color palette, typography, and brand guidelines that work together - for both the customer at the counter and the user behind the screen.' },
+      },
+      {
+        title: { da: 'Sociale medier', en: 'Social media' },
+        desc: { da: 'Indhold, kampagner, grafik og fotografi til sociale medier - med fokus på hvad der skaber engagement hos de rigtige mennesker.', en: 'Content, campaigns, graphics, and photography for social media - focused on what creates engagement with the right people.' },
+      },
+      {
+        title: { da: 'Grafisk design', en: 'Graphic design' },
+        desc: { da: 'Menuer, skilte, plakater og andet grafisk materiale, der skal fungere i den virkelige verden.', en: 'Menus, signs, posters, and other graphic materials that need to work in the real world.' },
+      },
+    ],
   },
   {
-    title: { da: 'E-handel & branding', en: 'E-commerce & branding' },
-    desc: { da: 'Webshops, produktfoto og mærkevareopbygning der konverterer', en: 'Webshops, product photography and brand building that converts' },
+    title: { da: 'Strategi & forretning', en: 'Strategy & business' },
+    desc: { da: 'Merkantil baggrund med forståelse for budgetter, drift og målgrupper. Erfaring med HR, rekruttering, vagtplaner og marketingplaner - og med at løfte blikket og se tingene fra et højere niveau end specialisten. Initiativer skal også kunne betale sig.', en: 'A commercial background with an understanding of budgets, operations, and target groups. Experience with HR, recruiting, scheduling, and marketing plans - and with stepping back to see things from a higher level than the specialist. Initiatives also need to make financial sense.' },
+    aside: [
+      { da: 'Budgetter', en: 'Budgets' },
+      { da: 'Drift', en: 'Operations' },
+      { da: 'Planer', en: 'Plans' },
+    ],
   },
   {
-    title: { da: 'Fotografi', en: 'Photography' },
-    desc: { da: 'Portræt-, produkt- og stemningsfotografi', en: 'Portrait, product and mood photography' },
-  },
-  {
-    title: { da: 'Strategi & drift', en: 'Strategy & operations' },
-    desc: { da: 'Marketing og forretningsforståelse der løfter designet', en: 'Marketing and business insight that elevates the design' },
+    title: { da: 'Kommunikation', en: 'Communication' },
+    desc: { da: 'Jeg har talt med rigtig mange mennesker - i telefonen, bag baren, i et escape room og på spansk. Det har lært mig at lytte, tilpasse mig og formidle klart - både i mødet med medarbejdere og i kundekontakt.', en: 'I have spoken with a lot of people - on the phone, behind a bar, in an escape room, and in Spanish. It has taught me to listen, adapt, and communicate clearly - both with colleagues and in customer-facing situations.' },
+    aside: [
+      { da: 'Medarbejdere', en: 'Teams' },
+      { da: 'Kunder', en: 'Customers' },
+      { da: 'Spansk', en: 'Spanish' },
+    ],
   },
 ]
 
@@ -74,7 +99,7 @@ function ProjectRow({ project, index, t }) {
                 className="leading-tight"
                 style={{
                   fontFamily: 'VSOP, serif',
-                  fontSize: isLarge ? 'clamp(36px, 5vw, 72px)' : 'clamp(24px, 3.2vw, 52px)',
+                  fontSize: isLarge ? 'clamp(32px, 4.2vw, 60px)' : 'clamp(24px, 3.2vw, 52px)',
                 }}
               >
                 {t(project.title.da, project.title.en)}
@@ -105,42 +130,92 @@ function ProjectRow({ project, index, t }) {
   )
 }
 
-function ServiceRow({ service, index, t }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ y: 24, opacity: 0 }}
-      animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: index * 0.06 } } : {}}
-      className="border-t border-[var(--color-text)]/10 py-7 flex items-baseline gap-6"
-    >
-      <span className="text-[11px] opacity-25 w-6 shrink-0">
-        {String(index + 1).padStart(2, '0')}
-      </span>
-      <div>
-        <h3 style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(22px, 2.6vw, 36px)' }}>
-          {t(service.title.da, service.title.en)}
-        </h3>
-        <p className="text-[14px] opacity-50 mt-1">
-          {t(service.desc.da, service.desc.en)}
-        </p>
-      </div>
-    </motion.div>
-  )
-}
-
 function Services({ t }) {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 0.72', 'end 0.18'],
+  })
+  const pathLength = useTransform(scrollYProgress, [0, 0.38, 0.72, 1], [0, 0.34, 0.72, 1])
+  const items = [
+    ...services[0].children.map((child, index) => ({
+      number: `0${index + 1}`,
+      title: child.title,
+      desc: child.desc,
+    })),
+    { number: '04', title: services[1].title, desc: services[1].desc },
+    { number: '05', title: services[2].title, desc: services[2].desc },
+  ]
+
   return (
-    <section className="px-10 py-20">
-      <p className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-16">
-        {t('Det her laver jeg', 'What I do')}
-      </p>
-      {services.map((service, i) => (
-        <ServiceRow key={i} service={service} index={i} t={t} />
-      ))}
-      <div className="border-t border-[var(--color-text)]/10" />
+    <section ref={ref} className="relative px-10 py-20 overflow-hidden">
+      <motion.div
+        initial={{ y: 18, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
+        className="mb-20 text-center"
+      >
+        <p className="text-[11px] tracking-[0.18em] uppercase opacity-45 mb-4">
+          {t('Det her laver jeg', 'What I do')}
+        </p>
+        <h2
+          className="leading-none uppercase"
+          style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(44px, 6vw, 86px)', color: 'var(--color-burgundy)' }}
+        >
+          {t('Det her laver jeg', 'What I do')}
+        </h2>
+      </motion.div>
+
+      <div className="pointer-events-none absolute inset-x-0 top-24 hidden md:block">
+        <svg
+          viewBox="0 0 1200 1700"
+          preserveAspectRatio="none"
+          className="w-full h-[1700px]"
+        >
+          <motion.path
+            d="M 360 90 C 520 150, 760 150, 860 280 S 740 520, 500 650 S 360 820, 560 900 S 900 1040, 820 1160 S 520 1340, 250 1505"
+            fill="none"
+            stroke="rgba(145, 60, 39, 0.26)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            style={{ pathLength }}
+          />
+        </svg>
+      </div>
+
+      <div className="relative space-y-8 md:space-y-16">
+        {items.map((item, index) => {
+          const alignRight = index % 2 === 1
+
+          return (
+            <motion.div
+              key={item.number}
+              initial={{ y: 24, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: index * 0.05 }}
+              className={`flex ${alignRight ? 'md:justify-end' : 'md:justify-start'} justify-start`}
+            >
+              <div
+                className={`w-full md:w-[44%] border border-[var(--color-text)]/10 bg-[var(--color-base)]/65 backdrop-blur-[1px] px-6 py-6 ${
+                  alignRight ? 'md:rotate-[1.2deg] md:mr-14' : 'md:-rotate-[1.2deg] md:ml-14'
+                }`}
+              >
+                <p className="text-[11px] opacity-25 mb-3">{item.number}</p>
+                <h3 style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(22px, 2.8vw, 44px)' }}>
+                  {t(item.title.da, item.title.en)}
+                </h3>
+                {item.desc.da ? (
+                  <p className="text-[14px] opacity-55 mt-2 max-w-[50ch]">
+                    {t(item.desc.da, item.desc.en)}
+                  </p>
+                ) : null}
+              </div>
+            </motion.div>
+          )
+        })}
+      </div>
     </section>
   )
 }
@@ -166,7 +241,7 @@ function Contact({ t }) {
         className="leading-[1.05] max-w-2xl"
         style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(36px, 6vw, 80px)', color: 'var(--color-burgundy)' }}
       >
-        {t('Har du et projekt i tankerne?', 'Got a project in mind?')}
+        {t('Nok om mig. Hvad arbejder du på?', 'Enough about me. What are you working on?')}
       </motion.h2>
 
       <motion.p
@@ -203,17 +278,13 @@ function AboutTeaser({ t }) {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.8 } } : {}}
-        className="flex-1 max-w-md relative overflow-hidden"
+        className="flex-1 max-w-md relative"
         style={{ height: 420 }}
       >
         <img
           src="/images/sitwavemepic.png"
           alt="Casandra"
-          className="w-full h-full object-cover object-top"
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, var(--color-base) 0%, transparent 30%)' }}
+          className="w-full h-full object-contain object-bottom"
         />
       </motion.div>
 
@@ -271,7 +342,7 @@ export default function Home() {
       {/* Hero */}
       <section
         ref={constraintsRef}
-        className="texture relative min-h-screen overflow-hidden px-10 pt-0 pb-24 flex flex-col justify-end"
+        className="texture relative min-h-screen overflow-hidden px-10 pt-24 pb-24 flex flex-col justify-center"
       >
         <motion.div
           initial={{ opacity: 0, x: 30 }}
@@ -323,7 +394,7 @@ export default function Home() {
             variants={fadeUp(0.9)}
             initial="hidden"
             animate="show"
-            className="mt-5 text-[11px] tracking-[0.14em] uppercase opacity-55 whitespace-nowrap"
+            className="mt-5 ml-[6.5rem] text-[11px] tracking-[0.14em] uppercase opacity-55 whitespace-nowrap"
           >
             {t('Grafisk designer med forretningsforståelse', 'Graphic designer with business insight')}
           </motion.p>
@@ -332,7 +403,7 @@ export default function Home() {
             variants={fadeUp(1.05)}
             initial="hidden"
             animate="show"
-            className="mt-3 text-[15px] leading-relaxed opacity-75 max-w-sm"
+            className="mt-3 ml-[6.5rem] text-[15px] leading-relaxed opacity-75 max-w-sm"
           >
             {t(
               'Jeg kom til design via forretning, ikke omvendt. Det kan mærkes i arbejdet.',
@@ -348,7 +419,7 @@ export default function Home() {
           dragTransition={{ power: 0.1, timeConstant: 600, modifyTarget: t => t }}
           whileDrag={{ scale: 1.04, cursor: 'grabbing' }}
           initial={{ opacity: 0, rotate: 4, y: 10 }}
-          animate={{ opacity: 1, rotate: 3, y: 0, transition: { delay: 1.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] } }}
+          animate={{ opacity: 1, rotate: 3, y: 0, transition: { delay: 1.5, duration: 0.6, ease: [0.22, 1, 0.36, 1] } }}
           className="absolute z-10 cursor-grab select-none"
           style={{ top: '18%', left: '56%' }}
         >
@@ -370,9 +441,23 @@ export default function Home() {
 
       {/* Projekter */}
       <section id="arbejde" className="px-10 py-20">
-        <p className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-16">
-          {t('Arbejde', 'Work')}
-        </p>
+        <motion.div
+          initial={{ y: 18, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
+          className="mb-20 text-center"
+        >
+          <p className="text-[11px] tracking-[0.18em] uppercase opacity-45 mb-4">
+            {t('Arbejde', 'Work')}
+          </p>
+          <h2
+            className="leading-none uppercase"
+            style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(44px, 6vw, 86px)', color: 'var(--color-burgundy)' }}
+          >
+            {t('Arbejde', 'Work')}
+          </h2>
+        </motion.div>
         {projects.map((project, i) => (
           <ProjectRow key={project.slug} project={project} index={i} t={t} />
         ))}

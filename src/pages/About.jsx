@@ -1,62 +1,8 @@
-import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
-import { experience } from '../data/experience'
 
 const LINKEDIN = 'https://www.linkedin.com/in/casandra-linde-pedersen'
-
-
-function TimelineRow({ item, index, t }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  const [open, setOpen] = useState(false)
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: -16 }}
-      animate={inView ? { opacity: 1, x: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.5, delay: index * 0.04 } } : {}}
-      className="border-t border-[var(--color-text)]/10"
-    >
-      <button
-        onClick={() => item.note && setOpen(v => !v)}
-        className={`w-full flex items-baseline gap-6 py-4 text-left ${item.note ? 'cursor-pointer' : 'cursor-default'}`}
-      >
-        <span
-          className="shrink-0 text-[11px] tracking-wide opacity-30 w-24"
-          style={{ fontFamily: 'VSOP, serif', fontSize: 13 }}
-        >
-          {item.year}
-        </span>
-        <span className="flex-1 text-[15px]">{t(item.title.da, item.title.en)}</span>
-        <span className="text-[12px] opacity-40 shrink-0">{item.place}</span>
-        {item.note && (
-          <span className="text-[11px] opacity-25 ml-2">{open ? '−' : '+'}</span>
-        )}
-        <span
-          className="shrink-0 text-[10px] tracking-[0.1em] uppercase px-2 py-0.5 rounded-sm"
-          style={{
-            backgroundColor: item.type === 'edu' ? 'var(--color-blue)22' : 'var(--color-burgundy)15',
-            color: item.type === 'edu' ? 'var(--color-blue)' : 'var(--color-burgundy)',
-          }}
-        >
-          {item.type === 'edu' ? (t('Uddannelse', 'Education')) : (t('Erfaring', 'Experience'))}
-        </span>
-      </button>
-      {item.note && open && (
-        <motion.p
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          className="pl-[7.5rem] pb-4 text-[13px] opacity-55 leading-relaxed"
-        >
-          {t(item.note.da, item.note.en)}
-        </motion.p>
-      )}
-    </motion.div>
-  )
-}
 
 export default function About() {
   const { t } = useLanguage()
@@ -142,18 +88,6 @@ export default function About() {
           />
         </motion.div>
       </section>
-
-      {/* Tidslinje */}
-      <section className="px-10 pb-24">
-        <p className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-8">
-          {t('Erfaring & uddannelse', 'Experience & education')}
-        </p>
-        {experience.map((item, i) => (
-          <TimelineRow key={i} item={item} index={i} t={t} />
-        ))}
-        <div className="border-t border-[var(--color-text)]/10" />
-      </section>
-
     </main>
   )
 }

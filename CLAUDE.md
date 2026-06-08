@@ -1,9 +1,9 @@
 # CLAUDE.md — Casandra Portfolio
 
 ## Status
-Sidst opdateret: 2026-06-07
-Færdigt: Forside, /arbejde, /om, /cv (med expand/collapse, justerede tekststørrelser), navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite (fixer 404 på direkte route-navigation), tekstur/grain på Home og About hero
-Næste: Projektbilleder uploades til /arbejde, WorkDetail-sider bygges når billeder er klar. GitHub→Vercel auto-deploy kræver stadig at Casandra forbinder GitHub Login Connection på vercel.com/account/login-connections (CLI-forbindelse fejler indtil da)
+Sidst opdateret: 2026-06-09
+Færdigt: Forside, /arbejde, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite (fixer 404 på direkte route-navigation), tekstur/grain på Home og About hero, hjemmesectionen "Det her laver jeg" med zigzag-layout og scroll-tegnet kurve, justeret hero-placering og kontakt-copy
+Næste: Projektbilleder uploades til /arbejde, WorkDetail-sider bygges når billeder er klar. GitHub→Vercel auto-deploy kræver stadig at Casandra forbinder GitHub Login Connection på vercel.com/account/login-connections
 
 ---
 
@@ -19,7 +19,7 @@ Næste: Projektbilleder uploades til /arbejde, WorkDetail-sider bygges når bill
 /              → Forside (hero + projektliste preview)
 /arbejde       → Projektoversigt (alle projekter)
 /arbejde/:slug → Individuel projektside (stub — ikke bygget endnu)
-/om            → Om mig (bio + erfaring/uddannelse tidslinje)
+/om            → Om mig (bio + foto + links)
 /cv            → Kreativt CV (expand/collapse erfaring, draggable polaroid)
 ```
 
@@ -70,14 +70,18 @@ Ligger i `src/data/experience.js` — bruges af både `/om` og `/cv`.
 5. Ingen kommentarer der forklarer hvad koden gør
 6. Ingen abstraktion udover hvad opgaven kræver
 7. Deploy til Vercel med `vercel deploy` når vi er klar (ingen auto-deploy fra GitHub endnu)
+8. Lokal auto-push er sat op i `.claude/settings.local.json` via PostToolUse-hook på `git commit` - den er personlig og skal ikke committes
 
 ## Deployment
 - **GitHub**: https://github.com/casandralpedersen/casandra-portfolio (offentligt)
 - **Vercel**: https://casandra-portfolio-murex.vercel.app
 - GitHub → Vercel auto-deploy er ikke sat op endnu (skal gøres manuelt på vercel.com)
+- Lokal auto-push til GitHub er sat op via `.claude/settings.local.json`
 
 ## Kendte mangler / beslutninger udestående
-- VSOP-fonten har ikke Ø-tegnet — "Ø Bar" vises som "O Bar" i display-font
-- WorkDetail (`/arbejde/:slug`) er stub — bygges når projektbilleder er klar
+- VSOP-fonten har ikke Ø-tegnet - "Ø Bar" vises som "O Bar" i display-font
+- WorkDetail (`/arbejde/:slug`) er stub - bygges når projektbilleder er klar
 - Projektbilleder mangler (`cover: null` på alle projekter)
-- Custom cursor blev bygget og testet, men Casandra foretrak almindelig browser-cursor — fjernet igen. Brug ikke custom cursor fremover medmindre hun selv beder om det.
+- Custom cursor blev bygget og testet, men Casandra foretrak almindelig browser-cursor - fjernet igen. Brug ikke custom cursor fremover medmindre hun selv beder om det.
+- `--color-blue` bruges i praksis kun på `/om` til uddannelses-markering. Hvis blå skal ind på forsiden, er B-DDIT-kortet det mest naturlige sted, så farven får en tydelig betydning i stedet for bare dekoration.
+- Kurvens scroll-timing i services-sektionen er finjusteret manuelt mod layoutet og kan kræve små justeringer igen, hvis boksbredder eller rækkefølge ændres.

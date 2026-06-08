@@ -1,8 +1,9 @@
 # Projekter — indhold og copy
 
 ## Status
-Alle projekter har `cover: null` — billeder mangler og skal uploades til `/public/images/`.
+Alle projekter har `cover: null` - billeder mangler og skal uploades til `/public/images/`.
 WorkDetail-sider (`/arbejde/:slug`) er stub og ikke bygget endnu.
+Forsiden bruger primært creme, tekstfarve og burgundy. Projekt-accenterne ligger i `src/data/projects.js` og skal fortsat være projektspecifikke - ikke bruges som global brandpalette.
 
 ---
 
