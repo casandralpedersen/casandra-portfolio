@@ -2,87 +2,106 @@
 
 ## Goal
 
-Refine the existing `Det her laver jeg` section so the five existing service boxes behave like a pinned scroll story:
+Replace the current `Det her laver jeg` presentation in `NytPortfolio-kopi` with a scroll-driven sticky stack for the five existing text boxes.
 
-- The section stays tall enough to create multiple deliberate scroll steps.
-- One card is centered and pinned at a time.
-- Each card holds in the center for about two scroll steps.
-- During transitions, the current card moves upward and fades out while the next card rises from below and fades in.
-- Outside the transition window, only one card is visible.
+The new behavior should feel calm and editorial:
+
+- the section is tall enough to support multiple deliberate scroll steps
+- one text box is pinned in the center at a time
+- each box stays centered for about two scroll steps before changing
+- the current box fades out while moving upward
+- the next box fades in from below while moving into the center
+- the heading stays outside the sticky animation area
 
 ## Existing Context
 
-The current `Services` component in `src/pages/Home.jsx` already uses:
+The `Services` component in `src/pages/Home.jsx` already derives the five content items needed for this section. The current presentation in this repo should be fully replaced rather than blended with the older zigzag and curve layout.
 
-- `useScroll` tied to the section
-- a tall container with a sticky center layer
-- `useTransform` per card for `opacity` and `y`
+This work should stay localized to the existing services section instead of introducing a new page structure or splitting the content into separate components unless implementation pressure clearly requires it.
 
-That means the work is primarily a behavior retune, not a structural rewrite.
+## Chosen Approach
 
-## Approach
+Use a `sticky stack` layout:
 
-Use scroll progress from the existing section and split it into five equal card phases. Within each phase:
+- a tall scroll container creates the pacing
+- a single sticky viewport stays centered during the sequence
+- all five boxes render in the same visual stack
+- scroll progress determines which box is active and whether the next box is entering
 
-- an entry segment brings the next card from below into center
-- a hold segment keeps that card fixed and fully visible
-- an exit segment moves it upward while fading out
+This approach is preferred over snap-like stepping or broader multi-card overlap because it best matches the requested pinned center behavior while preserving a calm reading rhythm.
 
-To make each card feel present for about two steps, the section height and phase timing will be calibrated together. The hold segment will be materially longer than the entry and exit segments.
+## Interaction Model
 
-## Component Changes
+The full scroll range is divided into five card phases, one for each box.
 
-Update `Services` in `src/pages/Home.jsx` to:
+Inside each phase:
 
-- keep the existing five derived items
-- centralize the timing math so all cards share the same progression model
-- tighten visibility so non-active cards stay hidden outside the transition overlap
-- keep the card stack rendered in a single sticky center layer
+1. The active box enters from slightly below with a soft fade in.
+2. The box remains fixed in the center for the majority of the phase.
+3. Near the end of the phase, it fades out while moving upward.
+4. At the same time, the next box fades in from below and settles into the center.
 
-The section heading remains outside the sticky story area so the animation begins after the title is introduced.
+Only the active box and, during the transition window, the next box should be visible. All other boxes remain hidden so the section always reads as one focused message at a time.
 
-## Motion Model
+## Motion Direction
 
-Per card, use a normalized timeline with four states:
+The motion should be restrained rather than dramatic:
 
-1. Hidden below
-2. Visible in center
-3. Still visible in center
-4. Hidden above
+- moderate vertical travel
+- soft opacity changes
+- no hard cuts or aggressive parallax
+- no extra decorative motion competing with the text
 
-The transforms will be:
-
-- `opacity`: `0 -> 1 -> 1 -> 0`
-- `y`: positive offset -> `0` -> `0` -> negative offset
-
-The hold window will be larger than the transition windows so the card visibly rests before changing.
+The last box should end cleanly and remain readable at the end of the sequence instead of disappearing abruptly.
 
 ## Layout
 
-Adjust the services scroll area so:
+The section should keep the current visual language of the homepage while shifting the content into a centered storytelling frame:
 
-- the outer section keeps the current visual language
-- the story container is tall enough for all five cards to each get a hold period
-- the sticky stage stays vertically centered on desktop and mobile
-- card width remains constrained for readable text
+- the section heading remains above the sticky scroll area
+- the sticky area is vertically centered on desktop and mobile
+- card width stays constrained for readable line length
+- the scroll container is tall enough that each card clearly gets a hold period
+
+The existing service copy and ordering stay unchanged.
+
+## Implementation Notes
+
+Update `Services` in `src/pages/Home.jsx` to:
+
+- keep the existing derived `items` array for the five boxes
+- drive animation from the section's own scroll progress
+- centralize the phase math so every box uses the same timing model
+- apply opacity and vertical translation directly to each box based on its phase state
+- ensure hidden boxes do not remain visually present outside the active overlap
+
+The implementation should remain simple and readable, with timing logic shared rather than hand-tuned separately per box.
 
 ## Mobile Behavior
 
-On smaller screens:
+Mobile should preserve the same one-box-at-a-time story:
 
-- keep the same one-card-at-a-time behavior
-- reduce card padding and vertical travel slightly
-- preserve the pinned center feel without requiring oversized scroll distance
+- the sticky center behavior remains
+- card padding can reduce slightly
+- vertical travel can shorten slightly
+- the scroll distance should still feel intentional, not cramped
 
 ## Verification
 
 Verify locally in browser that:
 
-- exactly one card is readable at rest
-- transitions overlap cleanly with no flashing
-- the first and last cards enter and exit naturally
-- the section feels deliberate on both desktop and mobile widths
+- one box is clearly readable at rest
+- each box holds in the center long enough to feel deliberate
+- transitions are smooth and calm, without flicker
+- the next box enters from below while the current one exits upward
+- the final box lands cleanly
+- the section works at both desktop and mobile widths
 
 ## Out of Scope
 
-This change does not alter the text content, reorder the five service items, or introduce additional controls such as pagination dots or buttons.
+This change does not:
+
+- rewrite the service copy
+- reorder the five boxes
+- add pagination dots, arrows, or buttons
+- keep any part of the old zigzag and curve presentation in this repo copy
