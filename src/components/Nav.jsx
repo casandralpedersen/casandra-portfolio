@@ -75,7 +75,7 @@ export default function Nav() {
         >
           {t('Arbejde', 'Work')}
         </a>
-        <NavItem to="/om">{t('Om', 'About')}</NavItem>
+        <NavItem to="/cv">{t('CV', 'CV')}</NavItem>
 
         <div className="relative" ref={dropdownRef}>
           <motion.button

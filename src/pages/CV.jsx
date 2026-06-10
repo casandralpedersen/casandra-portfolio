@@ -12,11 +12,11 @@ const skills = [
   },
   {
     category: { da: 'Software', en: 'Software' },
-    items: ['Adobe Illustrator', 'Photoshop', 'InDesign', 'Figma', 'Canva', 'Premiere Pro'],
+    items: ['InDesign', 'Figma', 'Canva'],
   },
   {
     category: { da: 'Marketing', en: 'Marketing' },
-    items: ['Social Media', 'Fotografi', 'Retouchering', 'SEO', 'Copywriting'],
+    items: ['Social Media', 'Fotografi', 'Retouchering'],
   },
   {
     category: { da: 'Forretning', en: 'Business' },
@@ -154,11 +154,11 @@ export default function CV() {
             whileDrag={{ scale: 1.04, rotate: 2 }}
             initial={{ opacity: 0, rotate: -3, x: 20 }}
             animate={{ opacity: 1, rotate: -3, x: 0, transition: { ease, duration: 0.8, delay: 0.2 } }}
-            className="shrink-0 bg-white p-3 pb-8 shadow-md cursor-grab active:cursor-grabbing select-none print:hidden"
+            className="shrink-0 shadow-md cursor-grab active:cursor-grabbing select-none print:hidden"
             style={{ width: 160 }}
           >
             <img
-              src="/images/mefinalpic.png"
+              src="/images/alternativtmepic.png"
               alt="Casandra"
               className="w-full object-cover object-top"
               style={{ height: 180 }}
@@ -234,9 +234,30 @@ export default function CV() {
         </Section>
 
         <Section label={t('Sprog', 'Languages')} delay={0.5}>
-          <p className="text-[14px] opacity-70 tracking-wide">
-            Dansk&nbsp;&nbsp;·&nbsp;&nbsp;Engelsk&nbsp;&nbsp;·&nbsp;&nbsp;Spansk
-          </p>
+          <div className="mt-3 space-y-3 max-w-xl">
+            {[
+              {
+                language: t('Dansk', 'Danish'),
+                level: t('Modersmål', 'Native'),
+              },
+              {
+                language: t('Engelsk', 'English'),
+                level: t('Flydende', 'Fluent'),
+              },
+              {
+                language: t('Spansk', 'Spanish'),
+                level: t('Konversationsniveau', 'Conversational'),
+              },
+            ].map(item => (
+              <div
+                key={item.language}
+                className="grid grid-cols-[minmax(120px,160px)_1fr] items-baseline gap-x-6 border-b border-[var(--color-text)]/8 pb-2 last:border-0 last:pb-0"
+              >
+                <span className="text-[18px] opacity-72">{item.language}</span>
+                <span className="text-[14px] opacity-48 tracking-wide">{item.level}</span>
+              </div>
+            ))}
+          </div>
         </Section>
 
       </div>

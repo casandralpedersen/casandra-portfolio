@@ -35,7 +35,7 @@ const services = [
       },
       {
         title: { da: 'Sociale medier', en: 'Social media' },
-        desc: { da: 'Indhold, kampagner, grafik og fotografi til sociale medier - med fokus på hvad der skaber engagement hos de rigtige mennesker.', en: 'Content, campaigns, graphics, and photography for social media - focused on what creates engagement with the right people.' },
+        desc: { da: 'Indhold, kampagner, grafik og fotografi til sociale medier - med fokus på hvad der skaber engagement hos rigtige mennesker.', en: 'Content, campaigns, graphics, and photography for social media - focused on what creates engagement with the right people.' },
       },
       {
         title: { da: 'Grafisk design', en: 'Graphic design' },
@@ -207,13 +207,13 @@ function Services({ t }) {
         className="mb-16 text-center md:mb-20"
       >
         <p className="text-[11px] tracking-[0.18em] uppercase opacity-45 mb-4">
-          {t('Det her laver jeg', 'What I do')}
+          {t('Hvad kan jeg', 'What can I do')}
         </p>
         <h2
           className="leading-none uppercase"
           style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(44px, 6vw, 86px)', color: 'var(--color-burgundy)' }}
         >
-          {t('Det her laver jeg', 'What I do')}
+          {t('Det hele kogt ned', 'Everything boiled down')}
         </h2>
       </motion.div>
 
@@ -265,7 +265,7 @@ function Contact({ t }) {
         initial={{ y: 30, opacity: 0 }}
         animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.8, delay: 0.1 } } : {}}
         className="leading-[1.05] max-w-2xl"
-        style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(36px, 6vw, 80px)', color: 'var(--color-burgundy)' }}
+        style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(30px, 4.8vw, 64px)', color: 'var(--color-burgundy)' }}
       >
         {t('Nok om mig. Hvad arbejder du på?', 'Enough about me. What are you working on?')}
       </motion.h2>
@@ -320,7 +320,7 @@ function AboutTeaser({ t }) {
           animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } } : {}}
           className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-6"
         >
-          {t('Om mig', 'About me')}
+          {t('En designer med forretningsforståelse', 'A designer with business insight')}
         </motion.p>
 
         <motion.div
@@ -368,7 +368,7 @@ export default function Home() {
       {/* Hero */}
       <section
         ref={constraintsRef}
-        className="texture relative min-h-screen overflow-hidden px-10 pt-24 pb-24 flex flex-col justify-center"
+        className="texture relative min-h-[88vh] overflow-hidden px-10 pt-12 pb-16 flex flex-col justify-center"
       >
         <motion.div
           initial={{ opacity: 0, x: 30 }}
@@ -384,10 +384,6 @@ export default function Home() {
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'linear-gradient(to right, var(--color-base) 0%, transparent 20%)' }}
-          />
-          <div
-            className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
-            style={{ background: 'linear-gradient(to bottom, transparent, var(--color-base))' }}
           />
         </motion.div>
 

@@ -1,9 +1,9 @@
 # CLAUDE.md — Casandra Portfolio
 
 ## Status
-Sidst opdateret: 2026-06-09
-Færdigt: Forside, /arbejde, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite (fixer 404 på direkte route-navigation), tekstur/grain på Home og About hero, hjemmesectionen "Det her laver jeg" med zigzag-layout og scroll-tegnet kurve, justeret hero-placering og kontakt-copy
-Næste: Projektbilleder uploades til /arbejde, WorkDetail-sider bygges når billeder er klar. GitHub→Vercel auto-deploy kræver stadig at Casandra forbinder GitHub Login Connection på vercel.com/account/login-connections
+Sidst opdateret: 2026-06-10
+Færdigt: Forside, /arbejde, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite (fixer 404 på direkte route-navigation), tekstur/grain på Home og About hero, hjemmesectionen "Det hele kogt ned" med zigzag-layout og scroll-tegnet kurve, justeret hero-placering, store centrerede sektionsoverskrifter, kontakt-copy og projektcovers til Ø Bar, Etsy / CompozeStudio og Brødrene Vejen
+Næste: WorkDetail-sider bygges når resten af projektmaterialet er klar. GitHub→Vercel auto-deploy kræver stadig at Casandra forbinder GitHub Login Connection på vercel.com/account/login-connections
 
 ---
 
@@ -22,6 +22,7 @@ Næste: Projektbilleder uploades til /arbejde, WorkDetail-sider bygges når bill
 /om            → Om mig (bio + foto + links)
 /cv            → Kreativt CV (expand/collapse erfaring, draggable polaroid)
 ```
+Topnavigationen linker til `/`, `#arbejde`, `/cv` og kontakt. `/om` nås via `Læs hele historien` fra forsiden.
 
 ## Farvepalette
 ```css
@@ -45,6 +46,7 @@ Defineret i `src/styles/global.css` under `@theme`.
 - `useInView` til scroll-triggerede reveals (`once: true, margin: '-60px'`)
 - Draggable elementer: forsiden (B-DDIT-kort, `left: '56%', top: '18%'`), CV-siden (polaroid-foto)
 - AnimatePresence til expand/collapse
+- Services-sektionen på forsiden bruger en scroll-tegnet SVG-kurve med zigzag-opstillede bokse
 
 ## Projektdata
 Ligger i `src/data/projects.js`. Projekter (i rækkefølge):

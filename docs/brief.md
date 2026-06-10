@@ -20,12 +20,13 @@ Førstehåndsindtryk: *"Det er personligt og hun er ikke kedelig at samarbejde m
 - `/` — Forside: hero (navn + foto + draggable kort) + projektpreview
 - `/arbejde` — Projektoversigt: editorial layout, varierende størrelser
 - `/arbejde/:slug` — Individuel projektside (ikke bygget endnu)
-- `/om` — Bio + erfaring/uddannelse tidslinje
+- `/om` — Bio + foto + links
 - `/cv` — Kreativt CV: stort navn, expand/collapse erfaring, draggable polaroid
 
 ## Navigation
-Sticky nav: **Casandra** (logo) til venstre · **Arbejde · Om · Kontakt** til højre
+Sticky nav: **Casandra** (logo) til venstre · **Arbejde · CV · Kontakt** til højre
 Kontakt er en knap (burgundy), ikke bare et link. Sprogskift DA/EN yderst til højre.
+`/om` er ikke i topnavigationen og nås i stedet via `Læs hele historien` i forsiden.
 
 ## Interaktivitet (kerneprioritering)
 - Draggable B-DDIT-kort på forsiden
@@ -34,6 +35,11 @@ Kontakt er en knap (burgundy), ikke bare et link. Sprogskift DA/EN yderst til h�
 - Scroll-triggerede indflyninger (useInView)
 - Staggered letter-animation ved load (forsidesnavn)
 - Expand/collapse på CV-erfaring (accordion - kun ét åbent ad gangen)
+- Zigzag services-sektion med scroll-tegnet buet linje
+
+## Typografisk fokus
+- Store sektionsoverskrifter på forsiden må gerne stå centreret og føles som tydelige nedslag
+- Display-overskrifter bruges gerne i caps, når de skal markere en sektion tydeligt
 
 ## Farvebrug
 - Burgundy er primær accent på tværs af sitet
@@ -42,5 +48,7 @@ Kontakt er en knap (burgundy), ikke bare et link. Sprogskift DA/EN yderst til h�
 
 ## Sektion der mangler / udestående
 - Noget mellem hero og projekter på forsiden - muligvis skills - ikke besluttet endnu
-- WorkDetail-sider - venter på projektbilleder
+- Forsiden har nu rigtige coverbilleder til Ø Bar, Etsy / CompozeStudio og Brødrene Vejen
+- WorkDetail-sider - venter på resten af projektmaterialet
+- Remakes mangler stadig et endeligt cover
 - Custom cursor - droppet, medmindre Casandra selv beder om det igen

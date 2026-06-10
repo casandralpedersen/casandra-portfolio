@@ -18,7 +18,7 @@ export default function About() {
             animate={{ opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6 } }}
             className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-8"
           >
-            {t('Om', 'About')}
+            {t('En designer med forretningsforståelse', 'A designer with business insight')}
           </motion.p>
 
           <motion.div
