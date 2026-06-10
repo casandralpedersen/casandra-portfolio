@@ -1,8 +1,9 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import { projects } from '../data/projects'
+import { getServicesScrollStates } from './servicesScroll'
 
 const NAME_LETTERS = ['C', 'a', 's', 'a', 'n', 'd', 'r', 'a']
 
@@ -132,11 +133,7 @@ function ProjectRow({ project, index, t }) {
 
 function Services({ t }) {
   const ref = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start 0.72', 'end 0.18'],
-  })
-  const pathLength = useTransform(scrollYProgress, [0, 0.38, 0.72, 1], [0, 0.34, 0.72, 1])
+  const boxRefs = useRef([])
   const items = [
     ...services[0].children.map((child, index) => ({
       number: `0${index + 1}`,
@@ -147,14 +144,67 @@ function Services({ t }) {
     { number: '05', title: services[2].title, desc: services[2].desc },
   ]
 
+  useEffect(() => {
+    const section = ref.current
+    const boxes = boxRefs.current.filter(Boolean)
+
+    if (!section || boxes.length === 0) {
+      return undefined
+    }
+
+    let rafId = 0
+
+    const setBoxState = (box, opacity, translateY) => {
+      box.style.opacity = String(opacity)
+      box.style.transform = `translate(-50%, -50%) translateY(${translateY}px)`
+    }
+
+    const updateBoxes = () => {
+      const rect = section.getBoundingClientRect()
+      const totalScrollable = Math.max(section.offsetHeight - window.innerHeight, 1)
+      const scrolled = Math.min(Math.max(-rect.top, 0), totalScrollable)
+      const scrollProgress = scrolled / totalScrollable
+      const segmentSize = 1 / boxes.length
+      const activeIndex = Math.min(boxes.length - 1, Math.floor(scrollProgress / segmentSize))
+      const currentHeight = boxes[activeIndex]?.offsetHeight ?? 0
+      const nextHeight = boxes[activeIndex + 1]?.offsetHeight ?? currentHeight
+      const minimumGap = 64
+      const travel = Math.max(
+        window.innerHeight * 0.72,
+        (currentHeight + nextHeight) / 2 + minimumGap
+      )
+      const states = getServicesScrollStates(scrollProgress, boxes.length, travel)
+
+      boxes.forEach((box, index) => {
+        const state = states[index]
+        setBoxState(box, state.opacity, state.translateY)
+      })
+    }
+
+    const requestUpdate = () => {
+      cancelAnimationFrame(rafId)
+      rafId = window.requestAnimationFrame(updateBoxes)
+    }
+
+    requestUpdate()
+    window.addEventListener('scroll', requestUpdate, { passive: true })
+    window.addEventListener('resize', requestUpdate)
+
+    return () => {
+      cancelAnimationFrame(rafId)
+      window.removeEventListener('scroll', requestUpdate)
+      window.removeEventListener('resize', requestUpdate)
+    }
+  }, [])
+
   return (
-    <section ref={ref} className="relative px-10 py-20 overflow-hidden">
+    <section ref={ref} className="relative px-6 md:px-10">
       <motion.div
         initial={{ y: 18, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
-        className="mb-20 text-center"
+        className="mb-16 text-center md:mb-20"
       >
         <p className="text-[11px] tracking-[0.18em] uppercase opacity-45 mb-4">
           {t('Det her laver jeg', 'What I do')}
@@ -167,54 +217,30 @@ function Services({ t }) {
         </h2>
       </motion.div>
 
-      <div className="pointer-events-none absolute inset-x-0 top-24 hidden md:block">
-        <svg
-          viewBox="0 0 1200 1700"
-          preserveAspectRatio="none"
-          className="w-full h-[1700px]"
-        >
-          <motion.path
-            d="M 360 90 C 520 150, 760 150, 860 280 S 740 520, 500 650 S 360 820, 560 900 S 900 1040, 820 1160 S 520 1340, 250 1505"
-            fill="none"
-            stroke="rgba(145, 60, 39, 0.26)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            style={{ pathLength }}
-          />
-        </svg>
-      </div>
-
-      <div className="relative space-y-8 md:space-y-16">
-        {items.map((item, index) => {
-          const alignRight = index % 2 === 1
-
-          return (
-            <motion.div
-              key={item.number}
-              initial={{ y: 24, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: index * 0.05 }}
-              className={`flex ${alignRight ? 'md:justify-end' : 'md:justify-start'} justify-start`}
-            >
+      <div className="services-scroll-stage">
+        <div className="services-scroll-sticky">
+          <div className="services-scroll-stack">
+            {items.map((item, index) => (
               <div
-                className={`w-full md:w-[44%] border border-[var(--color-text)]/10 bg-[var(--color-base)]/65 backdrop-blur-[1px] px-6 py-6 ${
-                  alignRight ? 'md:rotate-[1.2deg] md:mr-14' : 'md:-rotate-[1.2deg] md:ml-14'
-                }`}
+                key={item.number}
+                ref={element => {
+                  boxRefs.current[index] = element
+                }}
+                className="services-scroll-box mx-auto w-full max-w-[600px] border border-[var(--color-text)]/10 bg-[var(--color-base)] px-6 py-8 shadow-[0_18px_42px_rgba(41,92,125,0.08)] md:px-8 md:py-10"
               >
-                <p className="text-[11px] opacity-25 mb-3">{item.number}</p>
-                <h3 style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(22px, 2.8vw, 44px)' }}>
+                <p className="mb-4 text-[11px] opacity-35">{item.number}</p>
+                <h3 style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(28px, 4vw, 52px)' }}>
                   {t(item.title.da, item.title.en)}
                 </h3>
                 {item.desc.da ? (
-                  <p className="text-[14px] opacity-55 mt-2 max-w-[50ch]">
+                  <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed opacity-65">
                     {t(item.desc.da, item.desc.en)}
                   </p>
                 ) : null}
               </div>
-            </motion.div>
-          )
-        })}
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )
@@ -337,7 +363,7 @@ export default function Home() {
   const constraintsRef = useRef(null)
 
   return (
-    <main className="bg-[var(--color-base)] overflow-x-hidden">
+    <main className="bg-[var(--color-base)]">
 
       {/* Hero */}
       <section

@@ -8,7 +8,7 @@ const LINKEDIN = 'https://www.linkedin.com/in/casandra-linde-pedersen'
 const skills = [
   {
     category: { da: 'Design', en: 'Design' },
-    items: ['Grafisk design', 'Visuel identitet', 'Brand Identity', 'Typografi', 'UX / Produktdesign'],
+    items: ['Grafisk design', 'Visuel identitet', 'Brand Identity', 'UX / Produktdesign'],
   },
   {
     category: { da: 'Software', en: 'Software' },
