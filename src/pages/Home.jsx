@@ -320,7 +320,7 @@ function AboutTeaser({ t }) {
           animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } } : {}}
           className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-6"
         >
-          {t('En designer med forretningsforståelse', 'A designer with business insight')}
+          {t('Jeg arbejder med kommunikation, design og teknologi', 'I work with communication, design and technology')}
         </motion.p>
 
         <motion.div
@@ -368,12 +368,12 @@ export default function Home() {
       {/* Hero */}
       <section
         ref={constraintsRef}
-        className="texture relative min-h-[88vh] overflow-hidden px-10 pt-12 pb-16 flex flex-col justify-center"
+        className="texture relative min-h-[88vh] overflow-hidden px-10 pt-6 pb-16 flex flex-col justify-start"
       >
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 1.0, delay: 0.05 } }}
-          className="absolute top-0 right-0 w-[55%] h-full pointer-events-none"
+          className="absolute -top-16 right-0 w-[55%] h-full pointer-events-none"
           style={{ zIndex: 0 }}
         >
           <img
@@ -387,7 +387,7 @@ export default function Home() {
           />
         </motion.div>
 
-        <div className="relative z-10 flex flex-col">
+        <div className="relative z-10 flex flex-col mt-24 md:mt-32">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -418,7 +418,7 @@ export default function Home() {
             animate="show"
             className="mt-5 ml-[6.5rem] text-[11px] tracking-[0.14em] uppercase opacity-55 whitespace-nowrap"
           >
-            {t('Grafisk designer med forretningsforståelse', 'Graphic designer with business insight')}
+            {t('Din digitale kommunikatør med designøje', 'Your digital communicator with a design eye')}
           </motion.p>
 
           <motion.p
@@ -428,8 +428,8 @@ export default function Home() {
             className="mt-3 ml-[6.5rem] text-[15px] leading-relaxed opacity-75 max-w-sm"
           >
             {t(
-              'Jeg kom til design via forretning, ikke omvendt. Det kan mærkes i arbejdet.',
-              'I came to design through business, not the other way around. You can feel it in the work.'
+              'Jeg arbejder i trekanten mellem kommunikation, design og teknologi - altid med målgruppen i centrum.',
+              'I work in the triangle between communication, design and technology - always with the target audience at the centre.'
             )}
           </motion.p>
         </div>
@@ -443,7 +443,7 @@ export default function Home() {
           initial={{ opacity: 0, rotate: 4, y: 10 }}
           animate={{ opacity: 1, rotate: 3, y: 0, transition: { delay: 1.5, duration: 0.6, ease: [0.22, 1, 0.36, 1] } }}
           className="absolute z-10 cursor-grab select-none"
-          style={{ top: '18%', left: '56%' }}
+          style={{ top: '8%', left: '56%' }}
         >
           <div className="px-5 py-4 border border-[var(--color-burgundy)] bg-[var(--color-base)]" style={{ width: 160 }}>
             <p className="text-[10px] tracking-[0.12em] uppercase opacity-40 mb-1">
