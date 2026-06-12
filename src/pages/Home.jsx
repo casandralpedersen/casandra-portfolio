@@ -108,12 +108,39 @@ function WorkGrid({ t }) {
                 →
               </span>
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3
-                  className="leading-tight break-words"
-                  style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
-                >
-                  {t(project.title.da, project.title.en)}
-                </h3>
+                {index === 1 ? (
+                  <>
+                    <h3
+                      className="leading-tight break-words"
+                      style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
+                    >
+                      {t(project.title.da, project.title.en)}
+                    </h3>
+                    <div
+                      className="h-px mt-2 w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
+                      style={{ backgroundColor: textColor }}
+                    />
+                  </>
+                ) : index === 2 ? (
+                  <h3
+                    className="leading-tight break-words flex items-baseline gap-2"
+                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
+                  >
+                    {t(project.title.da, project.title.en)}
+                    <span className="text-base opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-out">
+                      ✦
+                    </span>
+                  </h3>
+                ) : (
+                  <h3
+                    className={`leading-tight break-words transition-all duration-300 ease-out origin-bottom-left ${
+                      index === 0 ? 'group-hover:-rotate-3' : 'group-hover:tracking-widest'
+                    }`}
+                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
+                  >
+                    {t(project.title.da, project.title.en)}
+                  </h3>
+                )}
                 <p
                   className="text-[11px] tracking-[0.1em] uppercase mt-1.5"
                   style={{ color: textColor, opacity: 0.6 }}
@@ -131,9 +158,14 @@ function WorkGrid({ t }) {
           key={placeholder.number}
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: (projects.length + index) * 0.06 } } : {}}
-          className="relative aspect-square"
+          className="group relative aspect-square overflow-hidden"
           style={{ backgroundColor: placeholder.accent }}
         >
+          {index === 0 && (
+            <div
+              className="absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-white/15 -translate-x-full group-hover:translate-x-[400%] transition-transform duration-1000 ease-out pointer-events-none"
+            />
+          )}
           <div className="absolute bottom-0 left-0 p-6">
             <h3
               className="leading-tight"
@@ -142,10 +174,22 @@ function WorkGrid({ t }) {
               {t('Kommer snart', 'Coming soon')}
             </h3>
             <p
-              className="text-[11px] tracking-[0.1em] uppercase mt-1.5"
+              className="flex items-center gap-2 text-[11px] tracking-[0.1em] uppercase mt-1.5"
               style={{ color: 'var(--color-base)', opacity: 0.4 }}
             >
               {t(`Projekt ${placeholder.number}`, `Project ${placeholder.number}`)}
+              {index === 1 && (
+                <motion.span
+                  className="inline-block w-1.5 h-1.5 rounded-full"
+                  style={{ backgroundColor: 'var(--color-base)' }}
+                  initial={{ opacity: 0.4, scale: 1 }}
+                  whileHover={{
+                    opacity: [0.4, 1, 0.4],
+                    scale: [1, 1.4, 1],
+                    transition: { duration: 1.1, repeat: Infinity, ease: 'easeInOut' },
+                  }}
+                />
+              )}
             </p>
           </div>
         </motion.div>
