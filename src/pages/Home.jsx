@@ -97,7 +97,7 @@ function WorkGrid({ t }) {
           >
             <Link
               to={`/arbejde/${project.slug}`}
-              className="group relative block h-[140px] md:h-[200px] overflow-hidden"
+              className="group relative block h-[170px] md:h-[230px] overflow-hidden"
               style={{ backgroundColor: project.accent }}
             >
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
@@ -131,11 +131,17 @@ function WorkGrid({ t }) {
                       ✦
                     </span>
                   </h3>
+                ) : index === 3 ? (
+                  <motion.h3
+                    className="leading-tight break-words"
+                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: textColor }}
+                    whileHover={{ rotate: [0, -6, 6, -4, 0], transition: { duration: 0.5, ease: 'easeInOut' } }}
+                  >
+                    {t(project.title.da, project.title.en)}
+                  </motion.h3>
                 ) : (
                   <h3
-                    className={`leading-tight break-words transition-all duration-300 ease-out origin-bottom-left ${
-                      index === 0 ? 'group-hover:-rotate-3' : 'group-hover:tracking-widest'
-                    }`}
+                    className="leading-tight break-words transition-transform duration-300 ease-out origin-bottom-left group-hover:-rotate-3"
                     style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: textColor }}
                   >
                     {t(project.title.da, project.title.en)}
@@ -158,7 +164,7 @@ function WorkGrid({ t }) {
           key={placeholder.number}
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: (projects.length + index) * 0.06 } } : {}}
-          className="group relative h-[140px] md:h-[200px] overflow-hidden"
+          className="group relative h-[170px] md:h-[230px] overflow-hidden"
           style={{ backgroundColor: placeholder.accent }}
         >
           {index === 0 && (
@@ -167,12 +173,17 @@ function WorkGrid({ t }) {
             />
           )}
           <div className="absolute bottom-0 left-0 p-4 md:p-6">
-            <h3
+            <motion.h3
               className="leading-tight"
               style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: 'var(--color-base)', opacity: 0.6 }}
+              whileHover={
+                index === 1
+                  ? { y: [0, -4, 0], transition: { duration: 1.1, repeat: Infinity, ease: 'easeInOut' } }
+                  : {}
+              }
             >
               {t('Kommer snart', 'Coming soon')}
-            </h3>
+            </motion.h3>
             <p
               className="flex items-center gap-2 text-[11px] tracking-[0.1em] uppercase mt-1.5"
               style={{ color: 'var(--color-base)', opacity: 0.4 }}
@@ -229,7 +240,7 @@ function Services({ t }) {
         </p>
         <h2
           className="leading-none uppercase"
-          style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(44px, 6vw, 86px)', color: 'var(--color-burgundy)' }}
+          style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(32px, 4.5vw, 64px)', color: 'var(--color-burgundy)' }}
         >
           {t('Det hele kogt ned', 'Everything boiled down')}
         </h2>
@@ -244,7 +255,7 @@ function Services({ t }) {
           <motion.path
             d="M 440 118 C 560 148, 760 150, 860 280 S 740 520, 500 650 S 360 820, 560 900 S 900 1040, 820 1160 S 520 1340, 250 1505"
             fill="none"
-            stroke="rgba(145, 60, 39, 0.26)"
+            stroke="var(--color-burgundy)"
             strokeWidth="2.5"
             strokeLinecap="round"
             style={{ pathLength }}
@@ -307,22 +318,10 @@ function Contact({ t }) {
         initial={{ y: 30, opacity: 0 }}
         animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.8, delay: 0.1 } } : {}}
         className="leading-[1.05] max-w-2xl"
-        style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(30px, 4.8vw, 64px)', color: 'var(--color-burgundy)' }}
+        style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(30px, 4.8vw, 64px)', color: 'var(--color-base)' }}
       >
         {t('Nok om mig. Hvad arbejder du på?', 'Enough about me. What are you working on?')}
       </motion.h2>
-
-      <motion.p
-        initial={{ y: 20, opacity: 0 }}
-        animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay: 0.25 } } : {}}
-        className="mt-6 text-[15px] leading-relaxed max-w-md"
-        style={{ color: 'var(--color-base)', opacity: 0.8 }}
-      >
-        {t(
-          'Skriv til mig - jeg svarer altid. Lad os finde ud af hvad jeg kan hjælpe med.',
-          'Send me a message - I always reply. Let\'s figure out how I can help.'
-        )}
-      </motion.p>
 
       <motion.a
         href={`mailto:${EMAIL}`}
@@ -421,7 +420,7 @@ export default function Home() {
           <img
             src="/images/mefinalpic.png"
             alt="Casandra"
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-cover object-bottom"
           />
           <div
             className="absolute inset-0 pointer-events-none"
@@ -513,13 +512,13 @@ export default function Home() {
           className="mb-8 text-center"
         >
           <p className="text-[11px] tracking-[0.18em] uppercase opacity-45 mb-4">
-            {t('Arbejde', 'Work')}
+            {t('Ting jeg har lavet med hænderne', 'Things I made with my hands')}
           </p>
           <h2
             className="leading-none uppercase"
-            style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(36px, 4.5vw, 64px)', color: 'var(--color-burgundy)' }}
+            style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(28px, 3.5vw, 48px)', color: 'var(--color-burgundy)' }}
           >
-            {t('Arbejde', 'Work')}
+            {t('Mine fingeraftryk', 'My fingerprints')}
           </h2>
         </motion.div>
         <WorkGrid t={t} />
