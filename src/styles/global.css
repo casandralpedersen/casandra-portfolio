@@ -60,33 +60,3 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
-.services-scroll-stage {
-  position: relative;
-  height: 600vh;
-}
-
-.services-scroll-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.services-scroll-stack {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.services-scroll-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%) translateY(40px);
-  transform-origin: center center;
-  will-change: transform, opacity;
-}
