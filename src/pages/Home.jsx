@@ -97,7 +97,7 @@ function WorkGrid({ t }) {
           >
             <Link
               to={`/arbejde/${project.slug}`}
-              className="group relative block aspect-square overflow-hidden"
+              className="group relative block h-[140px] md:h-[200px] overflow-hidden"
               style={{ backgroundColor: project.accent }}
             >
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
@@ -107,12 +107,12 @@ function WorkGrid({ t }) {
               >
                 →
               </span>
-              <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
                 {index === 1 ? (
                   <>
                     <h3
                       className="leading-tight break-words"
-                      style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
+                      style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: textColor }}
                     >
                       {t(project.title.da, project.title.en)}
                     </h3>
@@ -124,7 +124,7 @@ function WorkGrid({ t }) {
                 ) : index === 2 ? (
                   <h3
                     className="leading-tight break-words flex items-baseline gap-2"
-                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
+                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: textColor }}
                   >
                     {t(project.title.da, project.title.en)}
                     <span className="text-base opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-out">
@@ -136,7 +136,7 @@ function WorkGrid({ t }) {
                     className={`leading-tight break-words transition-all duration-300 ease-out origin-bottom-left ${
                       index === 0 ? 'group-hover:-rotate-3' : 'group-hover:tracking-widest'
                     }`}
-                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
+                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: textColor }}
                   >
                     {t(project.title.da, project.title.en)}
                   </h3>
@@ -158,7 +158,7 @@ function WorkGrid({ t }) {
           key={placeholder.number}
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: (projects.length + index) * 0.06 } } : {}}
-          className="group relative aspect-square overflow-hidden"
+          className="group relative h-[140px] md:h-[200px] overflow-hidden"
           style={{ backgroundColor: placeholder.accent }}
         >
           {index === 0 && (
@@ -166,10 +166,10 @@ function WorkGrid({ t }) {
               className="absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-white/15 -translate-x-full group-hover:translate-x-[400%] transition-transform duration-1000 ease-out pointer-events-none"
             />
           )}
-          <div className="absolute bottom-0 left-0 p-6">
+          <div className="absolute bottom-0 left-0 p-4 md:p-6">
             <h3
               className="leading-tight"
-              style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: 'var(--color-base)', opacity: 0.6 }}
+              style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: 'var(--color-base)', opacity: 0.6 }}
             >
               {t('Kommer snart', 'Coming soon')}
             </h3>
@@ -504,20 +504,20 @@ export default function Home() {
       <Services t={t} />
 
       {/* Projekter */}
-      <section id="arbejde" className="px-10 py-20">
+      <section id="arbejde" className="px-10 py-12">
         <motion.div
           initial={{ y: 18, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.6 }}
-          className="mb-20 text-center"
+          className="mb-8 text-center"
         >
           <p className="text-[11px] tracking-[0.18em] uppercase opacity-45 mb-4">
             {t('Arbejde', 'Work')}
           </p>
           <h2
             className="leading-none uppercase"
-            style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(44px, 6vw, 86px)', color: 'var(--color-burgundy)' }}
+            style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(36px, 4.5vw, 64px)', color: 'var(--color-burgundy)' }}
           >
             {t('Arbejde', 'Work')}
           </h2>
