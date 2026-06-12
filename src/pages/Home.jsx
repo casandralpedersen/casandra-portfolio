@@ -67,66 +67,90 @@ const fadeUp = (delay) => ({
   show: { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay } },
 })
 
-function ProjectRow({ project, index, t }) {
+function getContrastTextColor(hex) {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+  return luminance > 0.6 ? 'var(--color-text)' : 'var(--color-base)'
+}
+
+const placeholderProjects = [
+  { number: '05', accent: 'var(--color-burgundy)' },
+  { number: '06', accent: 'var(--color-blue)' },
+]
+
+function WorkGrid({ t }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const isLarge = index === 0 || index === 2
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ y: 32, opacity: 0 }}
-      animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay: index * 0.06 } } : {}}
-    >
-      <Link
-        to={`/arbejde/${project.slug}`}
-        className="group block border-t border-[var(--color-text)]/10 py-8 relative overflow-hidden"
-      >
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileHover={{ scaleX: 1 }}
-          transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.4 }}
-          className="absolute inset-0 origin-left pointer-events-none"
-          style={{ backgroundColor: project.accent + '0D' }}
-        />
-        <div className="relative flex items-center justify-between gap-8">
-          <div className="flex items-baseline gap-6">
-            <span className="text-[11px] opacity-25 w-6 shrink-0">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            <div>
-              <h2
-                className="leading-tight"
-                style={{
-                  fontFamily: 'VSOP, serif',
-                  fontSize: isLarge ? 'clamp(32px, 4.2vw, 60px)' : 'clamp(24px, 3.2vw, 52px)',
-                }}
-              >
-                {t(project.title.da, project.title.en)}
-              </h2>
-              <p className="text-[11px] tracking-[0.1em] uppercase opacity-40 mt-1">
-                {t(project.category.da, project.category.en)} · {project.year}
-              </p>
-            </div>
-          </div>
+    <div ref={ref} className="grid grid-cols-2 md:grid-cols-3">
+      {projects.map((project, index) => {
+        const textColor = getContrastTextColor(project.accent)
 
+        return (
           <motion.div
-            whileHover={{ scale: 1.03 }}
-            transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.4 }}
-            className="shrink-0 overflow-hidden"
-            style={{
-              width: isLarge ? 280 : 180,
-              height: isLarge ? 180 : 120,
-              backgroundColor: project.accent + '33',
-            }}
+            key={project.slug}
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: index * 0.06 } } : {}}
           >
-            {project.cover && (
-              <img src={project.cover} alt="" className="w-full h-full object-cover" />
-            )}
+            <Link
+              to={`/arbejde/${project.slug}`}
+              className="group relative block aspect-square overflow-hidden"
+              style={{ backgroundColor: project.accent }}
+            >
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+              <span
+                className="absolute top-5 right-5 text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ color: textColor }}
+              >
+                →
+              </span>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3
+                  className="leading-tight break-words"
+                  style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
+                >
+                  {t(project.title.da, project.title.en)}
+                </h3>
+                <p
+                  className="text-[11px] tracking-[0.1em] uppercase mt-1.5"
+                  style={{ color: textColor, opacity: 0.6 }}
+                >
+                  {t(project.category.da, project.category.en)}
+                </p>
+              </div>
+            </Link>
           </motion.div>
-        </div>
-      </Link>
-    </motion.div>
+        )
+      })}
+
+      {placeholderProjects.map((placeholder, index) => (
+        <motion.div
+          key={placeholder.number}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: (projects.length + index) * 0.06 } } : {}}
+          className="relative aspect-square"
+          style={{ backgroundColor: placeholder.accent }}
+        >
+          <div className="absolute bottom-0 left-0 p-6">
+            <h3
+              className="leading-tight"
+              style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: 'var(--color-base)', opacity: 0.6 }}
+            >
+              {t('Kommer snart', 'Coming soon')}
+            </h3>
+            <p
+              className="text-[11px] tracking-[0.1em] uppercase mt-1.5"
+              style={{ color: 'var(--color-base)', opacity: 0.4 }}
+            >
+              {t(`Projekt ${placeholder.number}`, `Project ${placeholder.number}`)}
+            </p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
   )
 }
 
@@ -454,10 +478,7 @@ export default function Home() {
             {t('Arbejde', 'Work')}
           </h2>
         </motion.div>
-        {projects.map((project, i) => (
-          <ProjectRow key={project.slug} project={project} index={i} t={t} />
-        ))}
-        <div className="border-t border-[var(--color-text)]/10" />
+        <WorkGrid t={t} />
       </section>
 
       {/* Kontakt */}
