@@ -39,20 +39,8 @@ export default function About() {
           >
             <p>
               {t(
-                'Jeg kom til design via forretning, ikke omvendt. Baggrunden er bred: grafisk design, fotografi, UX, visuel identitet og erfaring som COO. Det mærkes i arbejdet.',
-                'I came to design through business, not the other way around. My background spans graphic design, photography, UX, visual identity, and experience as COO. It shows in the work.'
-              )}
-            </p>
-            <p className="opacity-60 text-[15px]">
-              {t(
-                'Som 13-årig startede jeg en YouTube-kanal. Jeg brugte ligeså meget tid på statistik og thumbnails som på selve indholdet. Det var nok første tegn.',
-                'At 13, I started a YouTube channel. I spent as much time on analytics and thumbnails as on the content itself. That was probably the first sign.'
-              )}
-            </p>
-            <p className="opacity-60 text-[15px]">
-              {t(
-                'Studerer B-DDIT på ITU. ENTP. Taler dansk, engelsk og spansk.',
-                'Currently studying B-DDIT at ITU. ENTP. Speaks Danish, English, and Spanish.'
+                'Mit venndiagram med kommunikation, design og teknologi - altid med målgruppen i centrum.',
+                'My Venn diagram of communication, design and technology - always with the audience at the centre.'
               )}
             </p>
           </motion.div>
