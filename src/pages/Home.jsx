@@ -443,7 +443,7 @@ export default function Home() {
                 className="block"
                 style={{
                   fontFamily: i === 0 ? 'Montigny, cursive' : 'VSOP, serif',
-                  fontSize: i === 0 ? '15vw' : '8.5vw',
+                  fontSize: i === 0 ? '15vw' : '6vw',
                   lineHeight: 0.9,
                   color: 'var(--color-burgundy)',
                 }}
