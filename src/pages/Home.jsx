@@ -414,13 +414,13 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 1.0, delay: 0.05 } }}
-          className="absolute -top-16 right-0 w-[55%] h-full pointer-events-none"
+          className="absolute top-0 right-0 w-[55%] h-full pointer-events-none"
           style={{ zIndex: 0 }}
         >
           <img
             src="/images/mefinalpic.png"
             alt="Casandra"
-            className="w-full h-full object-cover object-bottom"
+            className="w-full h-full object-contain object-bottom"
           />
           <div
             className="absolute inset-0 pointer-events-none"
