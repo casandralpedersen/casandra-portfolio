@@ -43,7 +43,7 @@ export default function HomeEditorial() {
 
   return (
     <main className="overflow-hidden bg-[var(--color-base)]">
-      <section className="texture relative mx-auto grid min-h-[calc(100svh-64px)] max-w-[1600px] px-5 pb-10 pt-8 sm:px-8 lg:grid-cols-[1.35fr_0.65fr] lg:px-12 lg:pb-14">
+      <section className="relative mx-auto grid min-h-[calc(100svh-64px)] max-w-[1600px] px-5 pb-10 pt-8 sm:px-8 lg:grid-cols-[1.35fr_0.65fr] lg:px-12 lg:pb-14">
         <div className="relative z-10 flex min-h-[60svh] flex-col justify-between border-y border-[var(--color-text)]/20 py-7 lg:min-h-0 lg:py-9">
           <div className="flex justify-between gap-5 pr-3 text-[10px] uppercase tracking-[0.2em] opacity-50">
             <span>Casandra Pedersen</span>

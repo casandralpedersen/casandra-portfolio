@@ -22,7 +22,7 @@ export default function About() {
     <main className="min-h-screen bg-[var(--color-base)]">
 
       {/* Bio */}
-      <section className="texture px-10 pt-20 pb-16 flex gap-16 items-start">
+      <section className="px-10 pt-20 pb-16 flex gap-16 items-start">
         <div className="flex-1 max-w-lg">
           <motion.p
             initial={{ opacity: 0, y: 16 }}

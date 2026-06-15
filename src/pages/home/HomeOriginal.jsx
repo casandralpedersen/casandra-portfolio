@@ -337,7 +337,7 @@ function Contact({ t }) {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="texture px-10 py-32 flex flex-col items-start" style={{ backgroundColor: 'var(--color-blue)' }}>
+    <section ref={ref} className="px-10 py-32 flex flex-col items-start" style={{ backgroundColor: 'var(--color-blue)' }}>
       <motion.p
         initial={{ y: 20, opacity: 0 }}
         animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } } : {}}
@@ -442,7 +442,7 @@ export default function Home() {
       {/* Hero */}
       <section
         ref={constraintsRef}
-        className="texture relative min-h-[88vh] overflow-hidden px-10 pt-6 pb-16 flex flex-col justify-start"
+        className="relative min-h-[88vh] overflow-hidden px-10 pt-6 pb-16 flex flex-col justify-start"
       >
         <motion.div
           initial={{ opacity: 0, x: 30 }}
