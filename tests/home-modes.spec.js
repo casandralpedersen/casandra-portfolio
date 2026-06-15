@@ -246,3 +246,18 @@ test('cinema mode fits mobile and disables parallax with reduced motion', async 
   await expect.poll(() => title.evaluate((element) => getComputedStyle(element).transform)).toBe(titleTransform)
   await expect(page.locator('[data-cinema-frame]').first()).toHaveCSS('transform', 'none')
 })
+
+test('all home modes fit mobile without horizontal page overflow', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+
+  for (const mode of ['original', 'editorial', 'scrapbook', 'lab', 'cinema']) {
+    await page.addInitScript((value) => localStorage.setItem('home-layout', value), mode)
+    await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+    const dimensions = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth,
+    }))
+    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1)
+  }
+})

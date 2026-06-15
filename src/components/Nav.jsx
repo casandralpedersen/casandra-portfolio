@@ -67,7 +67,7 @@ export default function Nav() {
         Casandra
       </NavLink>
 
-      <div className="flex items-center gap-7">
+      <div className="flex items-center gap-3 md:gap-7">
         <a
           href="#arbejde"
           onClick={scrollToWork}

@@ -103,7 +103,7 @@ export default function HomeScrapbook() {
             {t('Casandras arbejdsbord - København', 'Casandra’s desk - Copenhagen')}
           </p>
           <h1
-            className="mt-8 max-w-[10ch] text-[clamp(4rem,10vw,9rem)] leading-[0.78] text-[#913c27]"
+            className="mt-8 max-w-[10ch] text-[clamp(2.75rem,10vw,9rem)] leading-[0.78] text-[#913c27]"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             {t('Bygget af nysgerrighed', 'Built from curiosity')}

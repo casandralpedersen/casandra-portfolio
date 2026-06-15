@@ -45,10 +45,10 @@ export default function HomeCinema() {
             <span>{t('Åbningsscene', 'Opening scene')}</span>
             <span>01 / 03</span>
           </div>
-          <div>
+          <div className="pb-16 md:pb-0">
             <p className="mb-5 text-[10px] uppercase tracking-[0.2em] opacity-65">Casandra Pedersen / Portfolio</p>
             <h1
-              className="max-w-[9ch] text-[clamp(4.5rem,12vw,13rem)] leading-[0.76]"
+              className="max-w-[9ch] text-[clamp(2.75rem,12vw,13rem)] leading-[0.76]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               {t('Portfolio med mere puls', 'A portfolio with more pulse')}

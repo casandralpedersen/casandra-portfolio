@@ -457,7 +457,7 @@ export default function Home() {
             variants={fadeUp(0.9)}
             initial="hidden"
             animate="show"
-            className="mt-5 ml-[6.5rem] text-[11px] tracking-[0.14em] uppercase opacity-55 whitespace-nowrap"
+            className="mt-5 ml-[6.5rem] text-[11px] tracking-[0.14em] uppercase opacity-55 md:whitespace-nowrap"
           >
             {t('Din digitale kommunikatør med designøje', 'Your digital communicator with a design eye')}
           </motion.p>
