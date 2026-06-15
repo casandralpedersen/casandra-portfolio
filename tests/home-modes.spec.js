@@ -130,24 +130,32 @@ test('scrapbook mode renders its handmade story and shared links', async ({ page
   await expect(page.locator('[data-scrapbook-about-link]')).toHaveAttribute('href', '/om')
 })
 
-test('scrapbook photo drags on desktop and is disabled on mobile', async ({ page }) => {
+test('scrapbook photo resets inside viewport and hides its hint when drag becomes unavailable', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('home-layout', 'scrapbook'))
   await page.setViewportSize({ width: 1440, height: 900 })
   await page.goto(HOME_URL, { waitUntil: 'networkidle' })
 
   const photo = page.locator('[data-scrapbook-draggable]')
+  const hint = page.getByText('Træk mig rundt', { exact: true })
   await expect(photo).toHaveAttribute('data-drag-enabled', 'true')
+  await expect(hint).toBeVisible()
   const before = await photo.boundingBox()
   await photo.hover()
   await page.mouse.down()
-  await page.mouse.move(before.x + 80, before.y + 60, { steps: 5 })
+  await page.mouse.move(before.x + 500, before.y + 250, { steps: 8 })
   await page.mouse.up()
   const after = await photo.boundingBox()
   expect(Math.abs(after.x - before.x)).toBeGreaterThan(30)
+  expect(after.x).toBeGreaterThanOrEqual(0)
+  expect(after.x + after.width).toBeLessThanOrEqual(1440)
 
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.reload({ waitUntil: 'networkidle' })
   await expect(photo).toHaveAttribute('data-drag-enabled', 'false')
+  await expect(hint).toBeHidden()
+  await expect.poll(async () => {
+    const box = await photo.boundingBox()
+    return box.x >= 0 && box.x + box.width <= 390
+  }).toBe(true)
 })
 
 test('scrapbook drag is disabled on desktop with a coarse pointer', async ({ browser }) => {

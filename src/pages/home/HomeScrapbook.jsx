@@ -1,5 +1,5 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { motion, useMotionValue, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../../context/LanguageContext'
 import { HOME_PILLARS, ease } from './homeContent'
@@ -46,6 +46,9 @@ export default function HomeScrapbook() {
   const { t } = useLanguage()
   const shouldReduceMotion = useReducedMotion()
   const [canDrag, setCanDrag] = useState(false)
+  const dragBoundsRef = useRef(null)
+  const dragX = useMotionValue(0)
+  const dragY = useMotionValue(0)
 
   useEffect(() => {
     const finePointer = window.matchMedia('(pointer: fine)')
@@ -62,6 +65,13 @@ export default function HomeScrapbook() {
     }
   }, [shouldReduceMotion])
 
+  useEffect(() => {
+    if (!canDrag) {
+      dragX.set(0)
+      dragY.set(0)
+    }
+  }, [canDrag, dragX, dragY])
+
   useLayoutEffect(() => {
     const previousRootOverflowX = document.documentElement.style.overflowX
     const previousBodyOverflowX = document.body.style.overflowX
@@ -76,7 +86,7 @@ export default function HomeScrapbook() {
 
   return (
     <main className="overflow-hidden bg-[#ece5d6] text-[#29251f]">
-      <section className="relative mx-auto min-h-[calc(100svh-64px)] max-w-[1320px] px-5 pb-20 pt-12 sm:px-10 lg:px-20">
+      <section ref={dragBoundsRef} className="relative mx-auto min-h-[calc(100svh-64px)] max-w-[1320px] px-5 pb-20 pt-12 sm:px-10 lg:px-20">
         <div
           aria-hidden="true"
           className="absolute inset-0 opacity-40"
@@ -110,17 +120,27 @@ export default function HomeScrapbook() {
           data-scrapbook-draggable
           data-drag-enabled={String(canDrag)}
           drag={canDrag}
+          dragConstraints={dragBoundsRef}
+          dragElastic={0.08}
           dragMomentum={false}
+          style={{ x: dragX, y: dragY }}
           whileDrag={canDrag ? { scale: 1.03, rotate: 0, zIndex: 30 } : undefined}
           className={`relative z-20 mx-auto -mt-5 w-[min(72vw,330px)] rotate-[4deg] bg-[#fffdf5] p-3 pb-12 shadow-[0_18px_35px_rgba(61,49,32,0.22)] md:ml-auto md:mr-20 md:-mt-24 ${
             canDrag ? 'cursor-grab active:cursor-grabbing' : ''
           }`}
         >
           <Tape className="-top-3 left-1/2 -translate-x-1/2 rotate-[3deg]" />
-          <img src="/images/sitwavemepic.png" alt="Casandra vinker" className="aspect-[4/5] w-full object-cover" draggable="false" />
-          <figcaption className="absolute bottom-4 left-5 rotate-[-2deg] text-xs italic opacity-65">
-            {t('Træk mig rundt', 'Drag me around')}
-          </figcaption>
+          <img
+            src="/images/sitwavemepic.png"
+            alt={t('Casandra vinker', 'Casandra waving')}
+            className="aspect-[4/5] w-full object-cover"
+            draggable="false"
+          />
+          {canDrag && (
+            <figcaption className="absolute bottom-4 left-5 rotate-[-2deg] text-xs italic opacity-65">
+              {t('Træk mig rundt', 'Drag me around')}
+            </figcaption>
+          )}
         </motion.figure>
       </section>
 
