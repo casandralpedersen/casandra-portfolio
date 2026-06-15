@@ -16,6 +16,17 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Apfel Grotezk";
+  src: url("/fonts/ApfelGrotezk-Regular.woff2") format("woff2"),
+       url("/fonts/ApfelGrotezk-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  /* Apfel Grotezk mangler æ/ø/Æ/Ø - lad disse falde tilbage til Inter */
+  unicode-range: U+0-C5, U+C7-D7, U+D9-E5, U+E7-F7, U+F9-10FFFF;
+}
+
 @theme {
   --color-base: #F7F2D5;
   --color-burgundy: #913C27;
@@ -24,7 +35,7 @@
 
   --font-display: "VSOP", serif;
   --font-script: "Montigny", cursive;
-  --font-body: "DM Sans", "Inter", system-ui, sans-serif;
+  --font-body: "Apfel Grotezk", "Inter", system-ui, sans-serif;
 }
 
 *, *::before, *::after {
