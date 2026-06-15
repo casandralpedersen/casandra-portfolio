@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 const HOME_URL = process.env.HOME_URL || 'http://127.0.0.1:4173/'
-const modes = ['Original', 'Editorial', 'Scrapbook', 'Studio']
+const modes = ['Original', 'Editorial', 'Scrapbook', 'Studio', 'Manifest']
 
 test('home modes switch, persist and reset scroll', async ({ page }) => {
   await page.goto(HOME_URL, { waitUntil: 'networkidle' })
@@ -19,9 +19,9 @@ test('home modes switch, persist and reset scroll', async ({ page }) => {
   await page.evaluate(() => window.scrollTo(0, 1000))
   await page.reload({ waitUntil: 'networkidle' })
 
-  await expect(page.locator('[data-home-mode]')).toHaveAttribute('data-home-mode', 'studio')
+  await expect(page.locator('[data-home-mode]')).toHaveAttribute('data-home-mode', 'manifest')
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
-  await expect(page.evaluate(() => localStorage.getItem('home-layout'))).resolves.toBe('studio')
+  await expect(page.evaluate(() => localStorage.getItem('home-layout'))).resolves.toBe('manifest')
 })
 
 test('original mode preserves the current home sections', async ({ page }) => {
@@ -218,10 +218,35 @@ test('studio avoids page overflow on desktop and mobile', async ({ page }) => {
   }
 })
 
+test('manifest mode renders its statement headline and shared sections', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'manifest'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  const headline = page.getByRole('heading', { name: 'Design der løser noget. Ikke bare ser godt ud.' })
+  await expect(headline).toBeVisible()
+  await expect(page.getByText('UX, visuel identitet og forretningsforståelse')).toBeVisible()
+  await expect(page.getByText('UX, visuel identitet og forretningsforståelse')).toHaveCSS('color', 'rgb(41, 92, 125)')
+  await expect(page.locator('[data-shared-projects] a[href="/arbejde/o-bar"]')).toBeVisible()
+  await expect(page.locator('[data-shared-contact] a[href="/om"]')).toBeVisible()
+})
+
+test('manifest avoids page overflow on desktop and mobile', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'manifest'))
+
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport)
+    await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewport.width)
+    await page.evaluate(() => window.scrollTo(100, 0))
+    await expect.poll(() => page.evaluate(() => window.scrollX)).toBe(0)
+  }
+})
+
 test('all home modes fit mobile without horizontal page overflow', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
 
-  for (const mode of ['original', 'editorial', 'scrapbook', 'studio']) {
+  for (const mode of ['original', 'editorial', 'scrapbook', 'studio', 'manifest']) {
     await page.addInitScript((value) => localStorage.setItem('home-layout', value), mode)
     await page.goto(HOME_URL, { waitUntil: 'networkidle' })
 

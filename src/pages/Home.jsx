@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState } from 'react'
 import HomeModeSwitcher from './home/HomeModeSwitcher'
 import HomeEditorial from './home/HomeEditorial'
+import HomeManifest from './home/HomeManifest'
 import HomeOriginal from './home/HomeOriginal'
 import HomeScrapbook from './home/HomeScrapbook'
 import HomeStudio from './home/HomeStudio'
@@ -11,6 +12,7 @@ const ACTIVE_MODES = {
   editorial: HomeEditorial,
   scrapbook: HomeScrapbook,
   studio: HomeStudio,
+  manifest: HomeManifest,
 }
 
 export default function Home() {
