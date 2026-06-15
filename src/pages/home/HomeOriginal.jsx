@@ -486,15 +486,29 @@ export default function Home() {
             ))}
           </motion.div>
 
-          <motion.p
+          <motion.div
             variants={fadeUp(0.9)}
             initial="hidden"
             animate="show"
-            className="mt-8 ml-[6.5rem] text-[clamp(1.5rem,3vw,2.75rem)] leading-snug opacity-75 max-w-2xl"
+            className="mt-6 ml-[6.5rem] max-w-2xl"
           >
-            {t('Hej, jeg er Casandra, UX-designer i København med en baggrund i business og marketing, drevet af ', "Hi, I'm Casandra, a Copenhagen-based UX designer with a background in business and marketing, driven by ")}
-            <RotatingWord words={t(DRIVEN_BY_WORDS.da, DRIVEN_BY_WORDS.en)} />.
-          </motion.p>
+            <p
+              aria-label={t('Hej', 'Hi')}
+              className="flex items-baseline leading-none"
+              style={{ color: 'var(--color-burgundy)' }}
+            >
+              <span aria-hidden="true" style={{ fontFamily: 'Montigny, cursive', fontSize: 'clamp(3.5rem,8vw,7rem)' }}>
+                H
+              </span>
+              <span aria-hidden="true" style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(2rem,4.6vw,4rem)' }}>
+                {t('ej', 'i')}
+              </span>
+            </p>
+            <p className="mt-3 text-[clamp(1.5rem,3vw,2.75rem)] leading-snug opacity-75">
+              {t('jeg er Casandra, UX-designer i København med en baggrund i business og marketing, drevet af ', "I'm Casandra, a Copenhagen-based UX designer with a background in business and marketing, driven by ")}
+              <RotatingWord words={t(DRIVEN_BY_WORDS.da, DRIVEN_BY_WORDS.en)} />.
+            </p>
+          </motion.div>
         </div>
 
         <motion.div
