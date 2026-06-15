@@ -92,12 +92,18 @@ export default function HomeEditorial() {
         <motion.div
           data-editorial-portrait
           style={{ y: shouldReduceMotion ? 0 : portraitY }}
-          className="relative min-h-[420px] border-b border-[var(--color-text)]/20 lg:min-h-0 lg:border-l lg:border-t"
+          className="relative min-h-[420px] overflow-hidden border-b border-[var(--color-text)]/20 bg-[var(--color-burgundy)]/[0.07] lg:min-h-0 lg:border-l lg:border-t"
         >
-          <div className="absolute inset-x-5 top-7 flex justify-between text-[10px] uppercase tracking-[0.2em] opacity-45 lg:inset-x-7">
+          <div className="absolute inset-x-5 top-7 z-10 flex justify-between text-[10px] uppercase tracking-[0.2em] text-[var(--color-burgundy)]/70 lg:inset-x-7">
             <span>{t('Profil', 'Profile')}</span>
             <span>01 / 05</span>
           </div>
+          <span
+            aria-hidden="true"
+            className="absolute bottom-7 left-5 z-10 text-[10px] uppercase tracking-[0.2em] text-[var(--color-burgundy)]/70 lg:left-7"
+          >
+            {t('Casandra', 'Casandra')}
+          </span>
           <img
             src="/images/mefinalpic.png"
             alt="Casandra"

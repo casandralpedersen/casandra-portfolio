@@ -9,7 +9,7 @@ export default function HomeManifest() {
 
   return (
     <main className="bg-[var(--color-base)]">
-      <section className="flex min-h-[calc(100svh-64px)] flex-col items-center justify-center px-6 text-center sm:px-10">
+      <section className="relative flex min-h-[calc(100svh-64px)] flex-col items-center justify-center px-6 text-center sm:px-10">
         <motion.p
           initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,6 +39,24 @@ export default function HomeManifest() {
             'UX, visual identity and business sense in one package - based in Copenhagen.'
           )}
         </motion.p>
+
+        <motion.a
+          href="#arbejde"
+          aria-label={t('Rul til arbejde', 'Scroll to work')}
+          initial={shouldReduceMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ ease, duration: 0.7, delay: 0.4 }}
+          className="absolute bottom-8 hidden flex-col items-center gap-2 text-[10px] uppercase tracking-[0.25em] opacity-45 transition-opacity hover:opacity-80 sm:flex"
+        >
+          {t('Udvalgt arbejde', 'Selected work')}
+          <motion.span
+            aria-hidden="true"
+            animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            ↓
+          </motion.span>
+        </motion.a>
       </section>
 
       <SharedProjects t={t} variant="manifest" />

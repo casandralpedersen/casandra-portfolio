@@ -40,7 +40,7 @@ export default function HomeStudio() {
   return (
     <main className="bg-[var(--color-base)]">
       <section className="flex min-h-[calc(100svh-64px)] flex-col px-6 pb-10 pt-6 sm:px-10">
-        <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.2em] opacity-50">
+        <div className="flex items-center justify-between border-b border-[var(--color-text)]/15 pb-4 text-[11px] uppercase tracking-[0.2em] opacity-50">
           <span>{time} · {t('København, DK', 'Copenhagen, DK')}</span>
           <span>{t('UX & grafisk design', 'UX & graphic design')}</span>
         </div>
