@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../../data/projects'
 import { EMAIL, ease } from './homeContent'
@@ -67,6 +67,8 @@ const contactLinksClasses = {
 }
 
 export function SharedProjects({ t, variant }) {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <section
       id="arbejde"
@@ -94,10 +96,11 @@ export function SharedProjects({ t, variant }) {
         {projects.map((project, index) => (
           <motion.article
             key={project.slug}
-            initial={{ opacity: 0, y: 28 }}
+            data-shared-project-card
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ ease, duration: 0.65, delay: index * 0.06 }}
+            transition={{ ease, duration: shouldReduceMotion ? 0 : 0.65, delay: shouldReduceMotion ? 0 : index * 0.06 }}
             className={projectArticleClasses[variant]}
           >
             <Link to={`/arbejde/${project.slug}`} className={projectLinkClasses[variant]}>

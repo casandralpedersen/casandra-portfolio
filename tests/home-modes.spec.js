@@ -89,13 +89,17 @@ test('editorial avoids page overflow on desktop and mobile', async ({ page }) =>
   }
 })
 
-test('editorial disables portrait parallax with reduced motion', async ({ page }) => {
+test('editorial disables parallax and project reveals with reduced motion', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.addInitScript(() => localStorage.setItem('home-layout', 'editorial'))
   await page.goto(HOME_URL, { waitUntil: 'networkidle' })
 
   const portrait = page.locator('[data-editorial-portrait]')
+  const projectCard = page.locator('[data-shared-project-card]').first()
   const initialTransform = await portrait.evaluate((element) => getComputedStyle(element).transform)
+
+  await expect(projectCard).toHaveCSS('opacity', '1')
+  await expect(projectCard).toHaveCSS('transform', 'none')
   await page.evaluate(() => window.scrollTo(0, 1200))
 
   await expect.poll(() => portrait.evaluate((element) => getComputedStyle(element).transform)).toBe(initialTransform)
