@@ -95,12 +95,23 @@ test('editorial disables parallax and project reveals with reduced motion', asyn
   await page.goto(HOME_URL, { waitUntil: 'networkidle' })
 
   const portrait = page.locator('[data-editorial-portrait]')
+  const heading = page.locator('#editorial-pillars-title')
+  const heroWords = page.locator('[data-editorial-word]')
+  const features = page.locator('[data-editorial-feature]')
   const projectCard = page.locator('[data-shared-project-card]').first()
   const initialTransform = await portrait.evaluate((element) => getComputedStyle(element).transform)
+  const initialHeadingTransform = await heading.evaluate((element) => getComputedStyle(element).transform)
 
+  await expect(heroWords).toHaveCount(3)
+  await expect(features).toHaveCount(3)
+  await expect(heroWords.first()).toHaveCSS('opacity', '1')
+  await expect(heroWords.first()).toHaveCSS('transform', 'none')
+  await expect(features.first()).toHaveCSS('opacity', '1')
+  await expect(features.first()).toHaveCSS('transform', 'none')
   await expect(projectCard).toHaveCSS('opacity', '1')
   await expect(projectCard).toHaveCSS('transform', 'none')
   await page.evaluate(() => window.scrollTo(0, 1200))
 
   await expect.poll(() => portrait.evaluate((element) => getComputedStyle(element).transform)).toBe(initialTransform)
+  await expect.poll(() => heading.evaluate((element) => getComputedStyle(element).transform)).toBe(initialHeadingTransform)
 })
