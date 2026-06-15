@@ -33,3 +33,23 @@ test('original mode preserves the current home sections', async ({ page }) => {
   await expect(page.getByText('Mine fingeraftryk')).toBeVisible()
   await expect(page.getByText('Nok om mig. Hvad arbejder du på?')).toBeVisible()
 })
+
+test('home restores browser scroll restoration when navigating away', async ({ page }) => {
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect(page.evaluate(() => window.history.scrollRestoration)).resolves.toBe('manual')
+  await page.locator('a[href="/om"]').first().click()
+
+  await expect(page).toHaveURL(/\/om$/)
+  await expect(page.evaluate(() => window.history.scrollRestoration)).resolves.toBe('auto')
+})
+
+test('home mode switcher exposes group and selected mode semantics', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'original'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  const switcher = page.getByRole('group', { name: 'Forside-layout' })
+  await expect(switcher).toBeVisible()
+  await expect(switcher.getByRole('button', { name: 'Original', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await expect(switcher.getByRole('button', { name: 'Editorial', exact: true })).toHaveAttribute('aria-pressed', 'false')
+})
