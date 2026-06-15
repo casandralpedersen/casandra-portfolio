@@ -115,3 +115,61 @@ test('editorial disables parallax and project reveals with reduced motion', asyn
   await expect.poll(() => portrait.evaluate((element) => getComputedStyle(element).transform)).toBe(initialTransform)
   await expect.poll(() => heading.evaluate((element) => getComputedStyle(element).transform)).toBe(initialHeadingTransform)
 })
+
+test('scrapbook mode renders its handmade story and shared links', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'scrapbook'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect(page.getByRole('heading', { name: 'Bygget af nysgerrighed' })).toBeVisible()
+  await expect(page.locator('[data-scrapbook-chip]')).toHaveText(['Design', 'Forretning', 'Teknologi'])
+  await expect(page.locator('[data-scrapbook-tape]')).toHaveCount(3)
+  await expect(page.locator('[data-scrapbook-note]')).toHaveCount(3)
+  await expect(page.locator('[data-scrapbook-arrow]')).toBeVisible()
+  await expect(page.locator('[data-shared-projects] a[href="/arbejde/o-bar"]')).toBeVisible()
+  await expect(page.locator('[data-shared-contact] a[href="/om"]')).toBeVisible()
+  await expect(page.locator('[data-scrapbook-about-link]')).toHaveAttribute('href', '/om')
+})
+
+test('scrapbook photo drags on desktop and is disabled on mobile', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'scrapbook'))
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  const photo = page.locator('[data-scrapbook-draggable]')
+  await expect(photo).toHaveAttribute('data-drag-enabled', 'true')
+  const before = await photo.boundingBox()
+  await photo.hover()
+  await page.mouse.down()
+  await page.mouse.move(before.x + 80, before.y + 60, { steps: 5 })
+  await page.mouse.up()
+  const after = await photo.boundingBox()
+  expect(Math.abs(after.x - before.x)).toBeGreaterThan(30)
+
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.reload({ waitUntil: 'networkidle' })
+  await expect(photo).toHaveAttribute('data-drag-enabled', 'false')
+})
+
+test('scrapbook avoids horizontal page overflow on desktop and mobile', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'scrapbook'))
+
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport)
+    await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewport.width)
+    await page.evaluate(() => window.scrollTo(100, 0))
+    await expect.poll(() => page.evaluate(() => window.scrollX)).toBe(0)
+  }
+})
+
+test('scrapbook removes reveals and drawn motion with reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'scrapbook'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect(page.locator('[data-scrapbook-reveal]').first()).toHaveCSS('opacity', '1')
+  await expect(page.locator('[data-scrapbook-reveal]').first()).toHaveCSS('transform', 'none')
+  await expect(page.locator('[data-scrapbook-arrow] path')).toHaveAttribute('stroke-dashoffset', '0')
+  await expect(page.locator('[data-scrapbook-draggable]')).toHaveAttribute('data-drag-enabled', 'false')
+})
