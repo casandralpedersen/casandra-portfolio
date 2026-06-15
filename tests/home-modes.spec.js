@@ -28,7 +28,8 @@ test('original mode preserves the current home sections', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('home-layout', 'original'))
   await page.goto(HOME_URL, { waitUntil: 'networkidle' })
 
-  await expect(page.getByLabel('Casandra')).toBeVisible()
+  await expect(page.getByLabel('Hej')).toBeVisible()
+  await expect(page.getByText('UX-designer i København', { exact: false })).toBeVisible()
   await expect(page.getByText('Det hele kogt ned')).toBeVisible()
   await expect(page.getByText('Mine fingeraftryk')).toBeVisible()
   await expect(page.getByText('Nok om mig. Hvad arbejder du på?')).toBeVisible()
