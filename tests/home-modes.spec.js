@@ -23,3 +23,13 @@ test('home modes switch, persist and reset scroll', async ({ page }) => {
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
   await expect(page.evaluate(() => localStorage.getItem('home-layout'))).resolves.toBe('cinema')
 })
+
+test('original mode preserves the current home sections', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'original'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect(page.getByLabel('Casandra')).toBeVisible()
+  await expect(page.getByText('Det hele kogt ned')).toBeVisible()
+  await expect(page.getByText('Mine fingeraftryk')).toBeVisible()
+  await expect(page.getByText('Nok om mig. Hvad arbejder du på?')).toBeVisible()
+})

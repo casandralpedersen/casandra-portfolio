@@ -1,10 +1,16 @@
 import { useLayoutEffect, useState } from 'react'
 import HomeModeSwitcher from './home/HomeModeSwitcher'
+import HomeOriginal from './home/HomeOriginal'
 import { HOME_MODES } from './home/homeContent'
+
+const ACTIVE_MODES = {
+  original: HomeOriginal,
+}
 
 export default function Home() {
   const [mode, setMode] = useState(() => localStorage.getItem('home-layout') || 'original')
   const validMode = HOME_MODES.some((item) => item.id === mode) ? mode : 'original'
+  const ActiveMode = ACTIVE_MODES[validMode] ?? HomeOriginal
 
   useLayoutEffect(() => {
     window.history.scrollRestoration = 'manual'
@@ -19,10 +25,9 @@ export default function Home() {
 
   return (
     <>
-      <main
-        data-home-mode={validMode}
-        className="min-h-[200vh] bg-[var(--color-base)]"
-      />
+      <div data-home-mode={validMode}>
+        <ActiveMode />
+      </div>
       <HomeModeSwitcher mode={validMode} onSelect={selectMode} />
     </>
   )
