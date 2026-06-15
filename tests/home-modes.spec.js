@@ -53,3 +53,50 @@ test('home mode switcher exposes group and selected mode semantics', async ({ pa
   await expect(switcher.getByRole('button', { name: 'Original', exact: true })).toHaveAttribute('aria-pressed', 'true')
   await expect(switcher.getByRole('button', { name: 'Editorial', exact: true })).toHaveAttribute('aria-pressed', 'false')
 })
+
+test('editorial mode renders its typographic story', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'editorial'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect(page.getByRole('heading', { name: 'Design med forretningsinstinkt' })).toBeVisible()
+  await expect(page.locator('[data-editorial-word]')).toHaveCount(3)
+  await expect(page.locator('[data-editorial-feature]')).toHaveCount(3)
+  await expect(page.locator('[data-editorial-portrait]')).toBeVisible()
+})
+
+test('editorial shared sections expose project, about and contact links', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'editorial'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  const projects = page.locator('[data-shared-projects]')
+  const contact = page.locator('[data-shared-contact]')
+
+  await expect(projects.locator('a[href="/arbejde/o-bar"]')).toBeVisible()
+  await expect(contact.locator('a[href="/om"]')).toBeVisible()
+  await expect(contact.locator('a[href^="mailto:"]')).toBeVisible()
+})
+
+test('editorial avoids page overflow on desktop and mobile', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'editorial'))
+
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport)
+    await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+    await expect(page.locator('[data-home-mode="editorial"] main')).toHaveJSProperty('scrollWidth', viewport.width)
+    await page.evaluate(() => window.scrollTo(100, 0))
+    await expect.poll(() => page.evaluate(() => window.scrollX)).toBe(0)
+  }
+})
+
+test('editorial disables portrait parallax with reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'editorial'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  const portrait = page.locator('[data-editorial-portrait]')
+  const initialTransform = await portrait.evaluate((element) => getComputedStyle(element).transform)
+  await page.evaluate(() => window.scrollTo(0, 1200))
+
+  await expect.poll(() => portrait.evaluate((element) => getComputedStyle(element).transform)).toBe(initialTransform)
+})
