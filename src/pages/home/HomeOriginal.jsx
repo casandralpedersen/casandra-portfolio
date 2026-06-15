@@ -490,7 +490,7 @@ export default function Home() {
             variants={fadeUp(0.9)}
             initial="hidden"
             animate="show"
-            className="mt-5 ml-[6.5rem] text-[15px] leading-relaxed opacity-75 max-w-sm"
+            className="mt-8 ml-[6.5rem] text-[clamp(1.5rem,3vw,2.75rem)] leading-snug opacity-75 max-w-2xl"
           >
             {t('Hej, jeg er Casandra, UX-designer i København med en baggrund i business og marketing, drevet af ', "Hi, I'm Casandra, a Copenhagen-based UX designer with a background in business and marketing, driven by ")}
             <RotatingWord words={t(DRIVEN_BY_WORDS.da, DRIVEN_BY_WORDS.en)} />.

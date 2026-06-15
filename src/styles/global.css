@@ -36,6 +36,7 @@
   --font-display: "VSOP", serif;
   --font-script: "Montigny", cursive;
   --font-body: "Apfel Grotezk", "Inter", system-ui, sans-serif;
+  --font-logo: "Instrument Serif", serif;
 }
 
 *, *::before, *::after {
