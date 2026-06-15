@@ -150,6 +150,19 @@ test('scrapbook photo drags on desktop and is disabled on mobile', async ({ page
   await expect(photo).toHaveAttribute('data-drag-enabled', 'false')
 })
 
+test('scrapbook drag is disabled on desktop with a coarse pointer', async ({ browser }) => {
+  const context = await browser.newContext({
+    hasTouch: true,
+    viewport: { width: 1440, height: 900 },
+  })
+  const page = await context.newPage()
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'scrapbook'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect(page.locator('[data-scrapbook-draggable]')).toHaveAttribute('data-drag-enabled', 'false')
+  await context.close()
+})
+
 test('scrapbook avoids horizontal page overflow on desktop and mobile', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('home-layout', 'scrapbook'))
 
