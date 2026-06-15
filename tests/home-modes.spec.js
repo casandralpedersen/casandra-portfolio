@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 const HOME_URL = process.env.HOME_URL || 'http://127.0.0.1:4173/'
-const modes = ['Original', 'Editorial', 'Scrapbook', 'Lab', 'Cinema']
+const modes = ['Original', 'Editorial', 'Scrapbook']
 
 test('home modes switch, persist and reset scroll', async ({ page }) => {
   await page.goto(HOME_URL, { waitUntil: 'networkidle' })
@@ -19,9 +19,9 @@ test('home modes switch, persist and reset scroll', async ({ page }) => {
   await page.evaluate(() => window.scrollTo(0, 1000))
   await page.reload({ waitUntil: 'networkidle' })
 
-  await expect(page.locator('[data-home-mode]')).toHaveAttribute('data-home-mode', 'cinema')
+  await expect(page.locator('[data-home-mode]')).toHaveAttribute('data-home-mode', 'scrapbook')
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
-  await expect(page.evaluate(() => localStorage.getItem('home-layout'))).resolves.toBe('cinema')
+  await expect(page.evaluate(() => localStorage.getItem('home-layout'))).resolves.toBe('scrapbook')
 })
 
 test('original mode preserves the current home sections', async ({ page }) => {
@@ -195,62 +195,10 @@ test('scrapbook removes reveals and drawn motion with reduced motion', async ({ 
   await expect(page.locator('[data-scrapbook-draggable]')).toHaveAttribute('data-drag-enabled', 'false')
 })
 
-test('lab mode renders its connected creative system', async ({ page }) => {
-  await page.addInitScript(() => localStorage.setItem('home-layout', 'lab'))
-  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
-
-  await expect(page.getByRole('heading', { name: 'Design x forretning x teknologi' })).toBeVisible()
-  await expect(page.locator('[data-lab-node]')).toHaveText(['Design', 'Forretning', 'Teknologi'])
-  await expect(page.locator('[data-lab-connector]')).toHaveCount(3)
-  await expect(page.locator('[data-lab-module]')).toHaveCount(3)
-  await expect(page.locator('[data-shared-projects] a[href="/arbejde/o-bar"]')).toBeVisible()
-  await expect(page.locator('[data-shared-contact] a[href="/om"]')).toBeVisible()
-})
-
-test('lab mode fits mobile and removes connector motion with reduced motion', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.addInitScript(() => localStorage.setItem('home-layout', 'lab'))
-  await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
-
-  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(390)
-  await expect(page.locator('[data-lab-node]').first()).toHaveCSS('opacity', '1')
-  await expect(page.locator('[data-lab-node]').first()).toHaveCSS('transform', 'none')
-  await expect(page.locator('[data-lab-connector]').first()).toHaveAttribute('stroke-dashoffset', '0')
-})
-
-test('cinema mode renders three distinct scenes and project frames', async ({ page }) => {
-  await page.addInitScript(() => localStorage.setItem('home-layout', 'cinema'))
-  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
-
-  await expect(page.getByRole('heading', { name: 'Portfolio med mere puls' })).toBeVisible()
-  await expect(page.locator('[data-cinema-scene]')).toHaveCount(3)
-  await expect(page.locator('[data-cinema-frame]')).toHaveCount(3)
-  await expect(page.locator('[data-shared-projects] a[href="/arbejde/o-bar"]')).toBeVisible()
-  await expect(page.locator('[data-shared-contact] a[href="/om"]')).toBeVisible()
-})
-
-test('cinema mode fits mobile and disables parallax with reduced motion', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.addInitScript(() => localStorage.setItem('home-layout', 'cinema'))
-  await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
-
-  const portrait = page.locator('[data-cinema-portrait]')
-  const title = page.locator('[data-cinema-title]')
-  const portraitTransform = await portrait.evaluate((element) => getComputedStyle(element).transform)
-  const titleTransform = await title.evaluate((element) => getComputedStyle(element).transform)
-  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(390)
-  await page.evaluate(() => window.scrollTo(0, 900))
-  await expect.poll(() => portrait.evaluate((element) => getComputedStyle(element).transform)).toBe(portraitTransform)
-  await expect.poll(() => title.evaluate((element) => getComputedStyle(element).transform)).toBe(titleTransform)
-  await expect(page.locator('[data-cinema-frame]').first()).toHaveCSS('transform', 'none')
-})
-
 test('all home modes fit mobile without horizontal page overflow', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
 
-  for (const mode of ['original', 'editorial', 'scrapbook', 'lab', 'cinema']) {
+  for (const mode of ['original', 'editorial', 'scrapbook']) {
     await page.addInitScript((value) => localStorage.setItem('home-layout', value), mode)
     await page.goto(HOME_URL, { waitUntil: 'networkidle' })
 
