@@ -194,3 +194,55 @@ test('scrapbook removes reveals and drawn motion with reduced motion', async ({ 
   await expect(page.locator('[data-scrapbook-arrow] path')).toHaveAttribute('stroke-dashoffset', '0')
   await expect(page.locator('[data-scrapbook-draggable]')).toHaveAttribute('data-drag-enabled', 'false')
 })
+
+test('lab mode renders its connected creative system', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'lab'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect(page.getByRole('heading', { name: 'Design x forretning x teknologi' })).toBeVisible()
+  await expect(page.locator('[data-lab-node]')).toHaveText(['Design', 'Forretning', 'Teknologi'])
+  await expect(page.locator('[data-lab-connector]')).toHaveCount(3)
+  await expect(page.locator('[data-lab-module]')).toHaveCount(3)
+  await expect(page.locator('[data-shared-projects] a[href="/arbejde/o-bar"]')).toBeVisible()
+  await expect(page.locator('[data-shared-contact] a[href="/om"]')).toBeVisible()
+})
+
+test('lab mode fits mobile and removes connector motion with reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'lab'))
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(390)
+  await expect(page.locator('[data-lab-node]').first()).toHaveCSS('opacity', '1')
+  await expect(page.locator('[data-lab-node]').first()).toHaveCSS('transform', 'none')
+  await expect(page.locator('[data-lab-connector]').first()).toHaveAttribute('stroke-dashoffset', '0')
+})
+
+test('cinema mode renders three distinct scenes and project frames', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'cinema'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect(page.getByRole('heading', { name: 'Portfolio med mere puls' })).toBeVisible()
+  await expect(page.locator('[data-cinema-scene]')).toHaveCount(3)
+  await expect(page.locator('[data-cinema-frame]')).toHaveCount(3)
+  await expect(page.locator('[data-shared-projects] a[href="/arbejde/o-bar"]')).toBeVisible()
+  await expect(page.locator('[data-shared-contact] a[href="/om"]')).toBeVisible()
+})
+
+test('cinema mode fits mobile and disables parallax with reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'cinema'))
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  const portrait = page.locator('[data-cinema-portrait]')
+  const title = page.locator('[data-cinema-title]')
+  const portraitTransform = await portrait.evaluate((element) => getComputedStyle(element).transform)
+  const titleTransform = await title.evaluate((element) => getComputedStyle(element).transform)
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(390)
+  await page.evaluate(() => window.scrollTo(0, 900))
+  await expect.poll(() => portrait.evaluate((element) => getComputedStyle(element).transform)).toBe(portraitTransform)
+  await expect.poll(() => title.evaluate((element) => getComputedStyle(element).transform)).toBe(titleTransform)
+  await expect(page.locator('[data-cinema-frame]').first()).toHaveCSS('transform', 'none')
+})
