@@ -4,6 +4,7 @@ export const HOME_MODES = [
   { id: 'scrapbook', label: 'Scrapbook' },
   { id: 'studio', label: 'Studio' },
   { id: 'manifest', label: 'Manifest' },
+  { id: 'welcome', label: 'Welcome' },
 ]
 
 export const HOME_PILLARS = [

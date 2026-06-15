@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 const HOME_URL = process.env.HOME_URL || 'http://127.0.0.1:4173/'
-const modes = ['Original', 'Editorial', 'Scrapbook', 'Studio', 'Manifest']
+const modes = ['Original', 'Editorial', 'Scrapbook', 'Studio', 'Manifest', 'Welcome']
 
 test('home modes switch, persist and reset scroll', async ({ page }) => {
   await page.goto(HOME_URL, { waitUntil: 'networkidle' })
@@ -19,9 +19,9 @@ test('home modes switch, persist and reset scroll', async ({ page }) => {
   await page.evaluate(() => window.scrollTo(0, 1000))
   await page.reload({ waitUntil: 'networkidle' })
 
-  await expect(page.locator('[data-home-mode]')).toHaveAttribute('data-home-mode', 'manifest')
+  await expect(page.locator('[data-home-mode]')).toHaveAttribute('data-home-mode', 'welcome')
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
-  await expect(page.evaluate(() => localStorage.getItem('home-layout'))).resolves.toBe('manifest')
+  await expect(page.evaluate(() => localStorage.getItem('home-layout'))).resolves.toBe('welcome')
 })
 
 test('original mode preserves the current home sections', async ({ page }) => {
@@ -243,10 +243,34 @@ test('manifest avoids page overflow on desktop and mobile', async ({ page }) => 
   }
 })
 
+test('welcome mode renders its hero, polaroid and shared sections', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'welcome'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect(page.getByText('Velkommen til min portfolio')).toBeVisible()
+  await expect(page.getByText('Designer af hjertet')).toBeVisible()
+  await expect(page.getByRole('img', { name: 'Casandra' })).toBeVisible()
+  await expect(page.locator('[data-shared-projects] a[href="/arbejde/o-bar"]')).toBeVisible()
+  await expect(page.locator('[data-shared-contact] a[href="/om"]')).toBeVisible()
+})
+
+test('welcome avoids page overflow on desktop and mobile', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'welcome'))
+
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport)
+    await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewport.width)
+    await page.evaluate(() => window.scrollTo(100, 0))
+    await expect.poll(() => page.evaluate(() => window.scrollX)).toBe(0)
+  }
+})
+
 test('all home modes fit mobile without horizontal page overflow', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
 
-  for (const mode of ['original', 'editorial', 'scrapbook', 'studio', 'manifest']) {
+  for (const mode of ['original', 'editorial', 'scrapbook', 'studio', 'manifest', 'welcome']) {
     await page.addInitScript((value) => localStorage.setItem('home-layout', value), mode)
     await page.goto(HOME_URL, { waitUntil: 'networkidle' })
 

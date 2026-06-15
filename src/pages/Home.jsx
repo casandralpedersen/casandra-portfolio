@@ -5,6 +5,7 @@ import HomeManifest from './home/HomeManifest'
 import HomeOriginal from './home/HomeOriginal'
 import HomeScrapbook from './home/HomeScrapbook'
 import HomeStudio from './home/HomeStudio'
+import HomeWelcome from './home/HomeWelcome'
 import { HOME_MODES } from './home/homeContent'
 
 const ACTIVE_MODES = {
@@ -13,6 +14,7 @@ const ACTIVE_MODES = {
   scrapbook: HomeScrapbook,
   studio: HomeStudio,
   manifest: HomeManifest,
+  welcome: HomeWelcome,
 }
 
 export default function Home() {

@@ -10,6 +10,7 @@ const projectSectionClasses = {
   cinema: 'mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-2',
   studio: 'mx-auto flex max-w-4xl flex-col gap-20 px-6 sm:px-10',
   manifest: 'mx-auto grid max-w-5xl gap-12 px-6 sm:px-10 md:grid-cols-2',
+  welcome: 'mx-auto grid max-w-5xl gap-16 px-6 sm:px-10 md:grid-cols-2',
 }
 
 const projectArticleClasses = {
@@ -19,6 +20,7 @@ const projectArticleClasses = {
   cinema: 'group overflow-hidden bg-[var(--color-text)] text-[var(--color-base)]',
   studio: 'group',
   manifest: 'group',
+  welcome: 'group even:rotate-[1deg] odd:rotate-[-1deg]',
 }
 
 const projectLinkClasses = {
@@ -28,6 +30,7 @@ const projectLinkClasses = {
   cinema: 'grid min-h-[360px] grid-rows-[1fr_auto] gap-6 p-6',
   studio: 'grid gap-6 sm:grid-cols-[1.2fr_1fr] sm:items-center sm:gap-10',
   manifest: 'grid min-h-[320px] grid-rows-[1fr_auto] gap-5',
+  welcome: 'grid min-h-[300px] grid-rows-[1fr_auto] gap-5',
 }
 
 const projectImageClasses = {
@@ -37,6 +40,7 @@ const projectImageClasses = {
   cinema: 'h-full min-h-[220px] w-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100',
   studio: 'h-full min-h-[220px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]',
   manifest: 'h-full min-h-[220px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]',
+  welcome: 'h-full min-h-[200px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]',
 }
 
 const projectMetaClasses = {
@@ -46,6 +50,7 @@ const projectMetaClasses = {
   cinema: 'flex items-center justify-between gap-4 text-[10px] uppercase tracking-[0.2em] opacity-65',
   studio: 'flex items-center justify-between gap-4 text-[10px] uppercase tracking-[0.2em] opacity-50',
   manifest: 'flex items-center justify-between gap-4 text-[10px] uppercase tracking-[0.18em] opacity-55',
+  welcome: 'flex items-center justify-between gap-4 text-[10px] uppercase tracking-[0.16em] opacity-55',
 }
 
 const projectTitleClasses = {
@@ -55,6 +60,7 @@ const projectTitleClasses = {
   cinema: 'text-[clamp(2.7rem,6vw,5.5rem)] leading-[0.9]',
   studio: 'text-[clamp(2.4rem,5vw,4.5rem)] leading-[0.95] text-[var(--color-burgundy)]',
   manifest: 'text-3xl leading-none',
+  welcome: 'text-4xl leading-none',
 }
 
 const contactClasses = {
@@ -64,6 +70,7 @@ const contactClasses = {
   cinema: 'bg-[var(--color-text)] px-6 py-28 text-[var(--color-base)] sm:px-12',
   studio: 'mx-auto max-w-3xl px-6 py-24 text-center sm:px-10',
   manifest: 'mx-auto max-w-3xl px-6 py-24 text-center sm:px-10',
+  welcome: 'mx-auto max-w-3xl px-6 py-24 text-center sm:px-10',
 }
 
 const contactTitleClasses = {
@@ -73,6 +80,7 @@ const contactTitleClasses = {
   cinema: 'mx-auto max-w-[12ch] text-center text-[clamp(3rem,8vw,8rem)] leading-[0.86]',
   studio: 'mx-auto max-w-[16ch] text-[clamp(2.8rem,7vw,6rem)] leading-[0.9]',
   manifest: 'mx-auto max-w-[16ch] text-[clamp(2.8rem,7vw,6rem)] leading-[0.9]',
+  welcome: 'mx-auto max-w-[16ch] text-[clamp(2.8rem,7vw,6rem)] leading-[0.9]',
 }
 
 const contactLinksClasses = {
@@ -82,6 +90,7 @@ const contactLinksClasses = {
   cinema: 'mx-auto mt-12 flex flex-wrap justify-center gap-8 text-xs uppercase tracking-[0.18em]',
   studio: 'mx-auto mt-8 flex flex-wrap justify-center gap-8 text-xs uppercase tracking-[0.18em]',
   manifest: 'mx-auto mt-8 flex flex-wrap justify-center gap-8 text-xs uppercase tracking-[0.18em]',
+  welcome: 'mx-auto mt-8 flex flex-wrap justify-center gap-8 text-xs uppercase tracking-[0.18em]',
 }
 
 export function SharedProjects({ t, variant }) {
