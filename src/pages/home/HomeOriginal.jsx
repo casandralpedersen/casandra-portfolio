@@ -1,6 +1,6 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
 import { projects } from '../../data/projects'
 
@@ -66,6 +66,39 @@ const fadeUp = (delay) => ({
   hidden: { y: 20, opacity: 0 },
   show: { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay } },
 })
+
+const DRIVEN_BY_WORDS = {
+  da: ['målbar forandring', 'bevidste designvalg', 'tal fra en A/B-test', 'smil', 'hyldeblomstdrik', 'nysgerrighed & proaktivitet'],
+  en: ['measurable change', 'intentional design decisions', 'seeing stats from an A/B test', 'smiles', 'elderflower drink', 'curiosity & proactivity'],
+}
+
+function RotatingWord({ words }) {
+  const [index, setIndex] = useState(0)
+  const shouldReduceMotion = useReducedMotion()
+
+  useEffect(() => {
+    if (shouldReduceMotion) return
+    const id = setInterval(() => setIndex((i) => (i + 1) % words.length), 2200)
+    return () => clearInterval(id)
+  }, [shouldReduceMotion, words])
+
+  return (
+    <span className="relative inline-grid">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={words[index]}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={shouldReduceMotion ? {} : { opacity: 0, y: -8 }}
+          transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.4 }}
+          className="col-start-1 row-start-1 whitespace-nowrap"
+        >
+          {words[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
 
 function getContrastTextColor(hex) {
   const r = parseInt(hex.slice(1, 3), 16)
@@ -457,21 +490,10 @@ export default function Home() {
             variants={fadeUp(0.9)}
             initial="hidden"
             animate="show"
-            className="mt-5 ml-[6.5rem] text-[11px] tracking-[0.14em] uppercase opacity-55 md:whitespace-nowrap"
+            className="mt-5 ml-[6.5rem] text-[15px] leading-relaxed opacity-75 max-w-sm"
           >
-            {t('Din digitale kommunikatør med designøje', 'Your digital communicator with a design eye')}
-          </motion.p>
-
-          <motion.p
-            variants={fadeUp(1.05)}
-            initial="hidden"
-            animate="show"
-            className="mt-3 ml-[6.5rem] text-[15px] leading-relaxed opacity-75 max-w-sm"
-          >
-            {t(
-              'Jeg arbejder i trekanten mellem kommunikation, design og teknologi - altid med målgruppen i centrum.',
-              'I work in the triangle between communication, design and technology - always with the target audience at the centre.'
-            )}
+            {t('Hej, jeg er Casandra, UX-designer i København med en baggrund i business og marketing, drevet af ', "Hi, I'm Casandra, a Copenhagen-based UX designer with a background in business and marketing, driven by ")}
+            <RotatingWord words={t(DRIVEN_BY_WORDS.da, DRIVEN_BY_WORDS.en)} />.
           </motion.p>
         </div>
 
