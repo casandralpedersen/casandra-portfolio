@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 const HOME_URL = process.env.HOME_URL || 'http://127.0.0.1:4173/'
-const modes = ['Original', 'Editorial', 'Scrapbook']
+const modes = ['Original', 'Editorial', 'Scrapbook', 'Studio']
 
 test('home modes switch, persist and reset scroll', async ({ page }) => {
   await page.goto(HOME_URL, { waitUntil: 'networkidle' })
@@ -19,9 +19,9 @@ test('home modes switch, persist and reset scroll', async ({ page }) => {
   await page.evaluate(() => window.scrollTo(0, 1000))
   await page.reload({ waitUntil: 'networkidle' })
 
-  await expect(page.locator('[data-home-mode]')).toHaveAttribute('data-home-mode', 'scrapbook')
+  await expect(page.locator('[data-home-mode]')).toHaveAttribute('data-home-mode', 'studio')
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
-  await expect(page.evaluate(() => localStorage.getItem('home-layout'))).resolves.toBe('scrapbook')
+  await expect(page.evaluate(() => localStorage.getItem('home-layout'))).resolves.toBe('studio')
 })
 
 test('original mode preserves the current home sections', async ({ page }) => {
@@ -195,10 +195,33 @@ test('scrapbook removes reveals and drawn motion with reduced motion', async ({ 
   await expect(page.locator('[data-scrapbook-draggable]')).toHaveAttribute('data-drag-enabled', 'false')
 })
 
+test('studio mode renders its hero, gallery and shared sections', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'studio'))
+  await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+  await expect(page.getByRole('heading', { name: 'Casandra' })).toBeVisible()
+  await expect(page.getByText('København, DK')).toBeVisible()
+  await expect(page.locator('[data-shared-projects] a[href="/arbejde/o-bar"]')).toBeVisible()
+  await expect(page.locator('[data-shared-contact] a[href="/om"]')).toBeVisible()
+})
+
+test('studio avoids page overflow on desktop and mobile', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('home-layout', 'studio'))
+
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport)
+    await page.goto(HOME_URL, { waitUntil: 'networkidle' })
+
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewport.width)
+    await page.evaluate(() => window.scrollTo(100, 0))
+    await expect.poll(() => page.evaluate(() => window.scrollX)).toBe(0)
+  }
+})
+
 test('all home modes fit mobile without horizontal page overflow', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
 
-  for (const mode of ['original', 'editorial', 'scrapbook']) {
+  for (const mode of ['original', 'editorial', 'scrapbook', 'studio']) {
     await page.addInitScript((value) => localStorage.setItem('home-layout', value), mode)
     await page.goto(HOME_URL, { waitUntil: 'networkidle' })
 

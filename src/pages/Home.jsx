@@ -3,12 +3,14 @@ import HomeModeSwitcher from './home/HomeModeSwitcher'
 import HomeEditorial from './home/HomeEditorial'
 import HomeOriginal from './home/HomeOriginal'
 import HomeScrapbook from './home/HomeScrapbook'
+import HomeStudio from './home/HomeStudio'
 import { HOME_MODES } from './home/homeContent'
 
 const ACTIVE_MODES = {
   original: HomeOriginal,
   editorial: HomeEditorial,
   scrapbook: HomeScrapbook,
+  studio: HomeStudio,
 }
 
 export default function Home() {

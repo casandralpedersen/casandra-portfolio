@@ -8,6 +8,7 @@ const projectSectionClasses = {
   scrapbook: 'mx-auto grid max-w-6xl gap-8 px-6 md:grid-cols-2',
   lab: 'mx-auto grid max-w-6xl gap-px border border-[var(--color-text)]/15 bg-[var(--color-text)]/15 md:grid-cols-2',
   cinema: 'mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-2',
+  studio: 'mx-auto flex max-w-4xl flex-col gap-20 px-6 sm:px-10',
 }
 
 const projectArticleClasses = {
@@ -15,6 +16,7 @@ const projectArticleClasses = {
   scrapbook: 'group rotate-[-1deg] bg-[#fffdf5] p-3 shadow-lg even:rotate-[1deg]',
   lab: 'group bg-[var(--color-base)]',
   cinema: 'group overflow-hidden bg-[var(--color-text)] text-[var(--color-base)]',
+  studio: 'group',
 }
 
 const projectLinkClasses = {
@@ -22,6 +24,7 @@ const projectLinkClasses = {
   scrapbook: 'grid min-h-[320px] grid-rows-[1fr_auto] gap-5',
   lab: 'grid min-h-[280px] grid-rows-[auto_1fr_auto] gap-6 p-6',
   cinema: 'grid min-h-[360px] grid-rows-[1fr_auto] gap-6 p-6',
+  studio: 'grid gap-6 sm:grid-cols-[1.2fr_1fr] sm:items-center sm:gap-10',
 }
 
 const projectImageClasses = {
@@ -29,6 +32,7 @@ const projectImageClasses = {
   scrapbook: 'h-full min-h-[190px] w-full object-cover',
   lab: 'h-full min-h-[150px] w-full object-cover grayscale transition-[filter] duration-300 group-hover:grayscale-0',
   cinema: 'h-full min-h-[220px] w-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100',
+  studio: 'h-full min-h-[220px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]',
 }
 
 const projectMetaClasses = {
@@ -36,6 +40,7 @@ const projectMetaClasses = {
   scrapbook: 'flex items-center justify-between gap-4 text-[10px] uppercase tracking-[0.16em] opacity-55',
   lab: 'flex items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.16em] opacity-55',
   cinema: 'flex items-center justify-between gap-4 text-[10px] uppercase tracking-[0.2em] opacity-65',
+  studio: 'flex items-center justify-between gap-4 text-[10px] uppercase tracking-[0.2em] opacity-50',
 }
 
 const projectTitleClasses = {
@@ -43,6 +48,7 @@ const projectTitleClasses = {
   scrapbook: 'text-4xl leading-none',
   lab: 'text-4xl leading-none',
   cinema: 'text-[clamp(2.7rem,6vw,5.5rem)] leading-[0.9]',
+  studio: 'text-[clamp(2.4rem,5vw,4.5rem)] leading-[0.95] text-[var(--color-burgundy)]',
 }
 
 const contactClasses = {
@@ -50,6 +56,7 @@ const contactClasses = {
   scrapbook: 'mx-auto my-20 max-w-5xl rotate-[1deg] bg-[#fffdf5] px-6 py-20 shadow-xl sm:px-12',
   lab: 'mx-auto grid max-w-6xl gap-10 border-x border-t border-[var(--color-text)]/20 px-6 py-20 md:grid-cols-2',
   cinema: 'bg-[var(--color-text)] px-6 py-28 text-[var(--color-base)] sm:px-12',
+  studio: 'mx-auto max-w-3xl px-6 py-24 text-center sm:px-10',
 }
 
 const contactTitleClasses = {
@@ -57,6 +64,7 @@ const contactTitleClasses = {
   scrapbook: 'max-w-[15ch] text-[clamp(3rem,7vw,6rem)] leading-[0.9]',
   lab: 'max-w-[14ch] text-[clamp(2.7rem,6vw,5.5rem)] leading-[0.92]',
   cinema: 'mx-auto max-w-[12ch] text-center text-[clamp(3rem,8vw,8rem)] leading-[0.86]',
+  studio: 'mx-auto max-w-[16ch] text-[clamp(2.8rem,7vw,6rem)] leading-[0.9]',
 }
 
 const contactLinksClasses = {
@@ -64,6 +72,7 @@ const contactLinksClasses = {
   scrapbook: 'mt-10 flex flex-wrap gap-6 text-sm underline decoration-1 underline-offset-4',
   lab: 'mt-10 flex flex-wrap gap-6 font-mono text-xs uppercase tracking-[0.14em]',
   cinema: 'mx-auto mt-12 flex flex-wrap justify-center gap-8 text-xs uppercase tracking-[0.18em]',
+  studio: 'mx-auto mt-8 flex flex-wrap justify-center gap-8 text-xs uppercase tracking-[0.18em]',
 }
 
 export function SharedProjects({ t, variant }) {
