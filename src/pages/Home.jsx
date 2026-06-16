@@ -22,8 +22,20 @@ function SkillPill({ label, pos, rotate, delay }) {
   return (
     <motion.span
       initial={{ opacity: 0, scale: 0.7, y: 8, rotate: 0 }}
-      animate={{ opacity: 1, scale: 1, y: 0, rotate, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.4, delay } }}
-      exit={{ opacity: 0, scale: 0.7, y: 6, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.2 } }}
+      animate={{ opacity: 1, scale: 1, y: 0, x: 0, rotate, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.4, delay } }}
+      exit={{
+        y: 820,
+        x: rotate > 0 ? 26 : -26,
+        rotate: rotate + (rotate > 0 ? 52 : -52),
+        opacity: 0,
+        transition: {
+          delay: Math.abs(rotate) * 0.012,
+          y: { duration: 0.9, ease: [0.4, 0, 1, 1] },
+          x: { duration: 0.9, ease: 'easeIn' },
+          rotate: { duration: 0.9, ease: 'easeIn' },
+          opacity: { duration: 0.9, ease: [0.6, 0, 0.95, 1] },
+        },
+      }}
       className={`absolute z-30 overflow-hidden pointer-events-none px-4 py-1.5 rounded-full text-[13px] font-medium tracking-wide whitespace-nowrap shadow-sm ${pos}`}
       style={{ background: '#FBF8EC', border: '1.5px solid var(--color-burgundy)', color: 'var(--color-burgundy)' }}
     >
