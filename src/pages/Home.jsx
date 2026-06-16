@@ -6,6 +6,36 @@ import { projects } from '../data/projects'
 
 const EMAIL = 'casandralpedersen@gmail.com'
 
+const PILL_NOISE =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E\")"
+
+const SKILLS = [
+  { da: 'grafisk design', en: 'graphic design', pos: 'top-[14%] right-[8%]', rotate: -5, delay: 0 },
+  { da: 'ux design', en: 'ux design', pos: 'top-[6%] right-[40%]', rotate: 4, delay: 0.05 },
+  { da: 'branding', en: 'branding', pos: 'top-[46%] right-[1%]', rotate: -3, delay: 0.1 },
+  { da: 'vibe coding', en: 'vibe coding', pos: 'bottom-[20%] right-[12%]', rotate: 5, delay: 0.15 },
+  { da: 'art direction', en: 'art direction', pos: 'bottom-[11%] right-[38%]', rotate: -3, delay: 0.2 },
+  { da: 'frontend', en: 'frontend', pos: 'top-[62%] right-[50%]', rotate: 4, delay: 0.25 },
+]
+
+function SkillPill({ label, pos, rotate, delay }) {
+  return (
+    <motion.span
+      initial={{ opacity: 0, scale: 0.7, y: 8, rotate: 0 }}
+      animate={{ opacity: 1, scale: 1, y: 0, rotate, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.4, delay } }}
+      exit={{ opacity: 0, scale: 0.7, y: 6, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.2 } }}
+      className={`absolute z-30 overflow-hidden px-4 py-1.5 rounded-full text-[13px] font-medium tracking-wide whitespace-nowrap shadow-sm ${pos}`}
+      style={{ background: '#FBF8EC', border: '1.5px solid var(--color-burgundy)', color: 'var(--color-burgundy)' }}
+    >
+      <span className="relative z-10">{label}</span>
+      <span
+        className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: PILL_NOISE, opacity: 0.14, mixBlendMode: 'multiply' }}
+      />
+    </motion.span>
+  )
+}
+
 const services = [
   {
     title: { da: 'Design', en: 'Design' },
@@ -429,6 +459,20 @@ export default function Home() {
   return (
     <main className="bg-[var(--color-base)]">
 
+      <svg width="0" height="0" className="absolute" aria-hidden="true">
+        <filter id="handdrawn-red-home" x="-15%" y="-15%" width="130%" height="130%">
+          <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="thick" />
+          <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="2" seed="7" result="noise" />
+          <feDisplacementMap in="thick" in2="noise" scale="14" result="wobbly" />
+          <feFlood floodColor="#913C27" result="red" />
+          <feComposite in="red" in2="wobbly" operator="in" result="stroke" />
+          <feMerge>
+            <feMergeNode in="stroke" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </svg>
+
       {/* Hero */}
       <section
         ref={constraintsRef}
@@ -437,7 +481,6 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 1.0, delay: 0.05 } }}
-          onMouseEnter={() => setShowCard(true)}
           onMouseLeave={() => { if (!draggingCard) setShowCard(false) }}
           className="absolute top-0 right-0 w-[62%] h-full"
           style={{ zIndex: 0 }}
@@ -446,11 +489,25 @@ export default function Home() {
             src="/images/mefinalpic.png"
             alt="Casandra"
             className="w-full h-full object-contain object-bottom pointer-events-none"
+            style={{ filter: 'url(#handdrawn-red-home)' }}
           />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'linear-gradient(to right, var(--color-base) 0%, transparent 20%)' }}
           />
+
+          {/* mindre hover-zone over figuren, rykket til højre */}
+          <div
+            onMouseEnter={() => setShowCard(true)}
+            className="absolute top-0 right-0 h-full w-[42%] z-10"
+          />
+
+          <AnimatePresence>
+            {showCard &&
+              SKILLS.map((s) => (
+                <SkillPill key={s.en} label={t(s.da, s.en)} pos={s.pos} rotate={s.rotate} delay={s.delay} />
+              ))}
+          </AnimatePresence>
 
           <motion.div
             drag
