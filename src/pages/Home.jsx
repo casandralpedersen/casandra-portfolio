@@ -1,20 +1,8 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import { projects } from '../data/projects'
-
-const NAME_LETTERS = ['C', 'a', 's', 'a', 'n', 'd', 'r', 'a']
-
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.055, delayChildren: 0.5 } },
-}
-
-const letterVariants = {
-  hidden: { y: 50, opacity: 0 },
-  show: { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.65 } },
-}
 
 const EMAIL = 'casandralpedersen@gmail.com'
 
@@ -66,6 +54,39 @@ const fadeUp = (delay) => ({
   hidden: { y: 20, opacity: 0 },
   show: { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay } },
 })
+
+const DRIVEN_BY_WORDS = {
+  da: ['målbar forandring', 'bevidste designvalg', 'tal fra en A/B-test', 'smil', 'hyldeblomstdrik', 'nysgerrighed & proaktivitet'],
+  en: ['measurable change', 'intentional design decisions', 'seeing stats from an A/B test', 'smiles', 'elderflower drink', 'curiosity & proactivity'],
+}
+
+function RotatingWord({ words }) {
+  const [index, setIndex] = useState(0)
+  const shouldReduceMotion = useReducedMotion()
+
+  useEffect(() => {
+    if (shouldReduceMotion) return
+    const id = setInterval(() => setIndex((i) => (i + 1) % words.length), 2200)
+    return () => clearInterval(id)
+  }, [shouldReduceMotion, words])
+
+  return (
+    <span className="relative inline-grid">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={words[index]}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={shouldReduceMotion ? {} : { opacity: 0, y: -8 }}
+          transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.4 }}
+          className="col-start-1 row-start-1 whitespace-nowrap"
+        >
+          {words[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
 
 function getContrastTextColor(hex) {
   const r = parseInt(hex.slice(1, 3), 16)
@@ -304,7 +325,7 @@ function Contact({ t }) {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="texture px-10 py-32 flex flex-col items-start" style={{ backgroundColor: 'var(--color-blue)' }}>
+    <section ref={ref} className="px-10 py-32 flex flex-col items-start" style={{ backgroundColor: 'var(--color-blue)' }}>
       <motion.p
         initial={{ y: 20, opacity: 0 }}
         animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } } : {}}
@@ -402,6 +423,8 @@ function AboutTeaser({ t }) {
 export default function Home() {
   const { t } = useLanguage()
   const constraintsRef = useRef(null)
+  const [showCard, setShowCard] = useState(false)
+  const [draggingCard, setDraggingCard] = useState(false)
 
   return (
     <main className="bg-[var(--color-base)]">
@@ -409,91 +432,68 @@ export default function Home() {
       {/* Hero */}
       <section
         ref={constraintsRef}
-        className="texture relative min-h-[88vh] overflow-hidden px-10 pt-6 pb-16 flex flex-col justify-start"
+        className="relative min-h-[88vh] overflow-hidden px-10 pt-6 pb-16 flex flex-col justify-start"
       >
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 1.0, delay: 0.05 } }}
-          className="absolute top-0 right-0 w-[55%] h-full pointer-events-none"
+          onMouseEnter={() => setShowCard(true)}
+          onMouseLeave={() => { if (!draggingCard) setShowCard(false) }}
+          className="absolute top-0 right-0 w-[62%] h-full"
           style={{ zIndex: 0 }}
         >
           <img
             src="/images/mefinalpic.png"
             alt="Casandra"
-            className="w-full h-full object-contain object-bottom"
+            className="w-full h-full object-contain object-bottom pointer-events-none"
           />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'linear-gradient(to right, var(--color-base) 0%, transparent 20%)' }}
           />
+
+          <motion.div
+            drag
+            dragConstraints={constraintsRef}
+            dragElastic={0.05}
+            dragTransition={{ power: 0.1, timeConstant: 600, modifyTarget: t => t }}
+            onDragStart={() => setDraggingCard(true)}
+            onDragEnd={() => setDraggingCard(false)}
+            whileDrag={{ scale: 1.04, cursor: 'grabbing' }}
+            initial={false}
+            animate={showCard || draggingCard ? { opacity: 1, rotate: 3, y: 0 } : { opacity: 0, rotate: 5, y: 10 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute z-20 cursor-grab select-none"
+            style={{ top: '6%', left: '4%', pointerEvents: showCard || draggingCard ? 'auto' : 'none' }}
+          >
+            <div className="px-5 py-4 border border-[var(--color-burgundy)] bg-[var(--color-base)]" style={{ width: 160 }}>
+              <p className="text-[10px] tracking-[0.12em] uppercase opacity-40 mb-1">
+                {t('ITU København', 'ITU Copenhagen')}
+              </p>
+              <p style={{ fontFamily: 'VSOP, serif', fontSize: 25, lineHeight: 1.1, color: 'var(--color-blue)' }}>B-DDIT</p>
+              <p className="text-[10px] opacity-40 mt-2">{t('Design & Digital IT', 'Design & Digital IT')}</p>
+            </div>
+          </motion.div>
         </motion.div>
 
-        <div className="relative z-10 flex flex-col mt-24 md:mt-32">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="show"
-            className="flex items-baseline"
-            aria-label="Casandra"
-          >
-            {NAME_LETTERS.map((letter, i) => (
-              <motion.span
-                key={i}
-                variants={letterVariants}
-                className="block"
-                style={{
-                  fontFamily: i === 0 ? 'Montigny, cursive' : 'VSOP, serif',
-                  fontSize: i === 0 ? '15vw' : '6vw',
-                  lineHeight: 0.9,
-                  color: 'var(--color-burgundy)',
-                }}
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </motion.div>
-
+        <div className="relative z-10 flex flex-col mt-24 md:mt-32 pointer-events-none">
           <motion.p
             variants={fadeUp(0.9)}
             initial="hidden"
             animate="show"
-            className="mt-5 ml-[6.5rem] text-[11px] tracking-[0.14em] uppercase opacity-55 whitespace-nowrap"
+            className="text-[clamp(1.5rem,3vw,2.75rem)] leading-snug max-w-2xl"
           >
-            {t('Din digitale kommunikatør med designøje', 'Your digital communicator with a design eye')}
-          </motion.p>
-
-          <motion.p
-            variants={fadeUp(1.05)}
-            initial="hidden"
-            animate="show"
-            className="mt-3 ml-[6.5rem] text-[15px] leading-relaxed opacity-75 max-w-sm"
-          >
-            {t(
-              'Jeg arbejder i trekanten mellem kommunikation, design og teknologi - altid med målgruppen i centrum.',
-              'I work in the triangle between communication, design and technology - always with the target audience at the centre.'
-            )}
+            <span aria-label={t('Hej', 'Hi')} style={{ color: 'var(--color-burgundy)' }}>
+              <span aria-hidden="true" style={{ fontFamily: 'Montigny, cursive', fontSize: '1.35em' }}>H</span>
+              <span aria-hidden="true" style={{ fontFamily: 'VSOP, serif' }}>{t('ej', 'i')}</span>
+            </span>
+            <span className="opacity-75">
+              {t(', jeg er Casandra, UX-designer i København med en baggrund i business og marketing, drevet af ', ", I'm Casandra, a Copenhagen-based UX designer with a background in business and marketing, driven by ")}
+              <RotatingWord words={t(DRIVEN_BY_WORDS.da, DRIVEN_BY_WORDS.en)} />.
+            </span>
           </motion.p>
         </div>
 
-        <motion.div
-          drag
-          dragConstraints={constraintsRef}
-          dragElastic={0.05}
-          dragTransition={{ power: 0.1, timeConstant: 600, modifyTarget: t => t }}
-          whileDrag={{ scale: 1.04, cursor: 'grabbing' }}
-          initial={{ opacity: 0, rotate: 4, y: 10 }}
-          animate={{ opacity: 1, rotate: 3, y: 0, transition: { delay: 1.5, duration: 0.6, ease: [0.22, 1, 0.36, 1] } }}
-          className="absolute z-10 cursor-grab select-none"
-          style={{ top: '8%', left: '56%' }}
-        >
-          <div className="px-5 py-4 border border-[var(--color-burgundy)] bg-[var(--color-base)]" style={{ width: 160 }}>
-            <p className="text-[10px] tracking-[0.12em] uppercase opacity-40 mb-1">
-              {t('ITU København', 'ITU Copenhagen')}
-            </p>
-            <p style={{ fontFamily: 'VSOP, serif', fontSize: 25, lineHeight: 1.1, color: 'var(--color-blue)' }}>B-DDIT</p>
-            <p className="text-[10px] opacity-40 mt-2">{t('Design & Digital IT', 'Design & Digital IT')}</p>
-          </div>
-        </motion.div>
       </section>
 
       {/* Om mig-teaser */}
