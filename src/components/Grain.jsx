@@ -8,7 +8,7 @@ export default function Grain() {
     const update = () => {
       const y = window.scrollY
       if (ref.current) {
-        ref.current.style.backgroundPosition = `${(y * 0.55) % 220}px ${(-y * 0.85) % 220}px`
+        ref.current.style.backgroundPosition = `${(y * 0.55) % 140}px ${(-y * 0.85) % 140}px`
       }
     }
     const onScroll = () => {
