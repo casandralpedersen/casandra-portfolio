@@ -452,9 +452,7 @@ function AboutTeaser({ t }) {
 
 export default function Home() {
   const { t } = useLanguage()
-  const constraintsRef = useRef(null)
-  const [showCard, setShowCard] = useState(false)
-  const [draggingCard, setDraggingCard] = useState(false)
+  const [showSkills, setShowSkills] = useState(false)
 
   return (
     <main className="bg-[var(--color-base)]">
@@ -474,14 +472,11 @@ export default function Home() {
       </svg>
 
       {/* Hero */}
-      <section
-        ref={constraintsRef}
-        className="relative min-h-[88vh] overflow-hidden px-10 pt-6 pb-16 flex flex-col justify-start"
-      >
+      <section className="relative min-h-[88vh] overflow-hidden px-10 pt-6 pb-16 flex flex-col justify-start">
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 1.0, delay: 0.05 } }}
-          onMouseLeave={() => { if (!draggingCard) setShowCard(false) }}
+          onMouseLeave={() => setShowSkills(false)}
           className="absolute top-0 right-0 w-[62%] h-full"
           style={{ zIndex: 0 }}
         >
@@ -496,41 +491,18 @@ export default function Home() {
             style={{ background: 'linear-gradient(to right, var(--color-base) 0%, transparent 20%)' }}
           />
 
-          {/* mindre hover-zone over figuren, rykket til højre */}
+          {/* hover-zone over figuren */}
           <div
-            onMouseEnter={() => setShowCard(true)}
-            className="absolute top-0 right-0 h-full w-[42%] z-10"
+            onMouseEnter={() => setShowSkills(true)}
+            className="absolute top-0 right-0 h-full w-[58%] z-10"
           />
 
           <AnimatePresence>
-            {showCard &&
+            {showSkills &&
               SKILLS.map((s) => (
                 <SkillPill key={s.en} label={t(s.da, s.en)} pos={s.pos} rotate={s.rotate} delay={s.delay} />
               ))}
           </AnimatePresence>
-
-          <motion.div
-            drag
-            dragConstraints={constraintsRef}
-            dragElastic={0.05}
-            dragTransition={{ power: 0.1, timeConstant: 600, modifyTarget: t => t }}
-            onDragStart={() => setDraggingCard(true)}
-            onDragEnd={() => setDraggingCard(false)}
-            whileDrag={{ scale: 1.04, cursor: 'grabbing' }}
-            initial={false}
-            animate={showCard || draggingCard ? { opacity: 1, rotate: 3, y: 0 } : { opacity: 0, rotate: 5, y: 10 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute z-20 cursor-grab select-none"
-            style={{ top: '6%', left: '4%', pointerEvents: showCard || draggingCard ? 'auto' : 'none' }}
-          >
-            <div className="px-5 py-4 border border-[var(--color-burgundy)] bg-[var(--color-base)]" style={{ width: 160 }}>
-              <p className="text-[10px] tracking-[0.12em] uppercase opacity-40 mb-1">
-                {t('ITU København', 'ITU Copenhagen')}
-              </p>
-              <p style={{ fontFamily: 'VSOP, serif', fontSize: 25, lineHeight: 1.1, color: 'var(--color-blue)' }}>B-DDIT</p>
-              <p className="text-[10px] opacity-40 mt-2">{t('Design & Digital IT', 'Design & Digital IT')}</p>
-            </div>
-          </motion.div>
         </motion.div>
 
         <div className="relative z-10 flex flex-col mt-24 md:mt-32 pointer-events-none">
