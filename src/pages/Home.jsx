@@ -24,7 +24,7 @@ function SkillPill({ label, pos, rotate, delay }) {
       initial={{ opacity: 0, scale: 0.7, y: 8, rotate: 0 }}
       animate={{ opacity: 1, scale: 1, y: 0, rotate, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.4, delay } }}
       exit={{ opacity: 0, scale: 0.7, y: 6, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.2 } }}
-      className={`absolute z-30 overflow-hidden px-4 py-1.5 rounded-full text-[13px] font-medium tracking-wide whitespace-nowrap shadow-sm ${pos}`}
+      className={`absolute z-30 overflow-hidden pointer-events-none px-4 py-1.5 rounded-full text-[13px] font-medium tracking-wide whitespace-nowrap shadow-sm ${pos}`}
       style={{ background: '#FBF8EC', border: '1.5px solid var(--color-burgundy)', color: 'var(--color-burgundy)' }}
     >
       <span className="relative z-10">{label}</span>
@@ -453,6 +453,38 @@ function AboutTeaser({ t }) {
 export default function Home() {
   const { t } = useLanguage()
   const [showSkills, setShowSkills] = useState(false)
+  const alphaRef = useRef(null)
+
+  useEffect(() => {
+    const img = new Image()
+    img.src = '/images/mefinalpic.png'
+    img.onload = () => {
+      const c = document.createElement('canvas')
+      c.width = img.naturalWidth
+      c.height = img.naturalHeight
+      const ctx = c.getContext('2d', { willReadFrequently: true })
+      ctx.drawImage(img, 0, 0)
+      alphaRef.current = { data: ctx.getImageData(0, 0, c.width, c.height).data, w: c.width, h: c.height }
+    }
+  }, [])
+
+  function handleFigureMove(e) {
+    const a = alphaRef.current
+    if (!a) return
+    const el = e.currentTarget
+    const W = el.clientWidth
+    const H = el.clientHeight
+    const scale = Math.min(W / a.w, H / a.h)
+    const left = (W - a.w * scale) / 2
+    const top = H - a.h * scale
+    const px = Math.floor((e.nativeEvent.offsetX - left) / scale)
+    const py = Math.floor((e.nativeEvent.offsetY - top) / scale)
+    if (px < 0 || py < 0 || px >= a.w || py >= a.h) {
+      setShowSkills(false)
+      return
+    }
+    setShowSkills(a.data[(py * a.w + px) * 4 + 3] > 30)
+  }
 
   return (
     <main className="bg-[var(--color-base)]">
@@ -483,18 +515,13 @@ export default function Home() {
           <img
             src="/images/mefinalpic.png"
             alt="Casandra"
-            className="w-full h-full object-contain object-bottom pointer-events-none"
+            onMouseMove={handleFigureMove}
+            className="w-full h-full object-contain object-bottom"
             style={{ filter: 'url(#handdrawn-red-home)', transform: 'translateX(8%) scale(1.12)', transformOrigin: 'bottom center' }}
           />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'linear-gradient(to bottom, var(--color-base) 0%, transparent 22%), linear-gradient(to right, var(--color-base) 0%, transparent 16%)' }}
-          />
-
-          {/* hover-zone over figuren */}
-          <div
-            onMouseEnter={() => setShowSkills(true)}
-            className="absolute top-0 right-0 h-full w-[58%] z-10"
           />
 
           <AnimatePresence>
