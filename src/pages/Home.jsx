@@ -10,12 +10,12 @@ const PILL_NOISE =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E\")"
 
 const SKILLS = [
-  { da: 'grafisk design', en: 'graphic design', pos: 'top-[14%] right-[8%]', rotate: -5, delay: 0 },
-  { da: 'ux design', en: 'ux design', pos: 'top-[6%] right-[40%]', rotate: 4, delay: 0.05 },
-  { da: 'branding', en: 'branding', pos: 'top-[46%] right-[1%]', rotate: -3, delay: 0.1 },
-  { da: 'vibe coding', en: 'vibe coding', pos: 'bottom-[20%] right-[12%]', rotate: 5, delay: 0.15 },
-  { da: 'art direction', en: 'art direction', pos: 'bottom-[11%] right-[38%]', rotate: -3, delay: 0.2 },
-  { da: 'frontend', en: 'frontend', pos: 'top-[62%] right-[50%]', rotate: 4, delay: 0.25 },
+  { da: 'grafisk design', en: 'graphic design', pos: 'top-[14%] right-[16%]', rotate: -5, delay: 0 },
+  { da: 'ux design', en: 'ux design', pos: 'top-[6%] right-[46%]', rotate: 4, delay: 0.05 },
+  { da: 'branding', en: 'branding', pos: 'top-[46%] right-[9%]', rotate: -3, delay: 0.1 },
+  { da: 'vibe coding', en: 'vibe coding', pos: 'bottom-[20%] right-[20%]', rotate: 5, delay: 0.15 },
+  { da: 'art direction', en: 'art direction', pos: 'bottom-[11%] right-[44%]', rotate: -3, delay: 0.2 },
+  { da: 'frontend', en: 'frontend', pos: 'top-[62%] right-[56%]', rotate: 4, delay: 0.25 },
 ]
 
 function SkillPill({ label, pos, rotate, delay }) {
@@ -540,10 +540,7 @@ export default function Home() {
             animate="show"
             className="text-[clamp(1.5rem,3vw,2.75rem)] leading-snug max-w-2xl"
           >
-            <span aria-label={t('Hej', 'Hi')} style={{ color: 'var(--color-burgundy)' }}>
-              <span aria-hidden="true" style={{ fontFamily: 'Montigny, cursive', fontSize: '1.35em' }}>H</span>
-              <span aria-hidden="true" style={{ fontFamily: 'VSOP, serif' }}>{t('ej', 'i')}</span>
-            </span>
+            <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0 }}>Hi</span>
             <span className="opacity-75">
               {t(', jeg er Casandra, UX-designer i København med en baggrund i business og marketing, drevet af ', ", I'm Casandra, a Copenhagen-based UX designer with a background in business and marketing, driven by ")}
               <RotatingWord words={t(DRIVEN_BY_WORDS.da, DRIVEN_BY_WORDS.en)} />.
