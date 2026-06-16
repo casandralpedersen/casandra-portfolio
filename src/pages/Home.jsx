@@ -10,12 +10,12 @@ const PILL_NOISE =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E\")"
 
 const SKILLS = [
-  { da: 'grafisk design', en: 'graphic design', pos: 'top-[14%] right-[16%]', rotate: -5, delay: 0 },
-  { da: 'ux design', en: 'ux design', pos: 'top-[6%] right-[46%]', rotate: 4, delay: 0.05 },
-  { da: 'branding', en: 'branding', pos: 'top-[46%] right-[9%]', rotate: -3, delay: 0.1 },
-  { da: 'vibe coding', en: 'vibe coding', pos: 'bottom-[20%] right-[20%]', rotate: 5, delay: 0.15 },
-  { da: 'art direction', en: 'art direction', pos: 'bottom-[11%] right-[44%]', rotate: -3, delay: 0.2 },
-  { da: 'frontend', en: 'frontend', pos: 'top-[62%] right-[56%]', rotate: 4, delay: 0.25 },
+  { da: 'grafisk design', en: 'graphic design', pos: 'top-[14%] right-[22%]', rotate: -5, delay: 0 },
+  { da: 'ux design', en: 'ux design', pos: 'top-[6%] right-[48%]', rotate: 4, delay: 0.05 },
+  { da: 'branding', en: 'branding', pos: 'top-[46%] right-[15%]', rotate: -3, delay: 0.1 },
+  { da: 'vibe coding', en: 'vibe coding', pos: 'bottom-[20%] right-[25%]', rotate: 5, delay: 0.15 },
+  { da: 'art direction', en: 'art direction', pos: 'bottom-[11%] right-[46%]', rotate: -3, delay: 0.2 },
+  { da: 'frontend', en: 'frontend', pos: 'top-[62%] right-[58%]', rotate: 4, delay: 0.25 },
 ]
 
 function SkillPill({ label, pos, rotate, delay }) {
@@ -477,7 +477,7 @@ export default function Home() {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 1.0, delay: 0.05 } }}
           onMouseLeave={() => setShowSkills(false)}
-          className="absolute top-0 right-0 w-[62%] h-full"
+          className="absolute top-0 right-0 w-[76%] h-full"
           style={{ zIndex: 0 }}
         >
           <img
@@ -488,7 +488,7 @@ export default function Home() {
           />
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, var(--color-base) 0%, transparent 20%)' }}
+            style={{ background: 'linear-gradient(to bottom, var(--color-base) 0%, transparent 22%), linear-gradient(to right, var(--color-base) 0%, transparent 16%)' }}
           />
 
           {/* hover-zone over figuren */}
