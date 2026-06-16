@@ -503,14 +503,17 @@ export default function Home() {
 
       <svg width="0" height="0" className="absolute" aria-hidden="true">
         <filter id="handdrawn-red-home" x="-15%" y="-15%" width="130%" height="130%">
-          <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="thick" />
+          <feComponentTransfer in="SourceGraphic" result="fig">
+            <feFuncA type="linear" slope="6" intercept="-2.6" />
+          </feComponentTransfer>
+          <feMorphology in="fig" operator="dilate" radius="4" result="thick" />
           <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="2" seed="7" result="noise" />
           <feDisplacementMap in="thick" in2="noise" scale="14" result="wobbly" />
           <feFlood floodColor="#913C27" result="red" />
           <feComposite in="red" in2="wobbly" operator="in" result="stroke" />
           <feMerge>
             <feMergeNode in="stroke" />
-            <feMergeNode in="SourceGraphic" />
+            <feMergeNode in="fig" />
           </feMerge>
         </filter>
       </svg>
