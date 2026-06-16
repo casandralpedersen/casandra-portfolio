@@ -8,6 +8,36 @@ const ease = [0.22, 1, 0.36, 1]
 const BURGUNDY = '#913C27'
 const BLUE = '#5A86AB'
 
+const PILL_NOISE =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E\")"
+
+const SKILLS = [
+  { da: 'grafisk design', en: 'graphic design', pos: 'top-[10%] left-[46%]', rotate: -5, delay: 0 },
+  { da: 'ux design', en: 'ux design', pos: 'top-[20%] right-[10%]', rotate: 4, delay: 0.05 },
+  { da: 'branding', en: 'branding', pos: 'top-[47%] right-[5%]', rotate: -3, delay: 0.1 },
+  { da: 'vibe coding', en: 'vibe coding', pos: 'bottom-[15%] right-[24%]', rotate: 5, delay: 0.15 },
+  { da: 'art direction', en: 'art direction', pos: 'bottom-[19%] left-[44%]', rotate: -3, delay: 0.2 },
+  { da: 'frontend', en: 'frontend', pos: 'top-[42%] left-[11%]', rotate: 4, delay: 0.25 },
+]
+
+function SkillPill({ label, pos, rotate, delay }) {
+  return (
+    <motion.span
+      initial={{ opacity: 0, scale: 0.7, y: 8, rotate: 0 }}
+      animate={{ opacity: 1, scale: 1, y: 0, rotate, transition: { ease, duration: 0.4, delay } }}
+      exit={{ opacity: 0, scale: 0.7, y: 6, transition: { ease, duration: 0.2 } }}
+      className={`absolute z-30 overflow-hidden px-4 py-1.5 rounded-full text-[13px] font-medium tracking-wide whitespace-nowrap shadow-sm ${pos}`}
+      style={{ background: '#FBF8EC', border: '1.5px solid var(--color-burgundy)', color: 'var(--color-burgundy)' }}
+    >
+      <span className="relative z-10">{label}</span>
+      <span
+        className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: PILL_NOISE, opacity: 0.14, mixBlendMode: 'multiply' }}
+      />
+    </motion.span>
+  )
+}
+
 function Tape({ className, color = 'rgba(145,60,39,0.18)', rotate = 0, w = 90 }) {
   return (
     <span
@@ -178,6 +208,20 @@ export default function LayoutScrapbook() {
 
   return (
     <main className="min-h-screen bg-[var(--color-base)] overflow-hidden pb-32">
+      <svg width="0" height="0" className="absolute" aria-hidden="true">
+        <filter id="handdrawn-red" x="-15%" y="-15%" width="130%" height="130%">
+          <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="thick" />
+          <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="2" seed="7" result="noise" />
+          <feDisplacementMap in="thick" in2="noise" scale="14" result="wobbly" />
+          <feFlood floodColor="#913C27" result="red" />
+          <feComposite in="red" in2="wobbly" operator="in" result="stroke" />
+          <feMerge>
+            <feMergeNode in="stroke" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </svg>
+
       {/* Venn hero */}
       <section className="texture relative h-[88vh] min-h-[600px] flex items-center justify-center">
         {/* venn circles */}
@@ -204,7 +248,7 @@ export default function LayoutScrapbook() {
         </motion.div>
 
         {/* photo */}
-        <div style={{ transform: 'translateX(14%)' }} className="relative z-10">
+        <div style={{ transform: 'translateX(14%)' }} className="relative z-10 drop-shadow-2xl">
           <motion.img
             src={ABOUT_PHOTO}
             alt="Casandra"
@@ -212,7 +256,8 @@ export default function LayoutScrapbook() {
             animate={{ opacity: 1, scale: 1, transition: { ease, duration: 1 } }}
             onMouseEnter={() => setPhotoHover(true)}
             onMouseLeave={() => setPhotoHover(false)}
-            className="h-[58vmin] max-h-[520px] object-contain drop-shadow-2xl"
+            className="h-[58vmin] max-h-[520px] object-contain"
+            style={{ filter: 'url(#handdrawn-red)' }}
           />
         </div>
 
@@ -224,6 +269,12 @@ export default function LayoutScrapbook() {
           {photoHover && (
             <ThoughtBubble key="malgruppen" label={t('Målgruppe', 'Audience')} className="top-[58%] left-[64%] -translate-x-1/2 -translate-y-1/2 z-30" />
           )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {photoHover &&
+            SKILLS.map((s) => (
+              <SkillPill key={s.en} label={t(s.da, s.en)} pos={s.pos} rotate={s.rotate} delay={s.delay} />
+            ))}
         </AnimatePresence>
 
         {/* name + label */}
