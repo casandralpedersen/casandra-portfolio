@@ -484,7 +484,7 @@ export default function Home() {
             src="/images/mefinalpic.png"
             alt="Casandra"
             className="w-full h-full object-contain object-bottom pointer-events-none"
-            style={{ filter: 'url(#handdrawn-red-home)' }}
+            style={{ filter: 'url(#handdrawn-red-home)', transform: 'translateX(8%) scale(1.12)', transformOrigin: 'bottom center' }}
           />
           <div
             className="absolute inset-0 pointer-events-none"
