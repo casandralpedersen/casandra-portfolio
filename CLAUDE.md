@@ -81,7 +81,8 @@ Ligger i `src/data/experience.js` — bruges af både `/om` og `/cv`.
 - Lokal auto-push til GitHub er sat op via `.claude/settings.local.json`
 
 ## Kendte mangler / beslutninger udestående
-- VSOP-fonten har ikke Ø-tegnet - "Ø Bar" vises som "O Bar" i display-font
+- VSOP-fonten har defekte/manglende æ/ø/å-glyffer (tegnes som a/o/a, så browser-fallback udløses ikke). På Scrapbook 2.0-titlerne pakkes kun selve specialtegnet i Georgia via `renderTitle`/`wrapSpecial` i `aboutContent.jsx` - resten af titlen forbliver VSOP. "Ø Bar" vises stadig som "O Bar" i display-font.
+- `/om` har nu 3 layout-modes: Scrapbook, Scrapbook 2.0, Spotlight (Original og Magasin er slettet)
 - WorkDetail (`/arbejde/:slug`) er stub - bygges når projektbilleder er klar
 - Projektbilleder mangler (`cover: null` på alle projekter)
 - Custom cursor blev bygget og testet, men Casandra foretrak almindelig browser-cursor - fjernet igen. Brug ikke custom cursor fremover medmindre hun selv beder om det.

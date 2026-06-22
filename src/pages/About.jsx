@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react'
-import LayoutOriginal from './about/LayoutOriginal'
-import LayoutMagasin from './about/LayoutMagasin'
 import LayoutScrapbook from './about/LayoutScrapbook'
 import LayoutScrapbook2 from './about/LayoutScrapbook2'
 import LayoutSpotlight from './about/LayoutSpotlight'
 
 const MODES = [
-  { id: 'original', label: 'Original', Component: LayoutOriginal },
-  { id: 'magasin', label: 'Magasin', Component: LayoutMagasin },
   { id: 'scrapbook', label: 'Scrapbook', Component: LayoutScrapbook },
   { id: 'scrapbook2', label: 'Scrapbook 2.0', Component: LayoutScrapbook2 },
   { id: 'spotlight', label: 'Spotlight', Component: LayoutSpotlight },
 ]
 
 export default function About() {
-  const [mode, setMode] = useState(() => localStorage.getItem('about-layout') || 'magasin')
+  const [mode, setMode] = useState(() => {
+    const saved = localStorage.getItem('about-layout')
+    return MODES.find(m => m.id === saved) ? saved : 'scrapbook'
+  })
 
   useEffect(() => {
     if (mode === 'scrapbook2') {
@@ -27,7 +26,7 @@ export default function About() {
     setMode(id)
   }
 
-  const Active = MODES.find((m) => m.id === mode)?.Component ?? LayoutMagasin
+  const Active = MODES.find((m) => m.id === mode)?.Component ?? LayoutScrapbook
 
   return (
     <>

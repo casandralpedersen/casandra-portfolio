@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
-import { LINKEDIN, EMAIL, ABOUT_PHOTO, aboutLabel, aboutIntro, aboutBlocks, renderEmphasised, quoteFont } from '../../data/aboutContent'
+import { LINKEDIN, EMAIL, ABOUT_PHOTO, aboutLabel, aboutIntro, aboutBlocks, renderEmphasised, renderTitle, quoteFont } from '../../data/aboutContent'
 
 const ease = [0.22, 1, 0.36, 1]
 const BURGUNDY = '#913C27'
@@ -10,9 +10,9 @@ const BLUE = '#5A86AB'
 const GOLD = '#C9A24B'
 
 const TRIO = [
-  { src: '/images/portrait-design.png', label: { da: 'Design', en: 'Design' }, color: BLUE, rotate: -3, labelVenn: { x: 130, y: -30 } },
-  { src: '/images/portrait-kommunikation.png', label: { da: 'Forretning', en: 'Business' }, color: BURGUNDY, rotate: 2, labelVenn: { x: 0, y: -40 } },
-  { src: '/images/portrait-it.png', label: { da: 'Teknologi', en: 'Technology' }, color: GOLD, rotate: -2, labelVenn: { x: -130, y: -30 } },
+  { src: '/images/portrait-design.png', label: { da: 'Design', en: 'Design' }, color: BLUE, rotate: -3, labelVenn: { x: 130, y: -290 } },
+  { src: '/images/portrait-kommunikation.png', label: { da: 'Forretning', en: 'Business' }, color: BURGUNDY, rotate: 2, labelVenn: { x: 0, y: 80 } },
+  { src: '/images/portrait-it.png', label: { da: 'Teknologi', en: 'Technology' }, color: GOLD, rotate: -2, labelVenn: { x: -130, y: -290 } },
 ]
 
 // cirklerne sidder bag hvert portræt i hvile og glider ind til en venn-formation ved hover
@@ -109,7 +109,7 @@ function Portrait({ src, label, color, rotate, delay, dimmed, labelVenn, onHover
       </motion.div>
       <motion.span
         animate={dimmed ? { x: labelVenn.x, y: labelVenn.y, scale: 1.05 } : { x: 0, y: 0, scale: 1 }}
-        transition={{ type: 'spring', stiffness: 80, damping: 15, delay: dimmed ? delay : 0 }}
+        transition={{ type: 'spring', stiffness: 80, damping: 15, delay: 0 }}
         className="relative z-30 -mt-1 px-5 py-1.5 rounded-full bg-[#FFFDF5] shadow-md text-[14px] font-medium tracking-wide"
       >
         <span style={{ color }}>● </span>
@@ -119,12 +119,24 @@ function Portrait({ src, label, color, rotate, delay, dimmed, labelVenn, onHover
   )
 }
 
-function Note({ block, t, index }) {
+const NOTE_POS = {
+  0: 'mr-auto md:ml-[12%]',
+  1: 'ml-auto md:mr-[28%]',
+  3: 'ml-auto md:mr-[16%]',
+  4: 'mr-auto md:ml-[16%] md:-mt-20',
+  5: 'ml-auto md:mr-[16%]',
+}
+
+function Note({ block, t, index, paired = false }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-70px' })
   const text = t(block.da, block.en)
   const rotate = index % 2 === 0 ? -1.4 : 1.6
-  const align = index % 2 === 0 ? 'mr-auto md:ml-[10%]' : 'ml-auto md:mr-[10%]'
+  const isWide = index >= 3
+  const defaultAlign = index % 2 === 0
+    ? `mr-auto ${isWide ? 'md:ml-[8%]' : 'md:ml-[22%]'}`
+    : `ml-auto ${isWide ? 'md:mr-[8%]' : 'md:mr-[22%]'}`
+  const align = paired ? '' : (NOTE_POS[index] ?? defaultAlign)
 
   if (block.type === 'quote') {
     return (
@@ -132,7 +144,7 @@ function Note({ block, t, index }) {
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0, transition: { ease, duration: 0.7 } } : {}}
-        className="relative max-w-xl mx-auto text-center my-4"
+        className="relative max-w-xl mx-auto text-center my-16"
       >
         <Star className="-top-6 -left-2" size={30} />
         <p className="leading-snug inline" style={{ fontFamily: quoteFont(text), fontWeight: 700, fontSize: 'clamp(22px, 3vw, 34px)', color: BURGUNDY }}>
@@ -149,7 +161,7 @@ function Note({ block, t, index }) {
         ref={ref}
         initial={{ opacity: 0, y: 20, rotate: 0 }}
         animate={inView ? { opacity: 1, y: 0, rotate: -1, transition: { ease, duration: 0.7 } } : {}}
-        className="relative max-w-lg mx-auto my-4 bg-[var(--color-text)] text-[var(--color-base)] p-6 shadow-xl"
+        className={`relative max-w-sm bg-[var(--color-text)] text-[var(--color-base)] p-6 shadow-xl ${paired ? '' : 'max-w-lg mx-auto my-16'}`}
       >
         <Tape className="-top-3 right-6" color="rgba(247,242,213,0.3)" rotate={6} />
         <p className="leading-snug" style={{ fontFamily: quoteFont(text), fontWeight: 700, fontSize: 'clamp(19px, 2.4vw, 26px)' }}>
@@ -183,13 +195,12 @@ function Note({ block, t, index }) {
       {block.noteTitle && (() => {
         const title = t(block.noteTitle.da, block.noteTitle.en)
         return (
-          <p className="mb-2.5 leading-tight" style={{ fontFamily: quoteFont(title), fontSize: 'clamp(22px, 2.4vw, 28px)', color: 'var(--color-text)' }}>
-            <span style={{ fontFamily: 'var(--font-script)', fontSize: '1.45em', color: BURGUNDY, lineHeight: 1 }}>{title.charAt(0)}</span>
-            {renderEmphasised(title.slice(1))}
+          <p className="mb-2.5 leading-tight" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 2.4vw, 28px)', color: 'var(--color-text)' }}>
+            {renderTitle(title)}
           </p>
         )
       })()}
-      <p className="text-[15px] leading-relaxed text-[var(--color-text)]/85">{text}</p>
+      <p className="text-[15px] leading-relaxed text-[var(--color-text)]/85">{renderEmphasised(text)}</p>
     </motion.div>
   )
 }
@@ -201,8 +212,8 @@ export default function LayoutScrapbook2() {
   return (
     <main className="min-h-screen bg-[var(--color-base)] overflow-hidden pb-32">
       {/* Trio hero */}
-      <section className="texture relative px-8 md:px-16 pt-24 pb-16 min-h-[88vh] flex flex-col justify-center">
-        <div className="text-center mb-12">
+      <section className="texture relative px-8 md:px-16 pt-10 pb-8 min-h-[88vh] flex flex-col justify-center">
+        <div className="text-center mb-8">
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.6 } }}
@@ -214,7 +225,7 @@ export default function LayoutScrapbook2() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.8, delay: 0.1 } }}
             className="mt-2 leading-[1.05]"
-            style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(38px, 6vw, 76px)', color: BURGUNDY }}
+            style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(38px, 6vw, 76px)', color: BURGUNDY }}
           >
             {t('Jeg arbejder i krydsfeltet', 'I work at the intersection')}
           </motion.h1>
@@ -257,61 +268,48 @@ export default function LayoutScrapbook2() {
         </div>
       </section>
 
-      {/* Hero collage */}
-      <section className="texture relative px-8 md:px-16 pt-16 pb-12 min-h-[520px]">
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0, transition: { ease, duration: 0.6 } }}
-          viewport={{ once: true }}
-          className="text-[11px] tracking-[0.16em] uppercase opacity-50"
-        >
-          {t(aboutLabel.da, aboutLabel.en)}
-        </motion.p>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0, transition: { ease, duration: 0.8, delay: 0.1 } }}
-          viewport={{ once: true }}
-          className="mt-2 leading-[1.05] max-w-2xl"
-          style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(38px, 6vw, 76px)', color: BURGUNDY }}
-        >
-          <em>Hi</em>, jeg er Casandra
-        </motion.h2>
-
-        <div className="relative mt-6 md:flex md:items-start md:gap-8">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0, transition: { ease, duration: 0.7, delay: 0.2 } }}
+      {/* Hero collage + Notes */}
+      <section className="texture relative px-8 md:px-16 pt-10 pb-0">
+        <div className="relative">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0, transition: { ease, duration: 0.8, delay: 0.1 } }}
             viewport={{ once: true }}
-            className="relative max-w-sm text-[17px] md:text-[19px] leading-relaxed bg-[#FFFDF5] p-5 shadow-md -rotate-1 z-10"
+            className="leading-[1.05] max-w-[55%]"
+            style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(38px, 6vw, 76px)', color: BURGUNDY }}
           >
-            <Tape className="-top-3 left-8" rotate={-6} />
-            <span className="relative">
-              <span className="relative z-10">{t(aboutIntro.da, aboutIntro.en)}</span>
-            </span>
-            <Arrow className="-right-12 -bottom-8 hidden md:block" />
-          </motion.p>
+            {t('Hej, jeg er Casandra', 'Hi, I am Casandra')}
+          </motion.h2>
 
-          <div className="relative hidden md:block flex-1 h-[360px]">
-            <Photo src={ABOUT_PHOTO} rotate={4} className="absolute left-8 top-0 z-20" w={230} h={280} />
-            <Photo src="/images/sitwavemepic.png" rotate={-6} className="absolute right-0 top-24 z-10" w={200} h={250} tapeColor="rgba(90,134,171,0.25)" />
-            <Star className="right-44 top-2" color={BLUE} size={34} />
-            <Star className="-right-4 -bottom-2" size={22} />
+          {/* Photos — absolute right */}
+          <div className="hidden md:block absolute right-0 top-0 w-[42%] h-[420px] pointer-events-none">
+            <Photo src="/images/sitwavemepic.png" rotate={-3} className="absolute right-24 top-0 z-20 pointer-events-auto" w={210} h={260} tapeColor="rgba(90,134,171,0.25)" />
+            <Photo src={ABOUT_PHOTO} rotate={5} className="absolute right-0 top-36 z-10 pointer-events-auto" w={185} h={230} />
+            <Star className="left-4 top-4" color={BLUE} size={30} />
           </div>
-        </div>
 
-        {/* mobile photo */}
-        <div className="md:hidden mt-8 flex justify-center">
-          <Photo src={ABOUT_PHOTO} rotate={3} w={220} h={270} />
+          {/* mobile photo */}
+          <div className="md:hidden mt-6 flex justify-center">
+            <Photo src={ABOUT_PHOTO} rotate={3} w={220} h={270} />
+          </div>
         </div>
       </section>
 
       {/* Notes flow */}
-      <section className="px-8 md:px-16 mt-6 space-y-12 relative">
+      <section className="px-8 md:px-16 mt-24 space-y-8 relative">
         <Star className="left-10 top-20 hidden md:block" color={BLUE} size={20} />
-        {aboutBlocks.map((block, i) => (
-          <Note key={i} block={block} t={t} index={i} />
-        ))}
+        {aboutBlocks.map((block, i) => {
+          if (i === 8) return null
+          if (i === 7) {
+            return (
+              <div key={i} className="flex flex-col md:flex-row md:items-start md:justify-center gap-5 md:gap-8">
+                <Note block={aboutBlocks[7]} t={t} index={7} paired />
+                <Note block={aboutBlocks[8]} t={t} index={8} paired />
+              </div>
+            )
+          }
+          return <Note key={i} block={block} t={t} index={i} />
+        })}
       </section>
 
       {/* Contact */}
@@ -319,17 +317,23 @@ export default function LayoutScrapbook2() {
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0, transition: { ease, duration: 0.6 } }}
         viewport={{ once: true }}
-        className="px-8 md:px-16 mt-16 flex gap-3 flex-wrap"
+        className="mt-24 flex flex-col items-center"
       >
-        <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 bg-[var(--color-burgundy)] text-[var(--color-base)] text-[13px] tracking-wide hover:opacity-80 transition-opacity shadow-md -rotate-1">
-          LinkedIn
-        </a>
-        <a href={`mailto:${EMAIL}`} className="px-5 py-2.5 bg-[#FFFDF5] border border-[var(--color-text)]/20 text-[13px] tracking-wide hover:border-[var(--color-text)]/50 transition-colors shadow-sm rotate-1">
-          {t('Send en mail', 'Send an email')}
-        </a>
-        <Link to="/cv" className="px-5 py-2.5 bg-[#FFFDF5] border border-[var(--color-text)]/20 text-[13px] tracking-wide hover:border-[var(--color-text)]/50 transition-colors shadow-sm">
-          CV
-        </Link>
+        <span className="block w-16 h-px bg-[var(--color-burgundy)]/40 mb-6" />
+        <p className="text-[11px] tracking-[0.2em] uppercase opacity-50 mb-6">
+          {t('Lad os tale sammen', "Let's talk")}
+        </p>
+        <div className="flex gap-3 flex-wrap justify-center">
+          <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-base)' }} className="px-6 py-2.5 rounded-full bg-[var(--color-burgundy)] text-[13px] tracking-wide hover:opacity-85 transition-opacity shadow-sm">
+            LinkedIn
+          </a>
+          <a href={`mailto:${EMAIL}`} className="px-6 py-2.5 rounded-full border border-[var(--color-burgundy)]/40 text-[var(--color-burgundy)] text-[13px] tracking-wide hover:bg-[var(--color-burgundy)]/5 transition-colors">
+            {t('Send en mail', 'Send an email')}
+          </a>
+          <Link to="/cv" className="px-6 py-2.5 rounded-full border border-[var(--color-burgundy)]/40 text-[var(--color-burgundy)] text-[13px] tracking-wide hover:bg-[var(--color-burgundy)]/5 transition-colors">
+            CV
+          </Link>
+        </div>
       </motion.div>
     </main>
   )

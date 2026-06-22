@@ -19,13 +19,8 @@ export const aboutBlocks = [
       da: 'Det starter altid med **målgruppen**',
       en: 'It always starts with the **audience**',
     },
-    da: 'Uanset om det er en hjemmeside, en kampagne eller et opslag, starter jeg med det samme spørgsmål: hvem taler vi til, og hvad skal de føle, forstå eller gøre?',
-    en: "Whether it's a website, a campaign or a post, I start with the same question: who are we talking to, and what should they feel, understand or do?",
-  },
-  {
-    type: 'quote',
-    da: 'Jeg arbejder med kommunikation, design og teknologi - og ser dem som tre ting der ikke giver mening uden hinanden.',
-    en: "I work with communication, design and technology - and see them as three things that don't make sense without each other.",
+    da: 'Uanset om det er en hjemmeside, en kampagne eller et opslag, starter jeg med det samme spørgsmål: **hvem taler vi til, og hvad skal de føle, forstå eller gøre?**',
+    en: "Whether it's a website, a campaign or a post, I start with the same question: **who are we talking to, and what should they feel, understand or do?**",
   },
   {
     type: 'text',
@@ -35,6 +30,11 @@ export const aboutBlocks = [
     },
     da: 'Jeg har haft et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice.',
     en: "I've had a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service.",
+  },
+  {
+    type: 'quote',
+    da: 'Jeg arbejder med kommunikation, design og teknologi - og ser dem som tre ting der ikke giver mening uden hinanden.',
+    en: "I work with communication, design and technology - and see them as three things that don't make sense without each other.",
   },
   {
     type: 'text',
@@ -101,11 +101,39 @@ export function renderEmphasised(text, color = 'var(--color-burgundy)') {
   const parts = text.split(/\*\*(.+?)\*\*/g)
   return parts.map((part, i) =>
     i % 2 === 1 ? (
-      <em key={i} className="not-italic" style={{ color }}>
+      <em key={i} className="not-italic font-semibold" style={{ color }}>
         {part}
       </em>
     ) : (
       part
+    )
+  )
+}
+
+const SPECIAL = /([æøåÆØÅ])/
+
+// VSOP mangler æ/ø/å-glyffer (de tegnes som a/o/a), så vi pakker kun selve specialtegnet i en serif med korrekt glyf
+function wrapSpecial(text, keyPrefix) {
+  return text.split(SPECIAL).map((seg, i) =>
+    SPECIAL.test(seg) ? (
+      <span key={`${keyPrefix}-${i}`} style={{ fontFamily: SERIF_FALLBACK }}>
+        {seg}
+      </span>
+    ) : (
+      seg
+    )
+  )
+}
+
+export function renderTitle(text, color = 'var(--color-burgundy)') {
+  const parts = text.split(/\*\*(.+?)\*\*/g)
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <em key={i} className="not-italic" style={{ color }}>
+        {wrapSpecial(part, `e${i}`)}
+      </em>
+    ) : (
+      <span key={i}>{wrapSpecial(part, `p${i}`)}</span>
     )
   )
 }
