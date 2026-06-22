@@ -282,9 +282,8 @@ export default function LayoutScrapbook2() {
           </motion.h2>
 
           {/* Photos — absolute right */}
-          <div className="hidden md:block absolute right-0 top-0 w-[42%] h-[440px] pointer-events-none">
-            <Photo src={ABOUT_PHOTO} rotate={5} className="absolute right-0 top-0 z-10 pointer-events-auto" w={200} h={250} />
-            <Photo src="/images/sitwavemepic.png" rotate={-3} className="absolute right-24 top-28 z-20 pointer-events-auto" w={200} h={250} tapeColor="rgba(90,134,171,0.25)" />
+          <div className="hidden md:block absolute right-0 top-0 w-[42%] h-[300px] pointer-events-none">
+            <Photo src="/images/sitwavemepic.png" rotate={-3} className="absolute right-16 top-0 z-20 pointer-events-auto" w={200} h={250} tapeColor="rgba(90,134,171,0.25)" />
             <Star className="left-4 top-4" color={BLUE} size={30} />
           </div>
 
@@ -298,6 +297,7 @@ export default function LayoutScrapbook2() {
       {/* Notes flow */}
       <section className="px-8 md:px-16 mt-24 space-y-8 relative">
         <Star className="left-10 top-20 hidden md:block" color={BLUE} size={20} />
+        <Photo src={ABOUT_PHOTO} rotate={4} className="hidden md:block absolute left-[7%] top-[60%] z-0" w={200} h={250} />
         {aboutBlocks.map((block, i) => {
           if (i === 8) return null
           if (i === 7) {
