@@ -124,7 +124,7 @@ const NOTE_POS = {
   1: 'ml-auto md:mr-[28%]',
   3: 'ml-auto md:mr-[16%]',
   4: 'mr-auto md:ml-[16%] md:-mt-20',
-  5: 'ml-auto md:mr-[16%] md:-mt-24',
+  5: 'ml-auto md:mr-[5%] md:-mt-24',
 }
 
 function Note({ block, t, index, paired = false }) {
@@ -278,12 +278,12 @@ export default function LayoutScrapbook2() {
             className="leading-[1.05] max-w-[55%]"
             style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(38px, 6vw, 76px)', color: BURGUNDY }}
           >
-            {t('Hej, jeg er Casandra', 'Hi, I am Casandra')}
+            {t('Lidt mere om din alt-mulig medarbejder', 'A little more about your jack-of-all-trades')}
           </motion.h2>
 
           {/* Photos — absolute right */}
-          <div className="hidden md:block absolute right-0 top-0 w-[42%] h-[300px] pointer-events-none">
-            <Photo src="/images/sitwavemepic.png" rotate={-3} className="absolute right-16 top-0 z-20 pointer-events-auto" w={200} h={250} tapeColor="rgba(90,134,171,0.25)" />
+          <div className="hidden md:block absolute right-0 top-0 w-[42%] h-[320px] pointer-events-none">
+            <Photo src="/images/sitwavemepic.png" rotate={-3} className="absolute right-24 top-0 z-20 pointer-events-auto" w={210} h={260} tapeColor="rgba(90,134,171,0.25)" />
             <Star className="left-4 top-4" color={BLUE} size={30} />
           </div>
 
@@ -302,7 +302,7 @@ export default function LayoutScrapbook2() {
           if (i === 8) return null
           if (i === 7) {
             return (
-              <div key={i} className="flex flex-col md:flex-row md:items-start md:justify-center gap-5 md:gap-20">
+              <div key={i} className="flex flex-col md:flex-row md:items-start md:justify-center gap-5 md:gap-20 md:mt-20">
                 <Note block={aboutBlocks[7]} t={t} index={7} paired />
                 <Note block={aboutBlocks[8]} t={t} index={8} paired />
               </div>

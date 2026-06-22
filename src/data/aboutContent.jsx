@@ -25,8 +25,8 @@ export const aboutBlocks = [
   {
     type: 'text',
     noteTitle: {
-      da: 'Et arbejdsliv drevet af **nysgerrighed**',
-      en: 'A working life driven by **curiosity**',
+      da: 'Drevet af **nysgerrighed**',
+      en: 'Driven by **curiosity**',
     },
     da: 'Jeg har haft et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice.',
     en: "I've had a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service.",
