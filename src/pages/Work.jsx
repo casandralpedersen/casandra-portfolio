@@ -16,11 +16,11 @@ export default function Work() {
   const { t } = useLanguage()
 
   return (
-    <main className="min-h-screen bg-[var(--color-base)] px-10 py-20">
+    <main className="min-h-screen bg-[var(--color-base)] px-10 py-10">
       <motion.h1
         initial={{ y: 24, opacity: 0 }}
         animate={{ y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } }}
-        className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-16"
+        className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-8"
       >
         {t('Arbejde', 'Work')}
       </motion.h1>
@@ -46,7 +46,7 @@ function ProjectRow({ project, index, t }) {
     >
       <Link
         to={`/arbejde/${project.slug}`}
-        className="group block border-t border-[var(--color-text)]/10 py-8 relative overflow-hidden"
+        className="group block border-t border-[var(--color-text)]/10 py-4 relative overflow-hidden"
       >
         {/* Hover baggrund */}
         <motion.div
@@ -68,7 +68,7 @@ function ProjectRow({ project, index, t }) {
                 className="leading-tight transition-opacity group-hover:opacity-100 opacity-90"
                 style={{
                   fontFamily: 'VSOP, serif',
-                  fontSize: isLarge ? 'clamp(36px, 5vw, 72px)' : 'clamp(24px, 3.2vw, 52px)',
+                  fontSize: isLarge ? 'clamp(28px, 3.5vw, 52px)' : 'clamp(20px, 2.5vw, 38px)',
                 }}
               >
                 {t(project.title.da, project.title.en)}
@@ -85,8 +85,8 @@ function ProjectRow({ project, index, t }) {
             transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.4 }}
             className="shrink-0 overflow-hidden"
             style={{
-              width: isLarge ? 280 : 180,
-              height: isLarge ? 180 : 120,
+              width: isLarge ? 180 : 120,
+              height: isLarge ? 110 : 75,
               backgroundColor: project.accent + '33',
             }}
           >

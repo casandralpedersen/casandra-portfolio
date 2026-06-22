@@ -160,7 +160,7 @@ function WorkGrid({ t }) {
           >
             <Link
               to={`/arbejde/${project.slug}`}
-              className="group relative block h-[170px] md:h-[230px] overflow-hidden"
+              className="group relative block h-[80px] md:h-[105px] overflow-hidden"
               style={{ backgroundColor: project.accent }}
             >
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
@@ -227,7 +227,7 @@ function WorkGrid({ t }) {
           key={placeholder.number}
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: (projects.length + index) * 0.06 } } : {}}
-          className="group relative h-[170px] md:h-[230px] overflow-hidden"
+          className="group relative h-[80px] md:h-[105px] overflow-hidden"
           style={{ backgroundColor: placeholder.accent }}
         >
           {index === 0 && (
