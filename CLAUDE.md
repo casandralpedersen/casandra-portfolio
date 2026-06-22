@@ -26,7 +26,7 @@ Topnavigationen linker til `/`, `#arbejde`, `/cv` og kontakt. `/om` nås via `L�
 
 ## Farvepalette
 ```css
---color-base:     #F7F2D5   /* lys cremegul baggrund */
+--color-base:     #ebe8d6   /* lys cremegul baggrund */
 --color-burgundy: #913C27   /* primær accent, varm rødbrun */
 --color-blue:     #5A86AB   /* sekundær accent */
 --color-text:     #295C7D   /* mørk navy */
