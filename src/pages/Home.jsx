@@ -534,10 +534,6 @@ export default function Home() {
             className="w-full h-full object-contain object-bottom"
             style={{ transform: 'translateX(8%) scale(1.12)', transformOrigin: 'bottom center', mixBlendMode: 'multiply' }}
           />
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: 'linear-gradient(to bottom, var(--color-base) 0%, transparent 22%), linear-gradient(to right, var(--color-base) 0%, transparent 16%)' }}
-          />
 
           <AnimatePresence>
             {showSkills &&
