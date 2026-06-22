@@ -62,7 +62,7 @@ export default function Nav() {
     >
       <NavLink
         to="/"
-        className="font-display text-xl tracking-widest uppercase hover:opacity-70 transition-opacity"
+        className="font-display text-xl tracking-wider uppercase hover:opacity-70 transition-opacity"
       >
         Casandra
       </NavLink>
