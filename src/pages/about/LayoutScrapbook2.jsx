@@ -10,7 +10,7 @@ const BLUE = '#5A86AB'
 const GOLD = '#C9A24B'
 
 const TRIO = [
-  { src: '/images/portrait-design.png', label: { da: 'Design', en: 'Design' }, color: BLUE, rotate: -3, labelVenn: { x: 130, y: -290 } },
+  { src: '/images/portrait-design.png', label: { da: 'Design', en: 'Design' }, color: BLUE, rotate: -3, labelVenn: { x: 130, y: -290 }, nudgeX: 16 },
   { src: '/images/portrait-kommunikation.png', label: { da: 'Forretning', en: 'Business' }, color: BURGUNDY, rotate: 2, labelVenn: { x: 0, y: 80 } },
   { src: '/images/portrait-it.png', label: { da: 'Teknologi', en: 'Technology' }, color: GOLD, rotate: -2, labelVenn: { x: -130, y: -290 } },
 ]
@@ -87,7 +87,7 @@ function VennCircle({ color, rest, venn, delay, active }) {
   )
 }
 
-function Portrait({ src, label, color, rotate, delay, dimmed, labelVenn, onHover, onLeave, t }) {
+function Portrait({ src, label, color, rotate, delay, dimmed, labelVenn, onHover, onLeave, t, nudgeX = 0 }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 36 }}
@@ -104,7 +104,7 @@ function Portrait({ src, label, color, rotate, delay, dimmed, labelVenn, onHover
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay }}
           className="relative z-10 h-[40vmin] max-h-[360px] object-contain drop-shadow-xl"
-          style={{ rotate: `${rotate}deg` }}
+          style={{ rotate: `${rotate}deg`, x: nudgeX }}
         />
       </motion.div>
       <motion.span
@@ -124,7 +124,7 @@ const NOTE_POS = {
   1: 'ml-auto md:mr-[28%]',
   3: 'ml-auto md:mr-[16%]',
   4: 'mr-auto md:ml-[16%] md:-mt-20',
-  5: 'ml-auto md:mr-[16%]',
+  5: 'ml-auto md:mr-[16%] md:-mt-24',
 }
 
 function Note({ block, t, index, paired = false }) {
@@ -189,7 +189,7 @@ function Note({ block, t, index, paired = false }) {
       ref={ref}
       initial={{ opacity: 0, y: 24, rotate: 0 }}
       animate={inView ? { opacity: 1, y: 0, rotate, transition: { ease, duration: 0.7 } } : {}}
-      className={`relative max-w-sm bg-[#FFFDF5] border border-[var(--color-burgundy)]/15 shadow-md p-5 ${align}`}
+      className={`relative ${index === 1 ? 'max-w-md' : 'max-w-sm'} bg-[#FFFDF5] border border-[var(--color-burgundy)]/15 shadow-md p-5 ${align}`}
     >
       <Tape className={index % 2 === 0 ? '-top-3 left-5' : '-top-3 right-5'} rotate={index % 2 === 0 ? -5 : 5} w={70} />
       {block.noteTitle && (() => {
@@ -282,9 +282,9 @@ export default function LayoutScrapbook2() {
           </motion.h2>
 
           {/* Photos — absolute right */}
-          <div className="hidden md:block absolute right-0 top-0 w-[42%] h-[420px] pointer-events-none">
-            <Photo src="/images/sitwavemepic.png" rotate={-3} className="absolute right-24 top-0 z-20 pointer-events-auto" w={210} h={260} tapeColor="rgba(90,134,171,0.25)" />
-            <Photo src={ABOUT_PHOTO} rotate={5} className="absolute right-0 top-36 z-10 pointer-events-auto" w={185} h={230} />
+          <div className="hidden md:block absolute right-0 top-0 w-[42%] h-[440px] pointer-events-none">
+            <Photo src={ABOUT_PHOTO} rotate={5} className="absolute right-0 top-0 z-10 pointer-events-auto" w={200} h={250} />
+            <Photo src="/images/sitwavemepic.png" rotate={-3} className="absolute right-24 top-28 z-20 pointer-events-auto" w={200} h={250} tapeColor="rgba(90,134,171,0.25)" />
             <Star className="left-4 top-4" color={BLUE} size={30} />
           </div>
 
@@ -302,7 +302,7 @@ export default function LayoutScrapbook2() {
           if (i === 8) return null
           if (i === 7) {
             return (
-              <div key={i} className="flex flex-col md:flex-row md:items-start md:justify-center gap-5 md:gap-8">
+              <div key={i} className="flex flex-col md:flex-row md:items-start md:justify-center gap-5 md:gap-20">
                 <Note block={aboutBlocks[7]} t={t} index={7} paired />
                 <Note block={aboutBlocks[8]} t={t} index={8} paired />
               </div>
