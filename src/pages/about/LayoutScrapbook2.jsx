@@ -2,25 +2,9 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
-import { EMAIL, ABOUT_PHOTO, aboutLabel, aboutBlocks, renderEmphasised, renderTitle, quoteFont } from '../../data/aboutContent'
+import { EMAIL, ABOUT_PHOTO, aboutLabel, aboutBlocks, renderEmphasised } from '../../data/aboutContent'
 
 const ease = [0.22, 1, 0.36, 1]
-const SERIF = 'Georgia, "Times New Roman", serif'
-const SPECIAL_RE = /([æøåÆØÅ])/
-
-function wrapS(seg, key) {
-  return seg.split(SPECIAL_RE).map((s, j) =>
-    SPECIAL_RE.test(s) ? <span key={`${key}-${j}`} style={{ fontFamily: SERIF }}>{s}</span> : s
-  )
-}
-
-function renderDisplayBold(text, color = 'var(--color-burgundy)') {
-  return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
-    i % 2 === 1
-      ? <em key={i} className="not-italic font-semibold" style={{ color }}>{wrapS(part, `e${i}`)}</em>
-      : wrapS(part, `p${i}`)
-  )
-}
 const BURGUNDY = '#913C27'
 const BLUE = '#5A86AB'
 const GOLD = '#C9A24B'
@@ -184,7 +168,7 @@ function Note({ block, t, index, paired = false }) {
       >
         <Tape className="-top-3 right-6" color="rgba(247,242,213,0.3)" rotate={6} />
         <p className="leading-snug" style={{ fontFamily: NOTE_TITLE_FONT, fontWeight: 700, fontSize: 'clamp(22px, 2.4vw, 28px)' }}>
-          {renderDisplayBold(text, '#E89A7A')}
+          {renderEmphasised(text, '#E89A7A')}
         </p>
       </motion.div>
     )
@@ -297,7 +281,7 @@ export default function LayoutScrapbook2() {
             className="leading-[1.05] md:whitespace-nowrap"
             style={{ fontFamily: NOTE_TITLE_FONT, fontSize: 'clamp(32px, 4.6vw, 64px)', color: BURGUNDY }}
           >
-            {renderTitle(t('Hvad du får med på holdet', 'What you bring to the team'))}
+            {t('Hvad du får med på holdet', 'What you bring to the team')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
