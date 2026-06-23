@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
-import { EMAIL, ABOUT_PHOTO, aboutLabel, aboutBlocks, renderEmphasised } from '../../data/aboutContent'
+import { EMAIL, LINKEDIN, ABOUT_PHOTO, aboutLabel, aboutBlocks, renderEmphasised } from '../../data/aboutContent'
 
 const ease = [0.22, 1, 0.36, 1]
 const BURGUNDY = '#913C27'
@@ -344,14 +344,14 @@ export default function LayoutScrapbook2() {
           {t('Lad os tale sammen', "Let's talk")}
         </p>
         <div className="flex gap-3 flex-wrap justify-center">
-          <Link to="/arbejde" style={{ color: 'var(--color-base)' }} className="px-6 py-2.5 rounded-full bg-[var(--color-burgundy)] text-[13px] tracking-wide hover:opacity-85 transition-opacity shadow-sm">
-            {t('Tjek mit arbejde ud', 'See my work')}
-          </Link>
+          <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-base)' }} className="px-6 py-2.5 rounded-full bg-[var(--color-burgundy)] text-[13px] tracking-wide hover:opacity-85 transition-opacity shadow-sm">
+            {t('Lad os link(edin)up', "Let's link(edin)up")}
+          </a>
           <Link to="/cv" className="px-6 py-2.5 rounded-full border border-[var(--color-burgundy)]/40 text-[var(--color-burgundy)] text-[13px] tracking-wide hover:bg-[var(--color-burgundy)]/5 transition-colors">
             {t('Se mit CV', 'See my CV')}
           </Link>
           <a href={`mailto:${EMAIL}`} className="px-6 py-2.5 rounded-full border border-[var(--color-burgundy)]/40 text-[var(--color-burgundy)] text-[13px] tracking-wide hover:bg-[var(--color-burgundy)]/5 transition-colors">
-            {t('Kontakt mig', 'Contact me')}
+            {t('Kontakt mig via mail', 'Contact me by email')}
           </a>
         </div>
       </motion.div>
