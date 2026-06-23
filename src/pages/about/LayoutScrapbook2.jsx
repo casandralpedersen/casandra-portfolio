@@ -214,7 +214,7 @@ function Note({ block, t, index, paired = false }) {
       {block.noteTitle && (() => {
         const title = t(block.noteTitle.da, block.noteTitle.en)
         return (
-          <p className="mb-2.5 leading-tight" style={{ fontFamily: NOTE_TITLE_FONT, fontSize: 'clamp(22px, 2.4vw, 28px)', color: 'var(--color-text)' }}>
+          <p className="mb-2.5 leading-tight" style={{ fontFamily: NOTE_TITLE_FONT, fontSize: 'clamp(26px, 3vw, 36px)', color: 'var(--color-text)' }}>
             {renderEmphasised(title)}
           </p>
         )
