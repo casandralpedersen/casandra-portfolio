@@ -12,16 +12,14 @@ const PILL_NOISE =
 const SKILLS = [
   { da: 'UX Design', en: 'UX Design', pos: 'top-[6%] right-[44%]', rotate: 3, delay: 0 },
   { da: 'Brugercentreret', en: 'User-centred', pos: 'top-[14%] right-[18%]', rotate: -4, delay: 0.05 },
-  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[28%] right-[8%]', rotate: 5, delay: 0.1 },
-  { da: 'Teamledelse', en: 'Team leadership', pos: 'top-[4%] right-[64%]', rotate: -3, delay: 0.15 },
-  { da: 'vibe coding', en: 'vibe coding', pos: 'bottom-[24%] right-[18%]', rotate: 4, delay: 0.2 },
-  { da: 'claude', en: 'claude', pos: 'bottom-[10%] right-[38%]', rotate: -5, delay: 0.25 },
-  { da: 'figma', en: 'figma', pos: 'top-[48%] right-[55%]', rotate: 3, delay: 0.3 },
-  { da: 'Kundeservice', en: 'Customer service', pos: 'top-[42%] right-[8%]', rotate: -4, delay: 0.35 },
-  { da: 'Problemløsning', en: 'Problem-solving', pos: 'bottom-[34%] right-[8%]', rotate: 6, delay: 0.4 },
-  { da: 'Konflikthåndtering', en: 'Conflict management', pos: 'top-[64%] right-[44%]', rotate: -3, delay: 0.45 },
-  { da: 'salg', en: 'Sales', pos: 'bottom-[4%] right-[56%]', rotate: 4, delay: 0.5 },
-  { da: 'Flersproget', en: 'Multilingual', pos: 'bottom-[14%] right-[62%]', rotate: -5, delay: 0.55 },
+  { da: 'UX & brugercentreret design', en: 'UX & user-centred design', pos: 'top-[4%] right-[60%]', rotate: -3, delay: 0.1 },
+  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[24%] right-[8%]', rotate: 5, delay: 0.15 },
+  { da: 'Vibe coding', en: 'Vibe coding', pos: 'top-[44%] right-[52%]', rotate: 3, delay: 0.2 },
+  { da: 'Salg & kundeservice', en: 'Sales & customer service', pos: 'top-[44%] right-[6%]', rotate: -4, delay: 0.25 },
+  { da: 'Problemløsning', en: 'Problem-solving', pos: 'bottom-[32%] right-[16%]', rotate: 6, delay: 0.3 },
+  { da: 'Nysgerrig', en: 'Curious', pos: 'top-[64%] right-[48%]', rotate: -5, delay: 0.35 },
+  { da: 'Omstillingsparat', en: 'Adaptable', pos: 'bottom-[14%] right-[36%]', rotate: 4, delay: 0.4 },
+  { da: 'Konstruktiv/kritisk tænkende', en: 'Constructive/critical thinker', pos: 'bottom-[4%] right-[56%]', rotate: -3, delay: 0.45 },
 ]
 
 function SkillPill({ label, pos, rotate, delay }) {
@@ -286,13 +284,19 @@ function Services({ t }) {
   })
   const pathLength = useTransform(scrollYProgress, [0, 0.38, 0.72, 1], [0, 0.34, 0.72, 1])
   const items = [
-    ...services[0].children.map((child, index) => ({
-      number: `0${index + 1}`,
-      title: child.title,
-      desc: child.desc,
-    })),
-    { number: '04', title: services[1].title, desc: services[1].desc },
-    { number: '05', title: services[2].title, desc: services[2].desc },
+    { number: '01', title: services[0].children[0].title, desc: services[0].children[0].desc },
+    { number: '02', title: services[1].title, desc: services[1].desc },
+    {
+      number: '03',
+      title: { da: 'AI & automatisering', en: 'AI & automation' },
+      desc: {
+        da: 'Jeg bruger AI som dagligt arbejdsredskab — fra vibecoding med GitHub og Vercel til automatisering af hverdag, studie og arbejde. Jeg tror på at det vil ændre måden vi arbejder på, og jeg vil være med fra start.',
+        en: 'I use AI as a daily work tool — from vibe coding with GitHub and Vercel to automating everyday life, studies, and work. I believe it will change the way we work, and I want to be part of it from the start.',
+      },
+    },
+    { number: '04', title: services[2].title, desc: services[2].desc },
+    { number: '05', title: services[0].children[1].title, desc: services[0].children[1].desc },
+    { number: '06', title: services[0].children[2].title, desc: services[0].children[2].desc },
   ]
 
   return (
@@ -317,12 +321,12 @@ function Services({ t }) {
 
       <div className="pointer-events-none absolute inset-x-0 top-24 hidden md:block">
         <svg
-          viewBox="0 0 1200 1700"
+          viewBox="0 0 1200 2000"
           preserveAspectRatio="none"
-          className="w-full h-[1700px]"
+          className="w-full h-[2000px]"
         >
           <motion.path
-            d="M 440 118 C 560 148, 760 150, 860 280 S 740 520, 500 650 S 360 820, 560 900 S 900 1040, 820 1160 S 520 1340, 250 1505"
+            d="M 440 118 C 560 148, 760 150, 860 280 S 740 520, 500 650 S 360 820, 560 900 S 900 1040, 820 1160 S 520 1340, 250 1505 S 560 1660, 860 1820"
             fill="none"
             stroke="var(--color-burgundy)"
             strokeWidth="2.5"
