@@ -15,9 +15,9 @@ export const projects = [
     slug: 'etsy-composestudio',
     title: { da: 'Etsy / CompozeStudio', en: 'Etsy / CompozeStudio' },
     category: { da: 'E-handel & branding', en: 'E-commerce & branding' },
-    year: '2022–2023',
-    cover: '/images/projects/etsy-composestudio.jpg',
-    accent: '#C4A882',
+    year: '2025-2026',
+    cover: '/images/projects/poster-frank-ocean.png',
+    accent: '#A8392C',
     description: {
       da: 'Design og drift af en Etsy-butik med digitale produkter — fra produktfotografi til SEO og konvertering.',
       en: 'Design and operation of an Etsy shop with digital products — from product photography to SEO and conversion.',
