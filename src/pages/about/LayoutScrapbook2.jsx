@@ -234,7 +234,7 @@ export default function LayoutScrapbook2() {
             animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.7, delay: 0.2 } }}
             className="mt-4 max-w-xl mx-auto text-[16px] md:text-[18px] leading-relaxed text-[var(--color-text)]/80"
           >
-            {t('Kommunikation, design og IT - tre felter jeg ser som tre sider af det samme, altid med målgruppen i centrum.', 'Communication, design and IT - three fields I see as three sides of the same thing, always with the audience at the centre.')}
+            {t('Kommunikation, design og IT - altid med jeres målgruppen i centrum.', 'Communication, design and IT - always with your audience at the centre.')}
           </motion.p>
         </div>
 
