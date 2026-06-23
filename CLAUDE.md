@@ -2,7 +2,7 @@
 
 ## Status
 Sidst opdateret: 2026-06-23
-Færdigt: Forside, /arbejde, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite (fixer 404 på direkte route-navigation), tekstur/grain på Home og About hero, hjemmesectionen "Det hele kogt ned" med zigzag-layout og scroll-tegnet kurve (6 bokse: 01 UX, 02 Strategi, 03 AI, 04 Kommunikation, 05 Sociale medier, 06 Grafisk design), hero skill-pills ved hover, /om Scrapbook 2.0 med ITC Garamond bold overskrifter, polaroids, AI-kort, bundknapper og nav-tekster
+Færdigt: Forside, /arbejde, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite, tekstur/grain, services-sektion, hero skill-pills (8 pills i orbit-layout ved hover), /om kun Scrapbook 2.0 (layout-switcher fjernet), CV uden polaroid-foto, nav med "Om mig"-link og sprogswitcher der viser målsprog, citat-linjeskift og squiggle-fix, "design IT og forretning" overalt
 Næste: WorkDetail-sider bygges når resten af projektmaterialet er klar. GitHub→Vercel auto-deploy kræver stadig at Casandra forbinder GitHub Login Connection på vercel.com/account/login-connections
 
 ---
