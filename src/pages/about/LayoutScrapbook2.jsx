@@ -198,7 +198,7 @@ function Note({ block, t, index, paired = false }) {
       {block.noteTitle && (() => {
         const title = t(block.noteTitle.da, block.noteTitle.en)
         return (
-          <p className="mb-2.5 leading-tight" style={{ fontFamily: NOTE_TITLE_FONT, fontSize: 'clamp(26px, 3vw, 36px)', color: 'var(--color-text)' }}>
+          <p className="mb-2.5 leading-tight" style={{ fontFamily: NOTE_TITLE_FONT, fontSize: 'clamp(26px, 3vw, 36px)', fontWeight: 700, color: 'var(--color-text)' }}>
             {renderEmphasised(title)}
           </p>
         )
@@ -228,7 +228,7 @@ export default function LayoutScrapbook2() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.8, delay: 0.1 } }}
             className="mt-2 leading-[1.05]"
-            style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(38px, 6vw, 76px)', color: BURGUNDY }}
+            style={{ fontFamily: NOTE_TITLE_FONT, fontWeight: 700, fontSize: 'clamp(38px, 6vw, 76px)', color: BURGUNDY }}
           >
             {t('Jeg arbejder i krydsfeltet', 'I work at the intersection')}
           </motion.h1>
@@ -279,7 +279,7 @@ export default function LayoutScrapbook2() {
             whileInView={{ opacity: 1, y: 0, transition: { ease, duration: 0.8, delay: 0.1 } }}
             viewport={{ once: true }}
             className="leading-[1.05] md:whitespace-nowrap"
-            style={{ fontFamily: NOTE_TITLE_FONT, fontSize: 'clamp(32px, 4.6vw, 64px)', color: BURGUNDY }}
+            style={{ fontFamily: NOTE_TITLE_FONT, fontWeight: 700, fontSize: 'clamp(32px, 4.6vw, 64px)', color: BURGUNDY }}
           >
             {t('Hvad du får med på holdet', 'What you bring to the team')}
           </motion.h2>
