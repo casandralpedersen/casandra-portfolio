@@ -57,8 +57,8 @@ export const aboutBlocks = [
   {
     type: 'text',
     noteTitle: {
-      da: 'Dyk ned i **AI**',
-      en: 'Diving into **AI**',
+      da: 'Ned i **AI**-kaninhullet',
+      en: 'Down the **AI** rabbit hole',
     },
     da: 'AI er udfordrende, men yderst tilfredsstillende når det virker! Jeg har altid elsket statistik og systemer, og AI er et område, jeg bruger meget tid på at dykke ned i lige nu, f.eks. i projekter som dette, med vibecoding, GitHub og Vercel. Eller automatisering af privatliv og studie. Jeg er overbevist om, at det her ændrer måden, vi arbejder på - og jeg hygger mig med at følge med og lærer en masse i processen.',
     en: "AI is challenging, but deeply satisfying when it works! I've always loved statistics and systems, and AI is an area I spend a lot of time diving into right now - for example in projects like this one, with vibe coding, GitHub and Vercel. Or automating bits of everyday life and studies. I'm convinced this is changing the way we work, and I genuinely enjoy keeping up and learning a lot along the way.",

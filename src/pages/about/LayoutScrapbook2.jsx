@@ -2,9 +2,25 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
-import { LINKEDIN, EMAIL, ABOUT_PHOTO, aboutLabel, aboutIntro, aboutBlocks, renderEmphasised, renderTitle, quoteFont } from '../../data/aboutContent'
+import { EMAIL, ABOUT_PHOTO, aboutLabel, aboutBlocks, renderEmphasised, renderTitle, quoteFont } from '../../data/aboutContent'
 
 const ease = [0.22, 1, 0.36, 1]
+const SERIF = 'Georgia, "Times New Roman", serif'
+const SPECIAL_RE = /([æøåÆØÅ])/
+
+function wrapS(seg, key) {
+  return seg.split(SPECIAL_RE).map((s, j) =>
+    SPECIAL_RE.test(s) ? <span key={`${key}-${j}`} style={{ fontFamily: SERIF }}>{s}</span> : s
+  )
+}
+
+function renderDisplayBold(text, color = 'var(--color-burgundy)') {
+  return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
+    i % 2 === 1
+      ? <em key={i} className="not-italic font-semibold" style={{ color }}>{wrapS(part, `e${i}`)}</em>
+      : wrapS(part, `p${i}`)
+  )
+}
 const BURGUNDY = '#913C27'
 const BLUE = '#5A86AB'
 const GOLD = '#C9A24B'
@@ -95,7 +111,8 @@ function Portrait({ src, label, color, rotate, delay, dimmed, labelVenn, onHover
       viewport={{ once: true }}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      className="relative flex flex-col items-center cursor-pointer"
+      style={{ cursor: 'default' }}
+      className="relative flex flex-col items-center"
     >
       <motion.div animate={{ opacity: dimmed ? 0 : 1 }} transition={{ ease, duration: 0.4 }} className="flex flex-col items-center">
         <motion.img
@@ -121,10 +138,10 @@ function Portrait({ src, label, color, rotate, delay, dimmed, labelVenn, onHover
 
 const NOTE_POS = {
   0: 'mr-auto md:ml-[12%]',
-  1: 'ml-auto md:mr-[28%]',
+  1: 'ml-auto md:mr-[1%]',
   3: 'ml-auto md:mr-[16%]',
   4: 'mr-auto md:ml-[16%] md:-mt-20',
-  5: 'ml-auto md:mr-[8%]',
+  5: 'mr-auto md:ml-[4%]',
 }
 
 function Note({ block, t, index, paired = false }) {
@@ -144,7 +161,7 @@ function Note({ block, t, index, paired = false }) {
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0, transition: { ease, duration: 0.7 } } : {}}
-        className="relative max-w-xl mx-auto text-center my-16"
+        className="relative max-w-xl mx-auto text-center my-44"
       >
         <Star className="-top-6 -left-2" size={30} />
         <p className="leading-snug inline" style={{ fontFamily: quoteFont(text), fontWeight: 700, fontSize: 'clamp(22px, 3vw, 34px)', color: BURGUNDY }}>
@@ -164,8 +181,8 @@ function Note({ block, t, index, paired = false }) {
         className={`relative max-w-sm bg-[var(--color-text)] text-[var(--color-base)] p-6 shadow-xl ${paired ? '' : 'max-w-lg mx-auto my-16'}`}
       >
         <Tape className="-top-3 right-6" color="rgba(247,242,213,0.3)" rotate={6} />
-        <p className="leading-snug" style={{ fontFamily: quoteFont(text), fontWeight: 700, fontSize: 'clamp(19px, 2.4vw, 26px)' }}>
-          {renderEmphasised(text, '#E89A7A')}
+        <p className="leading-snug" style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(22px, 2.4vw, 28px)' }}>
+          {renderDisplayBold(text, '#E89A7A')}
         </p>
       </motion.div>
     )
@@ -189,7 +206,7 @@ function Note({ block, t, index, paired = false }) {
       ref={ref}
       initial={{ opacity: 0, y: 24, rotate: 0 }}
       animate={inView ? { opacity: 1, y: 0, rotate, transition: { ease, duration: 0.7 } } : {}}
-      className={`relative ${index === 1 ? 'max-w-lg' : index === 5 ? 'max-w-md' : 'max-w-sm'} bg-[#FFFDF5] border border-[var(--color-burgundy)]/15 shadow-md p-5 ${align}`}
+      className={`relative ${index === 1 ? 'max-w-lg' : index === 5 ? 'max-w-xl' : 'max-w-sm'} bg-[#FFFDF5] border border-[var(--color-burgundy)]/15 shadow-md ${index === 5 ? 'p-6 pb-10' : 'p-5'} ${align}`}
     >
       <Tape className={index % 2 === 0 ? '-top-3 left-5' : '-top-3 right-5'} rotate={index % 2 === 0 ? -5 : 5} w={70} />
       {block.noteTitle && (() => {
@@ -250,7 +267,7 @@ export default function LayoutScrapbook2() {
               className="absolute z-10 px-4 py-1 rounded-full bg-[var(--color-burgundy)] text-[var(--color-base)] shadow-md whitespace-nowrap"
               style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(16px, 1.8vw, 22px)' }}
             >
-              {t('Målgruppe', 'Audience')}
+              {t('jeres målgruppe', 'your audience')}
             </motion.span>
           </div>
 
@@ -269,14 +286,14 @@ export default function LayoutScrapbook2() {
       </section>
 
       {/* Hero collage + Notes */}
-      <section className="texture relative px-8 md:px-16 pt-10 pb-0">
+      <section className="texture relative px-8 md:px-16 pt-44 pb-0">
         <div className="relative">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0, transition: { ease, duration: 0.8, delay: 0.1 } }}
             viewport={{ once: true }}
-            className="leading-[1.05] max-w-[55%]"
-            style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(38px, 6vw, 76px)', color: BURGUNDY }}
+            className="leading-[1.05] md:whitespace-nowrap"
+            style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 4.6vw, 64px)', color: BURGUNDY }}
           >
             {renderTitle(t('Hvad du får med på holdet', 'What you bring to the team'))}
           </motion.h2>
@@ -332,15 +349,15 @@ export default function LayoutScrapbook2() {
           {t('Lad os tale sammen', "Let's talk")}
         </p>
         <div className="flex gap-3 flex-wrap justify-center">
-          <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-base)' }} className="px-6 py-2.5 rounded-full bg-[var(--color-burgundy)] text-[13px] tracking-wide hover:opacity-85 transition-opacity shadow-sm">
-            LinkedIn
-          </a>
-          <a href={`mailto:${EMAIL}`} className="px-6 py-2.5 rounded-full border border-[var(--color-burgundy)]/40 text-[var(--color-burgundy)] text-[13px] tracking-wide hover:bg-[var(--color-burgundy)]/5 transition-colors">
-            {t('Send en mail', 'Send an email')}
-          </a>
-          <Link to="/cv" className="px-6 py-2.5 rounded-full border border-[var(--color-burgundy)]/40 text-[var(--color-burgundy)] text-[13px] tracking-wide hover:bg-[var(--color-burgundy)]/5 transition-colors">
-            CV
+          <Link to="/arbejde" style={{ color: 'var(--color-base)' }} className="px-6 py-2.5 rounded-full bg-[var(--color-burgundy)] text-[13px] tracking-wide hover:opacity-85 transition-opacity shadow-sm">
+            {t('Tjek mit arbejde ud', 'See my work')}
           </Link>
+          <Link to="/cv" className="px-6 py-2.5 rounded-full border border-[var(--color-burgundy)]/40 text-[var(--color-burgundy)] text-[13px] tracking-wide hover:bg-[var(--color-burgundy)]/5 transition-colors">
+            {t('Se mit CV', 'See my CV')}
+          </Link>
+          <a href={`mailto:${EMAIL}`} className="px-6 py-2.5 rounded-full border border-[var(--color-burgundy)]/40 text-[var(--color-burgundy)] text-[13px] tracking-wide hover:bg-[var(--color-burgundy)]/5 transition-colors">
+            {t('Kontakt mig', 'Contact me')}
+          </a>
         </div>
       </motion.div>
     </main>
