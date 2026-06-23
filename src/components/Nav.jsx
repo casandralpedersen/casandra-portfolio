@@ -73,9 +73,9 @@ export default function Nav() {
           onClick={scrollToWork}
           className="relative text-sm tracking-wide opacity-60 hover:opacity-100 transition-opacity"
         >
-          {t('se tidligere arbejde', 'see previous work')}
+          {t('tidligere arbejde', 'previous work')}
         </a>
-        <NavItem to="/cv">{t('find mit CV', 'find my CV')}</NavItem>
+        <NavItem to="/cv">{t('se CV', 'see CV')}</NavItem>
 
         <div className="relative" ref={dropdownRef}>
           <motion.button
