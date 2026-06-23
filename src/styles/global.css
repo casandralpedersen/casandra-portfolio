@@ -50,10 +50,9 @@ body {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='230' height='230'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.333 0.333 0.333 0 0 0.333 0.333 0.333 0 0 0.333 0.333 0.333 0 0 0 0 0 0 1'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='gamma' amplitude='0.25' exponent='0.7' offset='0.77'/%3E%3CfeFuncG type='gamma' amplitude='0.32' exponent='0.7' offset='0.70'/%3E%3CfeFuncB type='gamma' amplitude='0.45' exponent='0.7' offset='0.57'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='230' height='230'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.333 0.333 0.333 0 0 0.333 0.333 0.333 0 0 0.333 0.333 0.333 0 0 0 0 0 0 1'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='gamma' amplitude='0.55' exponent='0.7' offset='0.45'/%3E%3CfeFuncG type='gamma' amplitude='0.66' exponent='0.7' offset='0.34'/%3E%3CfeFuncB type='gamma' amplitude='0.82' exponent='0.7' offset='0.18'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   background-size: 230px 230px;
-  background-color: var(--color-base);
-  background-blend-mode: multiply;
+  opacity: 0.30;
 }
 
 a {
