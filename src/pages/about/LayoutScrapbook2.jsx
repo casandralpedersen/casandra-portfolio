@@ -324,7 +324,6 @@ export default function LayoutScrapbook2() {
       {/* Notes flow */}
       <section className="px-8 md:px-16 mt-24 space-y-8 relative">
         <Star className="left-10 top-20 hidden md:block" color={BLUE} size={20} />
-        <Photo src={ABOUT_PHOTO} rotate={4} className="hidden md:block absolute left-[7%] top-[60%] z-0" w={200} h={250} />
         {aboutBlocks.map((block, i) => {
           if (i === 8) return null
           if (i === 7) {
@@ -340,7 +339,7 @@ export default function LayoutScrapbook2() {
               <div key={i} className="flex flex-col md:flex-row items-start gap-8 md:gap-14 md:ml-[10%] md:mt-16">
                 <Note block={block} t={t} index={i} paired />
                 <div className="hidden md:block flex-shrink-0 self-center mt-6">
-                  <Photo src="/images/sitwavemepic.png" rotate={-4} w={195} h={245} tapeColor="rgba(90,134,171,0.25)" />
+                  <Photo src={ABOUT_PHOTO} rotate={-4} w={195} h={245} tapeColor="rgba(145,60,39,0.18)" />
                 </div>
               </div>
             )
