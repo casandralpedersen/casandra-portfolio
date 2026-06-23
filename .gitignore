@@ -10,3 +10,5 @@ test-results/
 apfelGrotezk/
 studio billeder chat/
 /70cdf717-ee32-48c6-a221-441d573cc65d.png
+/*.png
+.playwright-mcp/
