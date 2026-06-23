@@ -1,8 +1,8 @@
 # CLAUDE.md — Casandra Portfolio
 
 ## Status
-Sidst opdateret: 2026-06-10
-Færdigt: Forside, /arbejde, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite (fixer 404 på direkte route-navigation), tekstur/grain på Home og About hero, hjemmesectionen "Det hele kogt ned" med zigzag-layout og scroll-tegnet kurve, justeret hero-placering, store centrerede sektionsoverskrifter, kontakt-copy og projektcovers til Ø Bar, Etsy / CompozeStudio og Brødrene Vejen
+Sidst opdateret: 2026-06-23
+Færdigt: Forside, /arbejde, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite (fixer 404 på direkte route-navigation), tekstur/grain på Home og About hero, hjemmesectionen "Det hele kogt ned" med zigzag-layout og scroll-tegnet kurve (6 bokse: 01 UX, 02 Strategi, 03 AI, 04 Kommunikation, 05 Sociale medier, 06 Grafisk design), hero skill-pills ved hover, /om Scrapbook 2.0 med ITC Garamond bold overskrifter, polaroids, AI-kort, bundknapper og nav-tekster
 Næste: WorkDetail-sider bygges når resten af projektmaterialet er klar. GitHub→Vercel auto-deploy kræver stadig at Casandra forbinder GitHub Login Connection på vercel.com/account/login-connections
 
 ---
