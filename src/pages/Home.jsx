@@ -10,12 +10,18 @@ const PILL_NOISE =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E\")"
 
 const SKILLS = [
-  { da: 'grafisk design', en: 'graphic design', pos: 'top-[14%] right-[22%]', rotate: -5, delay: 0 },
-  { da: 'ux design', en: 'ux design', pos: 'top-[6%] right-[48%]', rotate: 4, delay: 0.05 },
-  { da: 'branding', en: 'branding', pos: 'top-[46%] right-[15%]', rotate: -3, delay: 0.1 },
-  { da: 'vibe coding', en: 'vibe coding', pos: 'bottom-[20%] right-[25%]', rotate: 5, delay: 0.15 },
-  { da: 'art direction', en: 'art direction', pos: 'bottom-[11%] right-[46%]', rotate: -3, delay: 0.2 },
-  { da: 'frontend', en: 'frontend', pos: 'top-[62%] right-[58%]', rotate: 4, delay: 0.25 },
+  { da: 'UX Design', en: 'UX Design', pos: 'top-[6%] right-[44%]', rotate: 3, delay: 0 },
+  { da: 'Brugercentreret', en: 'User-centred', pos: 'top-[14%] right-[18%]', rotate: -4, delay: 0.05 },
+  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[28%] right-[8%]', rotate: 5, delay: 0.1 },
+  { da: 'Teamledelse', en: 'Team leadership', pos: 'top-[4%] right-[64%]', rotate: -3, delay: 0.15 },
+  { da: 'vibe coding', en: 'vibe coding', pos: 'bottom-[24%] right-[18%]', rotate: 4, delay: 0.2 },
+  { da: 'claude', en: 'claude', pos: 'bottom-[10%] right-[38%]', rotate: -5, delay: 0.25 },
+  { da: 'figma', en: 'figma', pos: 'top-[48%] right-[55%]', rotate: 3, delay: 0.3 },
+  { da: 'Kundeservice', en: 'Customer service', pos: 'top-[42%] right-[8%]', rotate: -4, delay: 0.35 },
+  { da: 'Problemløsning', en: 'Problem-solving', pos: 'bottom-[34%] right-[8%]', rotate: 6, delay: 0.4 },
+  { da: 'Konflikthåndtering', en: 'Conflict management', pos: 'top-[64%] right-[44%]', rotate: -3, delay: 0.45 },
+  { da: 'salg', en: 'Sales', pos: 'bottom-[4%] right-[56%]', rotate: 4, delay: 0.5 },
+  { da: 'Flersproget', en: 'Multilingual', pos: 'bottom-[14%] right-[62%]', rotate: -5, delay: 0.55 },
 ]
 
 function SkillPill({ label, pos, rotate, delay }) {
