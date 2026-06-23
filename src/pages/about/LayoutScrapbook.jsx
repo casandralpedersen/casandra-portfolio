@@ -144,7 +144,7 @@ function Note({ block, t, index }) {
       >
         <Star className="-top-6 -left-2" size={30} />
         <p className="leading-snug inline" style={{ fontFamily: quoteFont(text), fontWeight: 700, fontSize: 'clamp(22px, 3vw, 34px)', color: BURGUNDY }}>
-          {renderEmphasised(text)}
+          {renderEmphasised(text, 'var(--color-burgundy)', true)}
         </p>
         <div className="flex justify-center"><Squiggle /></div>
       </motion.div>

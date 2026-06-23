@@ -73,9 +73,10 @@ export default function Nav() {
           onClick={scrollToWork}
           className="relative text-sm tracking-wide opacity-60 hover:opacity-100 transition-opacity"
         >
-          {t('tidligere arbejde', 'previous work')}
+          {t('Tidligere arbejde', 'Previous work')}
         </a>
-        <NavItem to="/cv">{t('se CV', 'see CV')}</NavItem>
+        <NavItem to="/om">{t('Om mig', 'About me')}</NavItem>
+        <NavItem to="/cv">{t('Se CV', 'See CV')}</NavItem>
 
         <div className="relative" ref={dropdownRef}>
           <motion.button
@@ -84,7 +85,7 @@ export default function Nav() {
             whileTap={{ scale: 0.98 }}
             className="px-4 py-1.5 bg-[var(--color-burgundy)] text-[var(--color-base)] text-sm tracking-wide rounded-sm"
           >
-            {t('kontakt mig', 'contact me')}
+            {t('Kontakt mig', 'Contact me')}
           </motion.button>
 
           <AnimatePresence>
@@ -119,9 +120,10 @@ export default function Nav() {
 
         <button
           onClick={toggleLang}
-          className="text-xs tracking-widest opacity-40 hover:opacity-80 transition-opacity"
+          className="text-xs tracking-widest border border-current rounded-full px-2.5 py-1 opacity-40 hover:opacity-80 transition-opacity"
+          style={{ color: 'var(--color-text)' }}
         >
-          en/dk
+          {lang === 'da' ? 'en' : 'dk'}
         </button>
       </div>
     </motion.nav>

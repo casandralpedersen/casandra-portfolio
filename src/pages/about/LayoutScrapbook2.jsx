@@ -50,7 +50,7 @@ function Arrow({ className, color = BLUE }) {
 
 function Squiggle({ color = BURGUNDY }) {
   return (
-    <svg className="block mt-1" width="180" height="12" viewBox="0 0 180 12" fill="none" preserveAspectRatio="none">
+    <svg className="block mt-2" width="180" height="18" viewBox="-2 -6 184 18" fill="none" style={{ overflow: 'visible' }}>
       <path d="M2 7c20-8 40 8 60 0s40-8 60 0 40 6 56 1" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   )
@@ -147,11 +147,11 @@ function Note({ block, t, index, paired = false }) {
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0, transition: { ease, duration: 0.7 } } : {}}
-        className="relative max-w-xl mx-auto text-center my-44"
+        className="relative max-w-2xl mx-auto text-center my-44"
       >
         <Star className="-top-6 -left-2" size={30} />
-        <p className="leading-snug inline" style={{ fontFamily: NOTE_TITLE_FONT, fontWeight: 700, fontSize: 'clamp(22px, 3vw, 34px)', color: BURGUNDY }}>
-          {renderEmphasised(text)}
+        <p className="leading-snug" style={{ fontFamily: NOTE_TITLE_FONT, fontWeight: 700, fontSize: 'clamp(22px, 3vw, 34px)', color: BURGUNDY }}>
+          {renderEmphasised(text, 'var(--color-burgundy)', true)}
         </p>
         <div className="flex justify-center"><Squiggle /></div>
       </motion.div>
@@ -175,15 +175,20 @@ function Note({ block, t, index, paired = false }) {
   }
 
   if (block.type === 'small') {
+    const [titlePart, bodyPart] = text.split(': ')
     return (
-      <motion.p
+      <motion.div
         ref={ref}
-        initial={{ opacity: 0, y: 12 }}
-        animate={inView ? { opacity: 1, y: 0, transition: { ease, duration: 0.6 } } : {}}
-        className="max-w-2xl mx-auto text-center text-[14px] tracking-wide uppercase opacity-50 mt-12"
+        initial={{ opacity: 0, y: 20, rotate: 0 }}
+        animate={inView ? { opacity: 1, y: 0, rotate: -1, transition: { ease, duration: 0.7 } } : {}}
+        className="relative max-w-sm mx-auto bg-[#FFFDF5] border border-[var(--color-burgundy)]/15 shadow-md p-5"
       >
-        {text}
-      </motion.p>
+        <Tape className="-top-3 left-5" rotate={-4} w={70} />
+        <p className="mb-2.5 leading-tight" style={{ fontFamily: NOTE_TITLE_FONT, fontWeight: 700, fontSize: 'clamp(26px, 3vw, 36px)', color: 'var(--color-text)' }}>
+          {titlePart}:
+        </p>
+        <p className="text-[15px] leading-relaxed text-[var(--color-text)]/85">{bodyPart}</p>
+      </motion.div>
     )
   }
 
@@ -237,7 +242,7 @@ export default function LayoutScrapbook2() {
             animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.7, delay: 0.2 } }}
             className="mt-4 max-w-xl mx-auto text-[16px] md:text-[18px] leading-relaxed text-[var(--color-text)]/80"
           >
-            {t('Kommunikation, design og IT - altid med jeres målgruppen i centrum.', 'Communication, design and IT - always with your audience at the centre.')}
+            {t('Design, IT og forretning - altid med jeres målgruppe i centrum.', 'Design, IT and business - always with your audience at the centre.')}
           </motion.p>
         </div>
 
@@ -312,7 +317,7 @@ export default function LayoutScrapbook2() {
           if (i === 8) return null
           if (i === 7) {
             return (
-              <div key={i} className="flex flex-col md:flex-row md:items-start md:justify-center gap-5 md:gap-20 md:mt-20">
+              <div key={i} className="flex flex-col items-center gap-6 md:mt-20">
                 <Note block={aboutBlocks[7]} t={t} index={7} paired />
                 <Note block={aboutBlocks[8]} t={t} index={8} paired />
               </div>
@@ -344,8 +349,8 @@ export default function LayoutScrapbook2() {
           {t('Lad os tale sammen', "Let's talk")}
         </p>
         <div className="flex gap-3 flex-wrap justify-center">
-          <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-base)' }} className="px-6 py-2.5 rounded-full bg-[var(--color-burgundy)] text-[13px] tracking-wide hover:opacity-85 transition-opacity shadow-sm">
-            {t('Lad os link(edin)up', "Let's link(edin)up")}
+          <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="px-6 py-2.5 rounded-full border border-[var(--color-blue)]/40 text-[var(--color-blue)] text-[13px] tracking-wide hover:bg-[var(--color-blue)]/5 transition-colors">
+            {t('Lad os Link(edIn)up', "Let's Link(edIn)up")}
           </a>
           <Link to="/cv" className="px-6 py-2.5 rounded-full border border-[var(--color-burgundy)]/40 text-[var(--color-burgundy)] text-[13px] tracking-wide hover:bg-[var(--color-burgundy)]/5 transition-colors">
             {t('Se mit CV', 'See my CV')}

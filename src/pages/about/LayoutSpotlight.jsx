@@ -36,7 +36,7 @@ function Block({ block, t, index }) {
         className="px-8 md:px-16 my-20 text-center max-w-4xl mx-auto leading-[1.05]"
         style={{ fontFamily: quoteFont(text), fontSize: 'clamp(34px, 6vw, 72px)', color: 'var(--color-burgundy)' }}
       >
-        {renderEmphasised(text)}
+        {renderEmphasised(text, 'var(--color-burgundy)', true)}
       </motion.h3>
     )
   }

@@ -8,8 +8,8 @@ export const aboutLabel = {
 }
 
 export const aboutIntro = {
-  da: 'Mit venndiagram med kommunikation, design og teknologi - altid med målgruppen i centrum.',
-  en: 'My Venn diagram of communication, design and technology - always with the audience at the centre.',
+  da: 'Mit venndiagram med design, IT og forretning - altid med målgruppen i centrum.',
+  en: 'My Venn diagram of design, IT and business - always with the audience at the centre.',
 }
 
 export const aboutBlocks = [
@@ -33,8 +33,8 @@ export const aboutBlocks = [
   },
   {
     type: 'quote',
-    da: 'Jeg arbejder med kommunikation, design og teknologi - og ser dem som tre ting der ikke giver mening uden hinanden.',
-    en: "I work with communication, design and technology - and see them as three things that don't make sense without each other.",
+    da: 'Mit mål er, at folk ikke bare ser indholdet\n- men **forstår** det, **stoler** på det og **handler** på det.',
+    en: "My goal is that people don't just see the content\n- but **understand** it, **trust** it and **act** on it.",
   },
   {
     type: 'text',
@@ -51,7 +51,7 @@ export const aboutBlocks = [
       da: 'Brænder for **optimering**',
       en: 'Passionate about **optimisation**',
     },
-    da: 'Jeg brænder for målgrupper, UX og optimering. Hvordan tilpasses kommunikation og brugeroplevelse, så den virker - og gerne kan måles i statistik?',
+    da: 'Jeg brænder for målgrupper, UX og optimering. Hvilken knap bliver klikket? Hvor falder folk fra? Og hvad skal der til, før de gør det, de kom for? Det er præcis den slags spørgsmål jeg vil hjælpe jer med at svare på - med A/B-test og evaluering af jeres processer.',
     en: "I'm passionate about target audiences, UX and optimisation. How do you tailor communication and user experience so it works - and can ideally be measured in numbers?",
   },
   {
@@ -78,11 +78,6 @@ export const aboutBlocks = [
     en: "I love sharing what I know, but I'm just as unafraid to learn something new or ask a stupid question. I believe the most independent, proactive work depends on being a team player who knows their strengths and weaknesses.",
   },
   {
-    type: 'quote-emphasis',
-    da: 'Mit mål er, at folk ikke bare ser indholdet - men **forstår** det, **stoler** på det og **handler** på det.',
-    en: "My goal is that people don't just see the content - but **understand** it, **trust** it and **act** on it.",
-  },
-  {
     type: 'small',
     da: 'Og så det formelle: jeg læser Digital Design og Interaktive Teknologier på ITU.',
     en: "And the formal part: I'm studying Digital Design and Interactive Technologies at ITU.",
@@ -97,17 +92,19 @@ export function quoteFont(text) {
   return DANISH_SPECIAL.test(text) ? SERIF_FALLBACK : 'var(--font-display)'
 }
 
-export function renderEmphasised(text, color = 'var(--color-burgundy)') {
-  const parts = text.split(/\*\*(.+?)\*\*/g)
-  return parts.map((part, i) =>
-    i % 2 === 1 ? (
-      <em key={i} className="not-italic font-semibold" style={{ color }}>
-        {part}
-      </em>
-    ) : (
-      part
+export function renderEmphasised(text, color = 'var(--color-burgundy)', italic = false) {
+  return text.split('\n').flatMap((line, li, arr) => {
+    const parts = line.split(/\*\*(.+?)\*\*/g).map((part, i) =>
+      i % 2 === 1 ? (
+        <em key={`${li}-${i}`} className={italic ? 'italic' : 'not-italic font-semibold'} style={{ color }}>
+          {part}
+        </em>
+      ) : (
+        part
+      )
     )
-  )
+    return li < arr.length - 1 ? [...parts, <br key={`br-${li}`} />] : parts
+  })
 }
 
 const SPECIAL = /([æøåÆØÅ])/

@@ -10,16 +10,14 @@ const PILL_NOISE =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E\")"
 
 const SKILLS = [
-  { da: 'UX Design', en: 'UX Design', pos: 'top-[6%] right-[44%]', rotate: 3, delay: 0 },
-  { da: 'Brugercentreret', en: 'User-centred', pos: 'top-[14%] right-[18%]', rotate: -4, delay: 0.05 },
-  { da: 'UX & brugercentreret design', en: 'UX & user-centred design', pos: 'top-[4%] right-[60%]', rotate: -3, delay: 0.1 },
-  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[24%] right-[8%]', rotate: 5, delay: 0.15 },
-  { da: 'Vibe coding', en: 'Vibe coding', pos: 'top-[44%] right-[52%]', rotate: 3, delay: 0.2 },
-  { da: 'Salg & kundeservice', en: 'Sales & customer service', pos: 'top-[44%] right-[6%]', rotate: -4, delay: 0.25 },
-  { da: 'Problemløsning', en: 'Problem-solving', pos: 'bottom-[32%] right-[16%]', rotate: 6, delay: 0.3 },
-  { da: 'Nysgerrig', en: 'Curious', pos: 'top-[64%] right-[48%]', rotate: -5, delay: 0.35 },
-  { da: 'Omstillingsparat', en: 'Adaptable', pos: 'bottom-[14%] right-[36%]', rotate: 4, delay: 0.4 },
-  { da: 'Konstruktiv/kritisk tænkende', en: 'Constructive/critical thinker', pos: 'bottom-[4%] right-[56%]', rotate: -3, delay: 0.45 },
+  { da: 'UX Design', en: 'UX Design', pos: 'top-[4%] right-[56%]', rotate: -3, delay: 0 },
+  { da: 'Konstruktiv', en: 'Constructive', pos: 'top-[4%] right-[18%]', rotate: 2, delay: 0.05 },
+  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[26%] right-[8%]', rotate: 5, delay: 0.1 },
+  { da: 'Vibe coding', en: 'Vibe coding', pos: 'top-[42%] right-[60%]', rotate: 3, delay: 0.15 },
+  { da: 'Salg & kundeservice', en: 'Sales & customer service', pos: 'top-[42%] right-[6%]', rotate: -4, delay: 0.2 },
+  { da: 'Nysgerrig', en: 'Curious', pos: 'top-[62%] right-[58%]', rotate: -5, delay: 0.25 },
+  { da: 'Problemløsning', en: 'Problem-solving', pos: 'top-[62%] right-[8%]', rotate: 6, delay: 0.3 },
+  { da: 'Omstillingsparat', en: 'Adaptable', pos: 'bottom-[8%] right-[34%]', rotate: 4, delay: 0.35 },
 ]
 
 function SkillPill({ label, pos, rotate, delay }) {
@@ -434,7 +432,7 @@ function AboutTeaser({ t }) {
           animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } } : {}}
           className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-6"
         >
-          {t('Jeg arbejder med kommunikation, design og teknologi', 'I work with communication, design and technology')}
+          {t('Jeg arbejder med design, IT og forretning', 'I work with design, IT and business')}
         </motion.p>
 
         <motion.div
@@ -444,14 +442,14 @@ function AboutTeaser({ t }) {
         >
           <p>
             {t(
-              'Jeg kom til design via forretning, ikke omvendt. Baggrunden spænder fra grafisk design og fotografi til UX og erfaring som COO.',
-              'I came to design through business, not the other way around. My background spans graphic design, photography, UX, and experience as COO.'
+              'Jeg har haft et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice.',
+              "I've had a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service."
             )}
           </p>
           <p>
             {t(
-              'Det giver et blik for hvad der faktisk virker - ikke kun hvad der ser godt ud.',
-              'It gives me an eye for what actually works - not just what looks good.'
+              'Det giver et blik for hvad der faktisk virker, både for virksomheden og kunden.',
+              'It gives me an eye for what actually works - for the business and the customer alike.'
             )}
           </p>
         </motion.div>
@@ -464,7 +462,7 @@ function AboutTeaser({ t }) {
             to="/om"
             className="inline-block mt-7 text-[13px] tracking-wide border-b border-[var(--color-text)]/30 pb-0.5 hover:border-[var(--color-text)] transition-colors"
           >
-            {t('Læs hele historien →', 'Read the full story →')}
+            {t('Mød din kommende generalist - hvordan jeg arbejder og hvorfor →', 'Meet your next generalist - how I work and why →')}
           </Link>
         </motion.div>
       </div>

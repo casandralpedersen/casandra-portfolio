@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import { experience } from '../data/experience'
@@ -12,7 +12,7 @@ const skills = [
   },
   {
     category: { da: 'Software', en: 'Software' },
-    items: ['InDesign', 'Figma', 'Canva'],
+    items: ['Figma', 'Canva Pro', 'Claude', 'Power Automate', 'PowerPoint', 'iMovie'],
   },
   {
     category: { da: 'Marketing', en: 'Marketing' },
@@ -20,7 +20,7 @@ const skills = [
   },
   {
     category: { da: 'Forretning', en: 'Business' },
-    items: ['Projektledelse', 'HR', 'Økonomi', 'Salg', 'Kundeservice'],
+    items: ['Projektledelse', 'HR', 'Økonomi', 'Salg', 'Kundeservice', 'Excel'],
   },
 ]
 
@@ -34,8 +34,8 @@ function Section({ label, children, delay = 0 }) {
       className="grid grid-cols-[180px_1fr] gap-x-12 py-8 border-t border-[var(--color-text)]/10"
     >
       <span
-        className="text-[54px] leading-none opacity-40"
-        style={{ fontFamily: 'Montigny, cursive' }}
+        className="text-[54px] leading-none opacity-70"
+        style={{ fontFamily: 'Montigny, cursive', color: 'var(--color-text)' }}
       >
         {label}
       </span>
@@ -53,11 +53,11 @@ function ExperienceRow({ item, t, open, onToggle }) {
         onClick={() => hasDetails && onToggle()}
         className={`w-full flex gap-8 py-3 text-left group ${hasDetails ? 'cursor-pointer' : 'cursor-default'}`}
       >
-        <span className="shrink-0 text-[14px] opacity-30 w-24 pt-px" style={{ fontFamily: 'VSOP, serif' }}>
+        <span className="shrink-0 text-[14px] opacity-50 w-24 pt-px" style={{ fontFamily: 'VSOP, serif' }}>
           {item.year}
         </span>
         <div className="flex-1 min-w-0">
-          <p className="text-[14px] opacity-60 leading-snug transition-opacity group-hover:opacity-90">
+          <p className="text-[14px] opacity-80 leading-snug transition-opacity group-hover:opacity-100">
             {t(item.title.da, item.title.en)}
           </p>
           {item.note && (
@@ -111,60 +111,34 @@ function ExperienceList({ items, t }) {
 
 export default function CV() {
   const { t } = useLanguage()
-  const constraintsRef = useRef(null)
 
   const work = experience.filter(e => e.type === 'work')
   const edu = experience.filter(e => e.type === 'edu')
 
   return (
-    <main
-      ref={constraintsRef}
-      className="min-h-screen relative overflow-hidden"
-    >
+    <main className="min-h-screen relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-10 pt-8 pb-24">
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.7 } }}
-          className="flex justify-between items-start mb-1"
+          className="mb-1"
         >
-          <div>
-            <h1
-              className="text-[72px] leading-[0.9] tracking-tight"
-              style={{ fontFamily: 'VSOP, serif' }}
-            >
-              Casandra
-              <br />
-              Linde Pedersen
-            </h1>
-            <p className="mt-4 text-[15px] opacity-60 max-w-xs leading-snug">
-              {t(
-                'Grafisk designer med forretningsforståelse',
-                'Graphic designer with a business mindset'
-              )}
-            </p>
-          </div>
-
-          {/* Draggable polaroid */}
-          <motion.div
-            drag
-            dragConstraints={constraintsRef}
-            dragElastic={0.1}
-            whileDrag={{ scale: 1.04, rotate: 2 }}
-            initial={{ opacity: 0, rotate: -3, x: 20 }}
-            animate={{ opacity: 1, rotate: -3, x: 0, transition: { ease, duration: 0.8, delay: 0.2 } }}
-            className="shrink-0 shadow-md cursor-grab active:cursor-grabbing select-none print:hidden"
-            style={{ width: 160 }}
+          <h1
+            className="text-[72px] leading-[0.9] tracking-tight"
+            style={{ fontFamily: 'VSOP, serif' }}
           >
-            <img
-              src="/images/alternativtmepic.png"
-              alt="Casandra"
-              className="w-full object-cover object-top"
-              style={{ height: 180 }}
-              draggable={false}
-            />
-          </motion.div>
+            Casandra
+            <br />
+            Linde Pedersen
+          </h1>
+          <p className="mt-4 text-[15px] opacity-60 max-w-xs leading-snug">
+            {t(
+              'Grafisk designer med forretningsforståelse',
+              'Graphic designer with a business mindset'
+            )}
+          </p>
         </motion.div>
 
         {/* Contact row */}
@@ -175,8 +149,9 @@ export default function CV() {
         >
           <a
             href="mailto:casandralpedersen@gmail.com"
-            className="text-[12px] opacity-50 hover:opacity-100 transition-opacity tracking-wide"
+            className="flex items-center gap-1.5 text-[12px] opacity-50 hover:opacity-100 transition-opacity tracking-wide"
           >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
             casandralpedersen@gmail.com
           </a>
           <span className="opacity-20">·</span>
@@ -184,9 +159,10 @@ export default function CV() {
             href={LINKEDIN}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[12px] opacity-50 hover:opacity-100 transition-opacity tracking-wide"
+            className="flex items-center gap-1.5 text-[12px] opacity-50 hover:opacity-100 transition-opacity tracking-wide"
           >
-            linkedin.com/in/casandra-linde-pedersen
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
           </a>
           <span className="opacity-20 ml-auto" />
           <button
@@ -210,7 +186,7 @@ export default function CV() {
           <div className="space-y-4">
             {skills.map((group, i) => (
               <div key={i} className="flex gap-3 items-baseline">
-                <span className="text-[11px] opacity-35 w-24 shrink-0 tracking-wide uppercase">
+                <span className="text-[11px] w-24 shrink-0 tracking-wide uppercase font-semibold" style={{ color: 'var(--color-text)' }}>
                   {t(group.category.da, group.category.en)}
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -221,6 +197,7 @@ export default function CV() {
                       style={{
                         background: 'var(--color-burgundy)10',
                         color: 'var(--color-text)',
+                        opacity: 0.55,
                         border: '1px solid var(--color-text)22',
                       }}
                     >
@@ -238,15 +215,15 @@ export default function CV() {
             {[
               {
                 language: t('Dansk', 'Danish'),
-                level: t('Modersmål', 'Native'),
+                level: 'C2',
               },
               {
                 language: t('Engelsk', 'English'),
-                level: t('Flydende', 'Fluent'),
+                level: 'C2',
               },
               {
                 language: t('Spansk', 'Spanish'),
-                level: t('Konversationsniveau', 'Conversational'),
+                level: 'B1',
               },
             ].map(item => (
               <div
