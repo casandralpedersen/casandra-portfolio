@@ -166,7 +166,7 @@ function Note({ block, t, index, paired = false }) {
         className="relative max-w-xl mx-auto text-center my-44"
       >
         <Star className="-top-6 -left-2" size={30} />
-        <p className="leading-snug inline" style={{ fontFamily: quoteFont(text), fontWeight: 700, fontSize: 'clamp(22px, 3vw, 34px)', color: BURGUNDY }}>
+        <p className="leading-snug inline" style={{ fontFamily: NOTE_TITLE_FONT, fontWeight: 700, fontSize: 'clamp(22px, 3vw, 34px)', color: BURGUNDY }}>
           {renderEmphasised(text)}
         </p>
         <div className="flex justify-center"><Squiggle /></div>
@@ -183,7 +183,7 @@ function Note({ block, t, index, paired = false }) {
         className={`relative max-w-sm bg-[var(--color-text)] text-[var(--color-base)] p-6 shadow-xl ${paired ? '' : 'max-w-lg mx-auto my-16'}`}
       >
         <Tape className="-top-3 right-6" color="rgba(247,242,213,0.3)" rotate={6} />
-        <p className="leading-snug" style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(22px, 2.4vw, 28px)' }}>
+        <p className="leading-snug" style={{ fontFamily: NOTE_TITLE_FONT, fontWeight: 700, fontSize: 'clamp(22px, 2.4vw, 28px)' }}>
           {renderDisplayBold(text, '#E89A7A')}
         </p>
       </motion.div>
@@ -295,7 +295,7 @@ export default function LayoutScrapbook2() {
             whileInView={{ opacity: 1, y: 0, transition: { ease, duration: 0.8, delay: 0.1 } }}
             viewport={{ once: true }}
             className="leading-[1.05] md:whitespace-nowrap"
-            style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 4.6vw, 64px)', color: BURGUNDY }}
+            style={{ fontFamily: NOTE_TITLE_FONT, fontSize: 'clamp(32px, 4.6vw, 64px)', color: BURGUNDY }}
           >
             {renderTitle(t('Hvad du får med på holdet', 'What you bring to the team'))}
           </motion.h2>
