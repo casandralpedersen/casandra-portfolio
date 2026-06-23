@@ -124,7 +124,7 @@ const NOTE_TITLE_FONT = '"ITCGaramond", serif'
 
 const NOTE_POS = {
   0: 'mr-auto md:ml-[12%]',
-  1: 'ml-auto md:mr-[1%]',
+  1: 'ml-auto md:mr-[10%]',
   3: 'ml-auto md:mr-[16%]',
   4: 'mr-auto md:ml-[16%] md:-mt-20',
   5: 'mr-auto md:ml-[4%]',
@@ -320,7 +320,7 @@ export default function LayoutScrapbook2() {
           }
           if (i === 5) {
             return (
-              <div key={i} className="flex flex-col md:flex-row items-start gap-8 md:gap-14 md:ml-[10%] md:mt-16">
+              <div key={i} className="flex flex-col md:flex-row items-start gap-8 md:gap-24 md:ml-[10%] md:mt-16">
                 <Note block={block} t={t} index={i} paired />
                 <div className="hidden md:block flex-shrink-0 self-center mt-6">
                   <Photo src={ABOUT_PHOTO} rotate={-4} w={195} h={245} tapeColor="rgba(145,60,39,0.18)" />
