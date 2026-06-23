@@ -320,9 +320,9 @@ export default function LayoutScrapbook2() {
           }
           if (i === 5) {
             return (
-              <div key={i} className="flex flex-col md:flex-row items-start gap-8 md:gap-24 md:ml-[10%] md:mt-16">
+              <div key={i} className="flex flex-col md:flex-row items-start gap-8 md:gap-16 md:ml-[14%] md:mt-28">
                 <Note block={block} t={t} index={i} paired />
-                <div className="hidden md:block flex-shrink-0 self-center mt-6">
+                <div className="hidden md:block flex-shrink-0 self-center -mt-10">
                   <Photo src={ABOUT_PHOTO} rotate={-4} w={195} h={245} tapeColor="rgba(145,60,39,0.18)" />
                 </div>
               </div>
