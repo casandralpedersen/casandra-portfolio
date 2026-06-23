@@ -136,6 +136,8 @@ function Portrait({ src, label, color, rotate, delay, dimmed, labelVenn, onHover
   )
 }
 
+const NOTE_TITLE_FONT = '"ITCGaramond", serif'
+
 const NOTE_POS = {
   0: 'mr-auto md:ml-[12%]',
   1: 'ml-auto md:mr-[1%]',
@@ -212,8 +214,8 @@ function Note({ block, t, index, paired = false }) {
       {block.noteTitle && (() => {
         const title = t(block.noteTitle.da, block.noteTitle.en)
         return (
-          <p className="mb-2.5 leading-tight" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 2.4vw, 28px)', color: 'var(--color-text)' }}>
-            {renderTitle(title)}
+          <p className="mb-2.5 leading-tight" style={{ fontFamily: NOTE_TITLE_FONT, fontSize: 'clamp(22px, 2.4vw, 28px)', color: 'var(--color-text)' }}>
+            {renderEmphasised(title)}
           </p>
         )
       })()}
@@ -330,6 +332,16 @@ export default function LayoutScrapbook2() {
               <div key={i} className="flex flex-col md:flex-row md:items-start md:justify-center gap-5 md:gap-20 md:mt-20">
                 <Note block={aboutBlocks[7]} t={t} index={7} paired />
                 <Note block={aboutBlocks[8]} t={t} index={8} paired />
+              </div>
+            )
+          }
+          if (i === 5) {
+            return (
+              <div key={i} className="flex flex-col md:flex-row items-start gap-8 md:gap-14 md:ml-[10%] md:mt-16">
+                <Note block={block} t={t} index={i} paired />
+                <div className="hidden md:block flex-shrink-0 self-center mt-6">
+                  <Photo src="/images/sitwavemepic.png" rotate={-4} w={195} h={245} tapeColor="rgba(90,134,171,0.25)" />
+                </div>
               </div>
             )
           }

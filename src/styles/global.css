@@ -9,6 +9,38 @@
 }
 
 @font-face {
+  font-family: "Ultramarine";
+  src: url("/fonts/Ultramarine.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ApfelGrotezk";
+  src: url("/fonts/ApfelGrotezk-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ITCGaramond";
+  src: url("/fonts/ITC Garamond Std Light Narrow.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ITCCentury";
+  src: url("/fonts/ITC Century Std Light Condensed.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Montigny";
   src: url("/fonts/Montigny-Regular.otf") format("opentype");
   font-weight: normal;
