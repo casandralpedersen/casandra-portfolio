@@ -19,7 +19,7 @@ export default function LayoutOriginal() {
   const moreInView = useInView(moreRef, { once: true, margin: '-100px' })
 
   return (
-    <main className="min-h-screen bg-[var(--color-base)]">
+    <main className="min-h-screen">
 
       {/* Bio */}
       <section className="px-10 pt-20 pb-16 flex gap-16 items-start">

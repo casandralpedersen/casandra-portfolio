@@ -129,7 +129,7 @@ export default function LayoutMagasin() {
   const firstText = aboutBlocks.findIndex((b) => b.type === 'text')
 
   return (
-    <main className="min-h-screen bg-[var(--color-base)] pb-32">
+    <main className="min-h-screen pb-32">
       {/* Masthead */}
       <div className="texture px-8 md:px-16 pt-12">
         <div className="flex items-baseline justify-between border-b-2 border-[var(--color-text)] pb-3">

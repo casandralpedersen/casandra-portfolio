@@ -16,7 +16,7 @@ export default function Work() {
   const { t } = useLanguage()
 
   return (
-    <main className="min-h-screen bg-[var(--color-base)] px-10 py-10">
+    <main className="min-h-screen px-10 py-10">
       <motion.h1
         initial={{ y: 24, opacity: 0 }}
         animate={{ y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } }}

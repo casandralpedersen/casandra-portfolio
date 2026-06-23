@@ -72,7 +72,7 @@ export default function LayoutSpotlight() {
   const { t } = useLanguage()
 
   return (
-    <main className="min-h-screen bg-[var(--color-base)] pb-32 overflow-hidden">
+    <main className="min-h-screen pb-32 overflow-hidden">
       {/* intro + cta */}
       <section className="px-8 md:px-16 pt-24 pb-16 max-w-3xl">
         <motion.p

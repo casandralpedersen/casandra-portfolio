@@ -499,7 +499,7 @@ export default function Home() {
   }
 
   return (
-    <main className="bg-[var(--color-base)]">
+    <main>
 
       <svg width="0" height="0" className="absolute" aria-hidden="true">
         <filter id="handdrawn-red-home" x="-15%" y="-15%" width="130%" height="130%">

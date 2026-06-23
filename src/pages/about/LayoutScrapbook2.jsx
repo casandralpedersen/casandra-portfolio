@@ -210,7 +210,7 @@ export default function LayoutScrapbook2() {
   const [venn, setVenn] = useState(false)
 
   return (
-    <main className="min-h-screen bg-[var(--color-base)] overflow-hidden pb-32">
+    <main className="min-h-screen overflow-hidden pb-32">
       {/* Trio hero */}
       <section className="texture relative px-8 md:px-16 pt-10 pb-8 min-h-[88vh] flex flex-col justify-center">
         <div className="text-center mb-8">

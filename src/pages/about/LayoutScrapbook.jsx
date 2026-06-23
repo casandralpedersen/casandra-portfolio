@@ -207,7 +207,7 @@ export default function LayoutScrapbook() {
   const [photoHover, setPhotoHover] = useState(false)
 
   return (
-    <main className="min-h-screen bg-[var(--color-base)] overflow-hidden pb-32">
+    <main className="min-h-screen overflow-hidden pb-32">
       <svg width="0" height="0" className="absolute" aria-hidden="true">
         <filter id="handdrawn-red" x="-15%" y="-15%" width="130%" height="130%">
           <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="thick" />

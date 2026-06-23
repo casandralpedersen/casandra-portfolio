@@ -119,7 +119,7 @@ export default function CV() {
   return (
     <main
       ref={constraintsRef}
-      className="min-h-screen bg-[var(--color-base)] relative overflow-hidden"
+      className="min-h-screen relative overflow-hidden"
     >
       <div className="max-w-4xl mx-auto px-10 pt-8 pb-24">
 
