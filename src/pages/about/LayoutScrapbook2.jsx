@@ -124,7 +124,7 @@ const NOTE_POS = {
   1: 'ml-auto md:mr-[28%]',
   3: 'ml-auto md:mr-[16%]',
   4: 'mr-auto md:ml-[16%] md:-mt-20',
-  5: 'ml-auto md:mr-[5%] md:-mt-24',
+  5: 'ml-auto md:mr-[8%]',
 }
 
 function Note({ block, t, index, paired = false }) {
@@ -189,7 +189,7 @@ function Note({ block, t, index, paired = false }) {
       ref={ref}
       initial={{ opacity: 0, y: 24, rotate: 0 }}
       animate={inView ? { opacity: 1, y: 0, rotate, transition: { ease, duration: 0.7 } } : {}}
-      className={`relative ${index === 1 ? 'max-w-md' : 'max-w-sm'} bg-[#FFFDF5] border border-[var(--color-burgundy)]/15 shadow-md p-5 ${align}`}
+      className={`relative ${index === 1 ? 'max-w-lg' : index === 5 ? 'max-w-md' : 'max-w-sm'} bg-[#FFFDF5] border border-[var(--color-burgundy)]/15 shadow-md p-5 ${align}`}
     >
       <Tape className={index % 2 === 0 ? '-top-3 left-5' : '-top-3 right-5'} rotate={index % 2 === 0 ? -5 : 5} w={70} />
       {block.noteTitle && (() => {
@@ -278,8 +278,16 @@ export default function LayoutScrapbook2() {
             className="leading-[1.05] max-w-[55%]"
             style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(38px, 6vw, 76px)', color: BURGUNDY }}
           >
-            {t('Lidt mere om din alt-mulig medarbejder', 'A little more about your jack-of-all-trades')}
+            {renderTitle(t('Hvad du får med på holdet', 'What you bring to the team'))}
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0, transition: { ease, duration: 0.7, delay: 0.2 } }}
+            viewport={{ once: true }}
+            className="mt-3 text-[15px] md:text-[17px] italic text-[var(--color-text)]/55"
+          >
+            {t('Lidt om din nysgerrige generalist', 'A little about your curious generalist')}
+          </motion.p>
 
           {/* Photos — absolute right */}
           <div className="hidden md:block absolute right-0 top-0 w-[42%] h-[320px] pointer-events-none">

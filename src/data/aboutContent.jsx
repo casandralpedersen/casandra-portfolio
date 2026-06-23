@@ -16,20 +16,20 @@ export const aboutBlocks = [
   {
     type: 'text',
     noteTitle: {
-      da: 'Det starter altid med **målgruppen**',
-      en: 'It always starts with the **audience**',
-    },
-    da: 'Uanset om det er en hjemmeside, en kampagne eller et opslag, starter jeg med det samme spørgsmål: **hvem taler vi til, og hvad skal de føle, forstå eller gøre?**',
-    en: "Whether it's a website, a campaign or a post, I start with the same question: **who are we talking to, and what should they feel, understand or do?**",
-  },
-  {
-    type: 'text',
-    noteTitle: {
       da: 'Drevet af **nysgerrighed**',
       en: 'Driven by **curiosity**',
     },
     da: 'Jeg har haft et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice.',
     en: "I've had a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service.",
+  },
+  {
+    type: 'text',
+    noteTitle: {
+      da: 'Det starter altid med **målgruppen**',
+      en: 'It always starts with the **audience**',
+    },
+    da: 'Uanset om det er en hjemmeside, en kampagne eller et opslag, starter jeg med det samme spørgsmål: **hvem taler vi til, og hvad skal de føle, forstå eller gøre?**',
+    en: "Whether it's a website, a campaign or a post, I start with the same question: **who are we talking to, and what should they feel, understand or do?**",
   },
   {
     type: 'quote',
@@ -60,8 +60,8 @@ export const aboutBlocks = [
       da: 'Dyk ned i **AI**',
       en: 'Diving into **AI**',
     },
-    da: 'Tilfredsstillende! Jeg har altid elsket statistik og systemer, og AI er et område jeg bruger meget tid på at dykke ned i lige nu.',
-    en: "Satisfying! I've always loved statistics and systems, and AI is something I'm spending a lot of time diving into right now.",
+    da: 'AI er udfordrende, men yderst tilfredsstillende når det virker! Jeg har altid elsket statistik og systemer, og AI er et område, jeg bruger meget tid på at dykke ned i lige nu, f.eks. i projekter som dette, med vibecoding, GitHub og Vercel. Eller automatisering af privatliv og studie. Jeg er overbevist om, at det her ændrer måden, vi arbejder på - og jeg hygger mig med at følge med og lærer en masse i processen.',
+    en: "AI is challenging, but deeply satisfying when it works! I've always loved statistics and systems, and AI is an area I spend a lot of time diving into right now - for example in projects like this one, with vibe coding, GitHub and Vercel. Or automating bits of everyday life and studies. I'm convinced this is changing the way we work, and I genuinely enjoy keeping up and learning a lot along the way.",
   },
   {
     type: 'quote',
