@@ -227,7 +227,7 @@ export default function LayoutScrapbook2() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.8, delay: 0.1 } }}
-            className="mt-2 leading-[1.05]"
+            className="mt-4 mb-4 leading-[1.05] text-center"
             style={{ fontFamily: NOTE_TITLE_FONT, fontWeight: 700, fontSize: 'clamp(38px, 6vw, 76px)', color: BURGUNDY }}
           >
             {t('Jeg arbejder i krydsfeltet', 'I work at the intersection')}
@@ -273,7 +273,7 @@ export default function LayoutScrapbook2() {
 
       {/* Hero collage + Notes */}
       <section className="texture relative px-8 md:px-16 pt-44 pb-0">
-        <div className="relative">
+        <div className="relative md:pl-[6%]">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0, transition: { ease, duration: 0.8, delay: 0.1 } }}
