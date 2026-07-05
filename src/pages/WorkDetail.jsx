@@ -16,8 +16,8 @@ export default function WorkDetail() {
     return (
       <main className="min-h-screen flex flex-col items-center justify-center gap-4 px-6 text-center">
         <p className="font-body opacity-60">{t('Projektet findes ikke.', 'This project doesn’t exist.')}</p>
-        <Link to="/arbejde" className="text-[11px] tracking-[0.16em] uppercase opacity-50 hover:opacity-90">
-          ← {t('Alt arbejde', 'All work')}
+        <Link to="/" className="text-[11px] tracking-[0.16em] uppercase opacity-50 hover:opacity-90">
+          ← {t('Forsiden', 'Home')}
         </Link>
       </main>
     )
@@ -34,8 +34,8 @@ export default function WorkDetail() {
         {t(project.title.da, project.title.en)}
       </p>
       <p className="font-body opacity-50">{t('Under opbygning', 'Under construction')}</p>
-      <Link to="/arbejde" className="text-[11px] tracking-[0.16em] uppercase opacity-50 hover:opacity-90 mt-2">
-        ← {t('Alt arbejde', 'All work')}
+      <Link to="/" className="text-[11px] tracking-[0.16em] uppercase opacity-50 hover:opacity-90 mt-2">
+        ← {t('Forsiden', 'Home')}
       </Link>
     </main>
   )

@@ -27,10 +27,10 @@ export function BackLink() {
   const { t } = useLanguage()
   return (
     <Link
-      to="/arbejde"
+      to="/"
       className="inline-flex items-center gap-2 text-[11px] tracking-[0.16em] uppercase opacity-50 hover:opacity-90 transition-opacity"
     >
-      <span>←</span> {t('Alt arbejde', 'All work')}
+      <span>←</span> {t('Forsiden', 'Home')}
     </Link>
   )
 }
@@ -52,7 +52,7 @@ function Tape({ color = 'rgba(145,60,39,0.16)', rotate = -4, w = 84 }) {
   )
 }
 
-export function DragLogo({ src, className = '', rotate = -5, w = 200, tapeColor }) {
+export function DragLogo({ src, className = '', rotate = -5, tapeColor }) {
   return (
     <motion.div
       drag
@@ -62,7 +62,6 @@ export function DragLogo({ src, className = '', rotate = -5, w = 200, tapeColor 
       animate={{ opacity: 1, scale: 1, rotate }}
       transition={{ ease: EASE, duration: 0.7, delay: 0.35 }}
       className={`bg-[#FFFDF5] p-3 pb-4 shadow-lg cursor-grab ${className}`}
-      style={{ width: w }}
     >
       <Tape color={tapeColor} />
       <img src={src} alt="CompozeStudio" className="w-full object-contain pointer-events-none" draggable={false} />

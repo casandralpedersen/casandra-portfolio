@@ -1,9 +1,9 @@
 # CLAUDE.md — Casandra Portfolio
 
 ## Status
-Sidst opdateret: 2026-06-23
-Færdigt: Forside, /arbejde, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite, tekstur/grain, services-sektion, hero skill-pills (8 pills i orbit-layout ved hover), /om kun Scrapbook 2.0 (layout-switcher fjernet), CV uden polaroid-foto, nav med "Om mig"-link og sprogswitcher der viser målsprog, citat-linjeskift og squiggle-fix, "design IT og forretning" overalt
-Næste: WorkDetail-sider bygges når resten af projektmaterialet er klar. GitHub→Vercel auto-deploy kræver stadig at Casandra forbinder GitHub Login Connection på vercel.com/account/login-connections
+Sidst opdateret: 2026-07-05
+Færdigt: Forside, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite, tekstur/grain, services-sektion, hero skill-pills (8 pills, strammet horisontalt bånd right-18-48% ved hover), /om kun Scrapbook 2.0, CV, nav med mobil-hamburger, **første projektunderside (Etsy/CompozeStudio) bygget med genbrugelig blocks-kit**, /arbejde-oversigt fjernet (redirecter til forsiden), mobil-responsivt review af hele sitet
+Næste: Byg resterende WorkDetail-sider (Ø Bar, Brødrene Vejen, Remakes) med samme blocks-kit efterhånden som billeder/tekst er klar. Komprimér de tunge Etsy-plakatbilleder (op til 8,5 MB) før prod-deploy. GitHub→Vercel auto-deploy kræver stadig at Casandra forbinder GitHub Login Connection på vercel.com/account/login-connections. **Ændringerne fra denne session er IKKE deployet til Vercel endnu.**
 
 ---
 
@@ -16,13 +16,19 @@ Næste: WorkDetail-sider bygges når resten af projektmaterialet er klar. GitHub
 
 ## Sidestruktur
 ```
-/              → Forside (hero + projektliste preview)
-/arbejde       → Projektoversigt (alle projekter)
-/arbejde/:slug → Individuel projektside (stub — ikke bygget endnu)
-/om            → Om mig (bio + foto + links)
-/cv            → Kreativt CV (expand/collapse erfaring, draggable polaroid)
+/              → Forside (hero + services + projekt-grid "Mine fingeraftryk" i #arbejde-sektion)
+/arbejde       → redirecter til / (oversigtssiden er fjernet, Work.jsx slettet)
+/arbejde/:slug → Individuel projektside (WorkDetail = dispatcher, kun Etsy bygget, resten fallback)
+/om            → Om mig (Scrapbook 2.0)
+/cv            → Kreativt CV
 ```
-Topnavigationen linker til `/`, `#arbejde`, `/cv` og kontakt. `/om` nås via `Læs hele historien` fra forsiden.
+Topnavigationen linker til `#arbejde` (scroller til forsidens projekt-grid), `/om`, `/cv` og kontakt. Projekterne linkes direkte til `/arbejde/:slug` fra forsidens grid.
+
+### Projektundersider (WorkDetail)
+- `src/pages/WorkDetail.jsx` er en **dispatcher**: slår projekt op via slug, rendrer projekt-komponent fra `src/pages/work/` (kun `EtsyComposeStudio.jsx` bygget), ellers pæn "under opbygning"-fallback.
+- Genbrugelig **blocks-kit** i `src/components/work/blocks.jsx` deler sitets fonte/farver/easing/grain. Komponenter: `DetailHero`, `DragLogo` (post-it, draggable), `TextBlock` (label+number+rød streg), `MetaList`, `Feature` (tekst+billede), `Marquee` (uendelig plakat-rulle), `ImageGrid`, `ImageDuo` (frameColor+maxW), `TiltPair` (vinklede par), `PullQuote`, `NextProject` (tan bånd), `BackLink`.
+- Titler bruger **ITC Garamond bold** (`"ITCGaramond", serif` + fontWeight 700), samme som /om — IKKE VSOP.
+- Etsy-billeder i `public/images/projects/` (compoze-logo, poster-*, special-*, listing-*). Nogle er tunge og bør komprimeres.
 
 ## Farvepalette
 ```css

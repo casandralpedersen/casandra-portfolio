@@ -10,14 +10,14 @@ const PILL_NOISE =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E\")"
 
 const SKILLS = [
-  { da: 'UX Design', en: 'UX Design', pos: 'top-[4%] right-[56%]', rotate: -3, delay: 0 },
-  { da: 'Konstruktiv', en: 'Constructive', pos: 'top-[4%] right-[18%]', rotate: 2, delay: 0.05 },
-  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[26%] right-[8%]', rotate: 5, delay: 0.1 },
-  { da: 'Vibe coding', en: 'Vibe coding', pos: 'top-[42%] right-[60%]', rotate: 3, delay: 0.15 },
-  { da: 'Salg & kundeservice', en: 'Sales & customer service', pos: 'top-[42%] right-[6%]', rotate: -4, delay: 0.2 },
-  { da: 'Nysgerrig', en: 'Curious', pos: 'top-[62%] right-[58%]', rotate: -5, delay: 0.25 },
-  { da: 'Problemløsning', en: 'Problem-solving', pos: 'top-[62%] right-[8%]', rotate: 6, delay: 0.3 },
-  { da: 'Omstillingsparat', en: 'Adaptable', pos: 'bottom-[8%] right-[34%]', rotate: 4, delay: 0.35 },
+  { da: 'UX Design', en: 'UX Design', pos: 'top-[4%] right-[46%]', rotate: -3, delay: 0 },
+  { da: 'Konstruktiv', en: 'Constructive', pos: 'top-[4%] right-[24%]', rotate: 2, delay: 0.05 },
+  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[26%] right-[18%]', rotate: 5, delay: 0.1 },
+  { da: 'Vibe coding', en: 'Vibe coding', pos: 'top-[42%] right-[48%]', rotate: 3, delay: 0.15 },
+  { da: 'Salg & kundeservice', en: 'Sales & customer service', pos: 'top-[42%] right-[18%]', rotate: -4, delay: 0.2 },
+  { da: 'Nysgerrig', en: 'Curious', pos: 'top-[62%] right-[46%]', rotate: -5, delay: 0.25 },
+  { da: 'Problemløsning', en: 'Problem-solving', pos: 'top-[62%] right-[18%]', rotate: 6, delay: 0.3 },
+  { da: 'Omstillingsparat', en: 'Adaptable', pos: 'bottom-[8%] right-[32%]', rotate: 4, delay: 0.35 },
 ]
 
 function SkillPill({ label, pos, rotate, delay }) {
@@ -412,7 +412,7 @@ function AboutTeaser({ t }) {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="px-10 py-24 flex items-center gap-16">
+    <section ref={ref} className="px-10 py-24 flex flex-col md:flex-row items-center gap-10 md:gap-16">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.8 } } : {}}
@@ -442,8 +442,8 @@ function AboutTeaser({ t }) {
         >
           <p>
             {t(
-              'Jeg har haft et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice.',
-              "I've had a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service."
+              'Jeg har et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice.',
+              "I have a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service."
             )}
           </p>
           <p>

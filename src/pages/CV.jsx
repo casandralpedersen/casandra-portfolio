@@ -31,7 +31,7 @@ function Section({ label, children, delay = 0 }) {
     <motion.div
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.6, delay } }}
-      className="grid grid-cols-[180px_1fr] gap-x-12 py-8 border-t border-[var(--color-text)]/10"
+      className="grid grid-cols-1 gap-y-3 md:grid-cols-[180px_1fr] md:gap-y-0 gap-x-12 py-8 border-t border-[var(--color-text)]/10"
     >
       <span
         className="text-[54px] leading-none opacity-70"
@@ -51,7 +51,7 @@ function ExperienceRow({ item, t, open, onToggle }) {
     <div className="border-b border-[var(--color-text)]/06 last:border-0">
       <button
         onClick={() => hasDetails && onToggle()}
-        className={`w-full flex gap-8 py-3 text-left group ${hasDetails ? 'cursor-pointer' : 'cursor-default'}`}
+        className={`w-full flex gap-4 md:gap-8 py-3 text-left group ${hasDetails ? 'cursor-pointer' : 'cursor-default'}`}
       >
         <span className="shrink-0 text-[14px] opacity-50 w-24 pt-px" style={{ fontFamily: 'VSOP, serif' }}>
           {item.year}
@@ -145,7 +145,7 @@ export default function CV() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0, transition: { ease, duration: 0.6, delay: 0.15 } }}
-          className="flex gap-4 items-center mt-6 mb-2"
+          className="flex flex-wrap gap-4 items-center mt-6 mb-2"
         >
           <a
             href="mailto:casandralpedersen@gmail.com"

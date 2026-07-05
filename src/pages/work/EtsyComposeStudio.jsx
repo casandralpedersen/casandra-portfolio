@@ -31,9 +31,8 @@ export default function EtsyComposeStudio({ project }) {
         <DetailHero project={project} showCover={false} />
         <DragLogo
           src={`${IMG}/compoze-logo.png`}
-          className="absolute right-[6%] md:right-[12%] top-20 md:top-24 z-30"
+          className="absolute right-[4%] md:right-[12%] top-4 md:top-24 z-30 w-[120px] md:w-[190px]"
           rotate={6}
-          w={190}
         />
       </div>
 

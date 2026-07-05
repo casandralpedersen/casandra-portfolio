@@ -29,6 +29,7 @@ function NavItem({ to, children }) {
 export default function Nav() {
   const { lang, toggleLang, t } = useLanguage()
   const [contactOpen, setContactOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const dropdownRef = useRef(null)
   const navigate = useNavigate()
   const location = useLocation()
@@ -67,7 +68,7 @@ export default function Nav() {
         Casandra
       </NavLink>
 
-      <div className="flex items-center gap-7">
+      <div className="hidden md:flex items-center gap-7">
         <a
           href="#arbejde"
           onClick={scrollToWork}
@@ -126,6 +127,54 @@ export default function Nav() {
           {lang === 'da' ? 'en' : 'dk'}
         </button>
       </div>
+
+      <button
+        onClick={() => setMenuOpen(v => !v)}
+        className="md:hidden flex flex-col gap-[5px] p-2 -mr-2"
+        aria-label={t('Menu', 'Menu')}
+      >
+        <span className="block w-6 h-[2px] bg-[var(--color-text)]" />
+        <span className="block w-6 h-[2px] bg-[var(--color-text)]" />
+        <span className="block w-6 h-[2px] bg-[var(--color-text)]" />
+      </button>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="md:hidden absolute left-0 right-0 top-full bg-[var(--color-base)] border-t border-[var(--color-text)]/10 shadow-sm flex flex-col px-8 py-2"
+          >
+            <a
+              href="#arbejde"
+              onClick={(e) => { scrollToWork(e); setMenuOpen(false) }}
+              className="py-3 text-sm tracking-wide border-b border-[var(--color-text)]/10"
+            >
+              {t('Tidligere arbejde', 'Previous work')}
+            </a>
+            <NavLink to="/om" onClick={() => setMenuOpen(false)} className="py-3 text-sm tracking-wide border-b border-[var(--color-text)]/10">
+              {t('Om mig', 'About me')}
+            </NavLink>
+            <NavLink to="/cv" onClick={() => setMenuOpen(false)} className="py-3 text-sm tracking-wide border-b border-[var(--color-text)]/10">
+              {t('Se CV', 'See CV')}
+            </NavLink>
+            <a href={`mailto:${EMAIL}`} className="py-3 text-sm tracking-wide border-b border-[var(--color-text)]/10">
+              {t('Send en mail', 'Send an email')}
+            </a>
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="py-3 text-sm tracking-wide border-b border-[var(--color-text)]/10">
+              LinkedIn
+            </a>
+            <button
+              onClick={() => { toggleLang(); setMenuOpen(false) }}
+              className="py-3 text-sm tracking-wide text-left opacity-60"
+            >
+              {lang === 'da' ? 'English' : 'Dansk'}
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   )
 }
