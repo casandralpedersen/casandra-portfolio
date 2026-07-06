@@ -280,6 +280,18 @@ function BusinessSection({ t, reduce }) {
               'Commercially a strong model: no costs on quiet days without an event - with staff and stock deployed exactly where the guests were. From 2024 to 2025 revenue per day nearly doubled across every kind of day.',
             )}
           </p>
+          <div className="mt-12 flex flex-wrap gap-x-12 md:gap-x-16 gap-y-6">
+            {[
+              { n: '~500', l: t('gæster på en gennemsnitsdag', 'guests on an average day') },
+              { n: '~2.000', l: t('på en rekorddag', 'on a record day') },
+              { n: '17.000', l: t('arenaens kapacitet', 'the arena’s capacity') },
+            ].map((s) => (
+              <div key={s.l}>
+                <p className="leading-none" style={{ fontFamily: TITLE_FONT, fontWeight: 700, fontSize: 'clamp(28px, 3.4vw, 44px)', color: AMBER }}>{s.n}</p>
+                <p className="mt-2 text-[13px] max-w-[150px]" style={{ color: CREAM, opacity: 0.8 }}>{s.l}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-16 md:mt-20">
@@ -390,6 +402,56 @@ function CompetencyGrid({ t }) {
   )
 }
 
+function SoMeSection({ t }) {
+  return (
+    <section className="px-6 md:px-10 py-20 md:py-28">
+      <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div>
+          <span className="block h-[2px] w-16 mb-5" style={{ background: OLIVE }} />
+          <p className="text-[11px] tracking-[0.22em] uppercase mb-6" style={{ color: OLIVE }}>
+            {t('Marketing', 'Marketing')}
+          </p>
+          <h2 className="mb-6 leading-[1.05]" style={{ fontFamily: TITLE_FONT, fontWeight: 700, fontSize: 'clamp(28px, 4vw, 52px)', color: 'var(--color-text)' }}>
+            {t('Synlige online, før baren åbnede', 'Visible online before the bar opened')}
+          </h2>
+          <p className="text-[16px] md:text-[18px] leading-relaxed opacity-80 mb-5">
+            {t(
+              'Vi byggede kendskab og trafik på sociale medier med en blanding af betalte annoncer og organisk indhold - så gæsterne allerede kendte Ø Bar, når de kom forbi arenaen.',
+              'We built awareness and traffic on social media with a mix of paid ads and organic content - so guests already knew Ø Bar when they passed the arena.',
+            )}
+          </p>
+          <p className="text-[16px] md:text-[18px] leading-relaxed opacity-80 mb-7">
+            {t(
+              'Ét gennemført visuelt udtryk gik igen på tværs af feed, skilte og annoncer - så brandet var til at genkende, uanset hvor gæsten mødte det.',
+              'One consistent visual language ran across the feed, signage and ads - so the brand was recognisable wherever a guest met it.',
+            )}
+          </p>
+          <p className="text-[11px] tracking-[0.14em] uppercase" style={{ color: OLIVE }}>
+            {t('Paid ads · organisk · content · visuel identitet', 'Paid ads · organic · content · visual identity')}
+          </p>
+        </div>
+
+        <div>
+          <motion.img
+            src={`${IMG}/o-bar-some-grid.jpg`}
+            alt={t('Ø Bar Instagram-feed', 'Ø Bar Instagram feed')}
+            className="w-full shadow-lg"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ ease: EASE, duration: 0.7 }}
+          />
+          <div className="grid grid-cols-2 gap-4 mt-4">
+            {['o-bar-some2.png', 'o-bar-hours.png'].map((src) => (
+              <img key={src} src={`${IMG}/${src}`} alt="Ø Bar SoMe" className="w-full shadow-md" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function OBar() {
   const { t } = useLanguage()
   const reduce = useReducedMotion()
@@ -429,6 +491,8 @@ export default function OBar() {
       <BusinessSection t={t} reduce={reduce} />
 
       <CompetencyGrid t={t} />
+
+      <SoMeSection t={t} />
     </main>
   )
 }
