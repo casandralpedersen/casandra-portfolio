@@ -1,9 +1,9 @@
 # CLAUDE.md — Casandra Portfolio
 
 ## Status
-Sidst opdateret: 2026-07-05
-Færdigt: Forside, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite, tekstur/grain, services-sektion, hero skill-pills (8 pills, strammet horisontalt bånd right-18-48% ved hover), /om kun Scrapbook 2.0, CV, nav med mobil-hamburger, **første projektunderside (Etsy/CompozeStudio) bygget med genbrugelig blocks-kit**, /arbejde-oversigt fjernet (redirecter til forsiden), mobil-responsivt review af hele sitet
-Næste: Byg resterende WorkDetail-sider (Ø Bar, Brødrene Vejen, Remakes) med samme blocks-kit efterhånden som billeder/tekst er klar. Komprimér de tunge Etsy-plakatbilleder (op til 8,5 MB) før prod-deploy. GitHub→Vercel auto-deploy kræver stadig at Casandra forbinder GitHub Login Connection på vercel.com/account/login-connections. **Ændringerne fra denne session er IKKE deployet til Vercel endnu.**
+Sidst opdateret: 2026-07-06
+Færdigt: Forside, /om, /cv, navigation, GitHub repo, Vercel deployment, vercel.json SPA-rewrite, tekstur/grain (subtil monokrom, baseFrequency 0.85, opacity 0.15), services-sektion, hero skill-pills (skubbet udad så de ikke rører billedet), /om kun Scrapbook 2.0, CV (årstal i brødtekst-font, sprog samme størrelse som skills), nav med mobil-hamburger, **Etsy-underside bygget med blocks-kit**, /arbejde-oversigt fjernet, mobil-responsivt review, **ScrollManager (gendan scroll ved tilbage, top ved fremad, logo→top)**, **Ø Bar-underside i gang: bespoke scroll-drevet build** — event-night-hero (lyskæder + neon-logo), stor beige intro, scroll-assembly-scene (Opstart→Byggeriet→Åbning→Eventdag, glide-cirkel til højre), animeret tal-graf (grupperet 2024 vs 2025), "Hvad jeg stod for"-kompetence-grid
+Næste for Ø Bar: brand/synligheds-sektion (brug plade-væg-billedet m. RU-lockup + bartender-billede), pull quote, resultat-sektion, "hvad du får"-sektion, NextProject. **Billeder mangler at blive lagt i public/images/projects/o-bar/**: Casandra skal droppe crowd-billede (til stage 4) + bartender-billede (til brand). Råfiler ligger gitignored i `_obar-raw/` (261MB, ikke committet). Resterende WorkDetail-sider: Brødrene Vejen, Remakes. GitHub→Vercel auto-deploy ikke sat op endnu.
 
 ---
 
@@ -29,6 +29,8 @@ Topnavigationen linker til `#arbejde` (scroller til forsidens projekt-grid), `/o
 - Genbrugelig **blocks-kit** i `src/components/work/blocks.jsx` deler sitets fonte/farver/easing/grain. Komponenter: `DetailHero`, `DragLogo` (post-it, draggable), `TextBlock` (label+number+rød streg), `MetaList`, `Feature` (tekst+billede), `Marquee` (uendelig plakat-rulle), `ImageGrid`, `ImageDuo` (frameColor+maxW), `TiltPair` (vinklede par), `PullQuote`, `NextProject` (tan bånd), `BackLink`.
 - Titler bruger **ITC Garamond bold** (`"ITCGaramond", serif` + fontWeight 700), samme som /om — IKKE VSOP.
 - Etsy-billeder i `public/images/projects/` (compoze-logo, poster-*, special-*, listing-*). Nogle er tunge og bør komprimeres.
+- **Ø Bar (`src/pages/work/OBar.jsx`)**: bespoke, scroll-drevet side (IKKE generisk blocks-kit). Vinkel: 0→1-bygger + forretning, COO & operationel partner. Event-night-look (mørk oliven + amber lyskæder) i hero + tal-ramp; resten creme. Billeder i `public/images/projects/o-bar/` (o-bar-*.jpg kurateret/komprimeret; råfiler tunge, skal ryddes før commit). Tekster skal være CV-konkrete: hvad blev gjort/løst + kompetence, i en arbejdsgivers interesse.
+- **Royal Unibrew — VIGTIGT**: På Ø Bar-siden må der KUN nævnes at der eksisterer et samarbejde. INGEN tal og INGEN detaljer om hvad de har givet (rabatter, POS-tilskud, markedsføringstilskud, gavekort, udstyr, containere, minimumsvolumen). Ingen 677k-tal nogen steder.
 
 ## Farvepalette
 ```css

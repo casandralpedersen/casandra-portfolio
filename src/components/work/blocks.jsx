@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
 
@@ -25,13 +25,23 @@ function Reveal({ children, delay = 0, className, style }) {
 
 export function BackLink() {
   const { t } = useLanguage()
+  const navigate = useNavigate()
+
+  function goBack() {
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1)
+    } else {
+      navigate('/')
+    }
+  }
+
   return (
-    <Link
-      to="/"
+    <button
+      onClick={goBack}
       className="inline-flex items-center gap-2 text-[11px] tracking-[0.16em] uppercase opacity-50 hover:opacity-90 transition-opacity"
     >
       <span>←</span> {t('Forsiden', 'Home')}
-    </Link>
+    </button>
   )
 }
 

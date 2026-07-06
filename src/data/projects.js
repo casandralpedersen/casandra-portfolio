@@ -2,13 +2,13 @@ export const projects = [
   {
     slug: 'o-bar',
     title: { da: 'Ø Bar', en: 'Ø Bar' },
-    category: { da: 'Visuel identitet & grafisk design', en: 'Visual identity & graphic design' },
-    year: '2023–2024',
+    category: { da: 'Forretning, drift & brand', en: 'Business, operations & brand' },
+    year: '2024–2025',
     cover: '/images/projects/o-bar.jpeg',
     accent: '#8B2A2A',
     description: {
-      da: 'Visuel identitet, SoMe, menuer og skilte for Ø Bar — bygget fra bunden som COO og head of marketing.',
-      en: 'Visual identity, social media, menus and signage for Ø Bar — built from scratch as COO and head of marketing.',
+      da: 'COO & operationel partner fra idé til drift — byggede et midlertidigt byrum ved Royal Arena til en fungerende forretning.',
+      en: 'COO & operational partner from idea to operation — built a temporary urban space by Royal Arena into a working business.',
     },
   },
   {

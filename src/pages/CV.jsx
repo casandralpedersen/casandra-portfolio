@@ -53,7 +53,7 @@ function ExperienceRow({ item, t, open, onToggle }) {
         onClick={() => hasDetails && onToggle()}
         className={`w-full flex gap-4 md:gap-8 py-3 text-left group ${hasDetails ? 'cursor-pointer' : 'cursor-default'}`}
       >
-        <span className="shrink-0 text-[14px] opacity-50 w-24 pt-px" style={{ fontFamily: 'VSOP, serif' }}>
+        <span className="shrink-0 text-[14px] opacity-50 w-24 pt-px">
           {item.year}
         </span>
         <div className="flex-1 min-w-0">
@@ -230,8 +230,8 @@ export default function CV() {
                 key={item.language}
                 className="grid grid-cols-[minmax(120px,160px)_1fr] items-baseline gap-x-6 border-b border-[var(--color-text)]/8 pb-2 last:border-0 last:pb-0"
               >
-                <span className="text-[18px] opacity-72">{item.language}</span>
-                <span className="text-[14px] opacity-48 tracking-wide">{item.level}</span>
+                <span className="text-[11px] tracking-wide uppercase font-semibold" style={{ color: 'var(--color-text)' }}>{item.language}</span>
+                <span className="text-[11px] opacity-48 tracking-wide">{item.level}</span>
               </div>
             ))}
           </div>

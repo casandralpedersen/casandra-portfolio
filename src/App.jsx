@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { LanguageProvider } from './context/LanguageContext'
 import Nav from './components/Nav'
 import Grain from './components/Grain'
+import ScrollManager from './components/ScrollManager'
 import Home from './pages/Home'
 import WorkDetail from './pages/WorkDetail'
 import About from './pages/About'
@@ -11,6 +12,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <Grain />
+      <ScrollManager />
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />

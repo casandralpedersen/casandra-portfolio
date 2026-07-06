@@ -63,6 +63,7 @@ export default function Nav() {
     >
       <NavLink
         to="/"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className="font-display text-xl tracking-wider uppercase hover:opacity-70 transition-opacity"
       >
         Casandra

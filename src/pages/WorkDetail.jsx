@@ -2,9 +2,11 @@ import { useParams, Link } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext'
 import { projects } from '../data/projects'
 import EtsyComposeStudio from './work/EtsyComposeStudio'
+import OBar from './work/OBar'
 
 const pages = {
   'etsy-composestudio': EtsyComposeStudio,
+  'o-bar': OBar,
 }
 
 export default function WorkDetail() {

@@ -10,13 +10,13 @@ const PILL_NOISE =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E\")"
 
 const SKILLS = [
-  { da: 'UX Design', en: 'UX Design', pos: 'top-[4%] right-[46%]', rotate: -3, delay: 0 },
-  { da: 'Konstruktiv', en: 'Constructive', pos: 'top-[4%] right-[24%]', rotate: 2, delay: 0.05 },
-  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[26%] right-[18%]', rotate: 5, delay: 0.1 },
-  { da: 'Vibe coding', en: 'Vibe coding', pos: 'top-[42%] right-[48%]', rotate: 3, delay: 0.15 },
-  { da: 'Salg & kundeservice', en: 'Sales & customer service', pos: 'top-[42%] right-[18%]', rotate: -4, delay: 0.2 },
-  { da: 'Nysgerrig', en: 'Curious', pos: 'top-[62%] right-[46%]', rotate: -5, delay: 0.25 },
-  { da: 'Problemløsning', en: 'Problem-solving', pos: 'top-[62%] right-[18%]', rotate: 6, delay: 0.3 },
+  { da: 'UX Design', en: 'UX Design', pos: 'top-[4%] right-[50%]', rotate: -3, delay: 0 },
+  { da: 'Konstruktiv', en: 'Constructive', pos: 'top-[4%] right-[20%]', rotate: 2, delay: 0.05 },
+  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[26%] right-[13%]', rotate: 5, delay: 0.1 },
+  { da: 'Vibe coding', en: 'Vibe coding', pos: 'top-[42%] right-[53%]', rotate: 3, delay: 0.15 },
+  { da: 'Salg & kundeservice', en: 'Sales & customer service', pos: 'top-[42%] right-[13%]', rotate: -4, delay: 0.2 },
+  { da: 'Nysgerrig', en: 'Curious', pos: 'top-[62%] right-[50%]', rotate: -5, delay: 0.25 },
+  { da: 'Problemløsning', en: 'Problem-solving', pos: 'top-[62%] right-[14%]', rotate: 6, delay: 0.3 },
   { da: 'Omstillingsparat', en: 'Adaptable', pos: 'bottom-[8%] right-[32%]', rotate: 4, delay: 0.35 },
 ]
 
@@ -559,8 +559,9 @@ export default function Home() {
             className="text-[clamp(1.5rem,3vw,2.75rem)] leading-snug max-w-2xl"
           >
             <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0 }}>Hi</span>
+            <span style={{ color: 'var(--color-burgundy)' }}>,</span>
             <span className="opacity-75">
-              {t(', jeg er Casandra, UX-designer i København med en baggrund i business og marketing, drevet af ', ", I'm Casandra, a Copenhagen-based UX designer with a background in business and marketing, driven by ")}
+              {t(' jeg er Casandra, UX-designer i København med en baggrund i business og marketing, drevet af ', " I'm Casandra, a Copenhagen-based UX designer with a background in business and marketing, driven by ")}
               <RotatingWord words={t(DRIVEN_BY_WORDS.da, DRIVEN_BY_WORDS.en)} />.
             </span>
           </motion.p>

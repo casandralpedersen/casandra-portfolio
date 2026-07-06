@@ -48,7 +48,7 @@ export default function EtsyComposeStudio({ project }) {
             ),
           },
           { label: t('År', 'Year'), value: project.year },
-          { label: t('Værktøjer', 'Tools'), value: 'Etsy · Photoshop · Illustrator' },
+          { label: t('Værktøjer', 'Tools'), value: 'Etsy · Figma · Canva Pro' },
         ]}
       />
 
@@ -61,8 +61,8 @@ export default function EtsyComposeStudio({ project }) {
       >
         <p>
           {t(
-            'CompozeStudio er et brand og en Etsy-butik jeg byggede og drev fra ende til anden. Butikken sælger printbare plakater som digitale downloads - fra minimalistiske album-plakater til botaniske prints - og jeg stod for det hele: brandidentitet, produktdesign, billedbearbejdning, tekst, SEO og den daglige drift.',
-            'CompozeStudio is a brand and an Etsy shop I built and ran end to end. It sells printable posters as digital downloads - from minimalist album posters to botanical prints - and I handled all of it: brand identity, product design, image work, copy, SEO and the day-to-day running.',
+            'CompozeStudio er et brand og en Etsy-butik jeg byggede og drev fra ende til anden. Butikken sælger printbare plakater som digitale downloads, og jeg stod for det hele: brandidentitet, produktdesign, billedbearbejdning, tekst, SEO og den daglige drift.',
+            'CompozeStudio is a brand and an Etsy shop I built and ran end to end. It sells printable posters as digital downloads, and I handled all of it: brand identity, product design, image work, copy, SEO and the day-to-day running.',
           )}
         </p>
       </TextBlock>
@@ -74,16 +74,10 @@ export default function EtsyComposeStudio({ project }) {
         title={t('Det begyndte generisk', 'It started generic')}
         image={{ src: `${IMG}/poster-fruit.jpg`, alt: 'Frugt-plakat' }}
       >
-        <p className="mb-4">
-          {t(
-            'Jeg startede med at generere frugt-plakaten og en række andre generiske motiver. Det fungerede ikke - markedet var fyldt med præcis den slags, og plakaterne forsvandt i mængden.',
-            'I started by generating the fruit poster and a range of other generic motifs. It didn’t work - the market was full of exactly that, and the posters disappeared into the crowd.',
-          )}
-        </p>
         <p>
           {t(
-            'Så jeg gik mere nichet til værks og opdagede at fandoms havde langt mindre konkurrence, men stadig en stor og engageret målgruppe. Det var første gang jeg for alvor dykkede ned i SEO og lod søgningen styre hvad jeg lavede.',
-            'So I went more niche and discovered that fandoms had far less competition but still a large, engaged audience. It was the first time I really dug into SEO and let search guide what I made.',
+            'Mine første plakater var generiske motiver, der druknede i et overfyldt marked. Jeg skiftede til nichede fandom-plakater med mindre konkurrence, og lod SEO-data styre, hvad jeg lavede fremover.',
+            'My first posters were generic motifs that drowned in an overcrowded market. I switched to niche fandom posters with less competition and let SEO data guide what I made going forward.',
           )}
         </p>
       </Feature>
@@ -97,8 +91,8 @@ export default function EtsyComposeStudio({ project }) {
       >
         <p>
           {t(
-            'Hele kataloget følger det samme designsprog: albumcover, tracklist, en farvepalette trukket ud af coveret, kunstnerens signatur og udgivelsesdato. Systemet gør at hver ny plakat tager kort tid at lave, men stadig står knivskarpt og genkendeligt ved siden af de andre.',
-            'The whole catalogue follows the same design language: album cover, tracklist, a colour palette pulled from the artwork, the artist’s signature and release date. The system means each new poster is quick to make, yet still looks sharp and recognisable next to the others.',
+            'Jeg satte et fast designsystem op til album-plakaterne, så hver ny plakat kunne produceres hurtigt uden at gå på kompromis med kvalitet eller genkendelighed.',
+            'I set up a fixed design system for the album posters, so each new poster could be produced quickly without compromising on quality or recognisability.',
           )}
         </p>
       </TextBlock>
@@ -117,30 +111,25 @@ export default function EtsyComposeStudio({ project }) {
       <TextBlock
         number="04"
         label={t('Variation', 'Range')}
-        title={t('Special Edition: samme univers, nyt format', 'Special Edition: same universe, new format')}
+        title={t('Special Edition', 'Special Edition')}
         accent={accent}
         width="wide"
-      >
-        <p>
-          {t(
-            'For at udvide butikken lavede jeg en avis-inspireret serie, hvor sangtekster sættes op som en gammel forside. Det viste at brandet kunne strække sig til nye formater uden at miste sin identitet.',
-            'To widen the shop I made a newspaper-inspired series where lyrics are laid out like an old front page. It showed the brand could stretch into new formats without losing its identity.',
-          )}
-        </p>
-      </TextBlock>
-
-      <TiltPair
-        accent={accent}
-        items={[
-          { src: `${IMG}/special-white-ferrari.png`, alt: 'White Ferrari special edition' },
-          { src: `${IMG}/special-we-all-try.png`, alt: 'We All Try special edition' },
-        ]}
       />
+
+      <div className="-mt-12 md:-mt-20">
+        <TiltPair
+          accent={accent}
+          items={[
+            { src: `${IMG}/special-white-ferrari.png`, alt: 'White Ferrari special edition' },
+            { src: `${IMG}/special-we-all-try.png`, alt: 'We All Try special edition' },
+          ]}
+        />
+      </div>
 
       <TextBlock
         number="05"
         label={t('Konvertering', 'Conversion')}
-        title={t('Fra produkt til salg', 'From product to sale')}
+        title={t('Support indbygget i produktet', 'Support built into the product')}
         accent={accent}
         width="wide"
       >
