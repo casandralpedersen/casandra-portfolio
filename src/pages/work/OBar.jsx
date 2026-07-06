@@ -249,7 +249,7 @@ function BusinessSection({ t, reduce }) {
   const maxV = 120000
   const hOf = (v) => Math.sqrt(v) / Math.sqrt(maxV)
   const groups = [
-    { label: t('Laveste dag', 'Lowest day'), a: 7000, b: 15000 },
+    { label: t('Laveste 25%', 'Lowest 25%'), a: 7000, b: 15000 },
     { label: t('Gennemsnitsdag', 'Average day'), a: 18000, b: 32000 },
     { label: t('Rekorddag', 'Record day'), a: 65000, b: 120000 },
   ]
