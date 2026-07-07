@@ -121,7 +121,7 @@ function Hero({ t, reduce }) {
 function useStages(t) {
   return [
     {
-      img: 'o-bar-lot.jpg',
+      img: 'o-bar-start.jpg',
       pos: 'top',
       num: '01',
       label: t('Opstart', 'Start'),
@@ -129,7 +129,7 @@ function useStages(t) {
       text: t('Vi startede fra ingenting - en tom plads uden strøm, vand eller faciliteter. Min opgave var at få helheden til at hænge sammen og bygge en forretning op fra bunden.', 'We started from nothing - an empty lot with no power, water or facilities. My job was to make it all come together and build a business from the ground up.'),
     },
     {
-      img: 'o-bar-bar.jpg',
+      img: 'o-bar-build.jpg',
       num: '02',
       label: t('Byggeriet', 'The build'),
       title: t('Baren rejste sig', 'The bar rose'),
