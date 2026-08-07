@@ -73,7 +73,7 @@ Ligger i `src/data/experience.js` — bruges af både `/om` og `/cv`.
 - Ingen em-dashes — brug bindestreg
 
 ## Arbejdsregler
-1. **Playwright efter alle visuelle ændringer** — screenshot før rapportering
+1. **Playwright efter alle visuelle ændringer** - screenshot før rapportering. Kør mod **Aside** (Casandras browser), ikke Chrome: MCP-serveren `aside` i `~/.claude.json` peger på `/Applications/Aside.app/Contents/MacOS/Aside`
 2. **Dev server**: kør `npm run dev`, typisk på port 5173
 3. Byg én ting ad gangen — ikke hele sektioner på én gang
 4. Rediger eksisterende filer fremfor at oprette nye
