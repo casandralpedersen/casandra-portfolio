@@ -4,6 +4,10 @@ import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
 import { EMAIL, LINKEDIN, ABOUT_PHOTO, aboutLabel, aboutBlocks, renderEmphasised } from '../../data/aboutContent'
 
+// Trio-hero'en (venndiagram med Design/Forretning/Teknologi) er slået fra,
+// men bevaret. Sæt til true for at få den tilbage øverst på /om.
+const SHOW_TRIO_HERO = false
+
 const ease = [0.22, 1, 0.36, 1]
 const BURGUNDY = '#913C27'
 const BLUE = '#5A86AB'
@@ -220,6 +224,7 @@ export default function LayoutScrapbook2() {
   return (
     <main className="min-h-screen overflow-hidden pb-32">
       {/* Trio hero */}
+      {SHOW_TRIO_HERO && (
       <section className="texture relative px-8 md:px-16 pt-10 pb-8 min-h-[88vh] flex flex-col justify-center">
         <div className="text-center mb-8">
           <motion.p
@@ -275,9 +280,10 @@ export default function LayoutScrapbook2() {
           ))}
         </div>
       </section>
+      )}
 
       {/* Hero collage + Notes */}
-      <section className="texture relative px-8 md:px-16 pt-44 pb-0">
+      <section className={`texture relative px-8 md:px-16 pb-0 ${SHOW_TRIO_HERO ? 'pt-44' : 'pt-20 md:pt-28'}`}>
         <div className="relative md:pl-[6%]">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
