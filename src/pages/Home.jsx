@@ -70,13 +70,13 @@ const services = [
       },
       {
         title: { da: 'Grafisk design', en: 'Graphic design' },
-        desc: { da: 'Menuer, skilte, plakater og andet grafisk materiale, der skal fungere i den virkelige verden.', en: 'Menus, signs, posters, and other graphic materials that need to work in the real world.' },
+        desc: { da: 'Menuer, skilte, plakater og andet grafisk materiale, designet i Figma og Canva.', en: 'Menus, signs, posters, and other graphic materials, designed in Figma and Canva.' },
       },
     ],
   },
   {
     title: { da: 'Strategi & forretning', en: 'Strategy & business' },
-    desc: { da: 'Merkantil baggrund med forståelse for budgetter, drift og målgrupper. Erfaring med HR, rekruttering, vagtplaner og marketingplaner - og med at løfte blikket og se tingene fra et højere niveau end specialisten. Initiativer skal også kunne betale sig.', en: 'A commercial background with an understanding of budgets, operations, and target groups. Experience with HR, recruiting, scheduling, and marketing plans - and with stepping back to see things from a higher level than the specialist. Initiatives also need to make financial sense.' },
+    desc: { da: 'Merkantil baggrund med forståelse for budgetter, drift og målgrupper. Erfaring med HR, rekruttering, vagtplaner og marketingplaner.', en: 'A commercial background with an understanding of budgets, operations, and target groups. Experience with HR, recruiting, scheduling, and marketing plans.' },
     aside: [
       { da: 'Budgetter', en: 'Budgets' },
       { da: 'Drift', en: 'Operations' },
@@ -288,8 +288,8 @@ function Services({ t }) {
       number: '03',
       title: { da: 'AI & automatisering', en: 'AI & automation' },
       desc: {
-        da: 'Jeg bruger AI som dagligt arbejdsredskab — fra vibecoding med GitHub og Vercel til automatisering af hverdag, studie og arbejde. Jeg tror på at det vil ændre måden vi arbejder på, og jeg vil være med fra start.',
-        en: 'I use AI as a daily work tool — from vibe coding with GitHub and Vercel to automating everyday life, studies, and work. I believe it will change the way we work, and I want to be part of it from the start.',
+        da: 'Jeg bruger AI som dagligt arbejdsredskab, fra vibecoding med GitHub og Vercel til automatisering af hverdag, studie og arbejde. Jeg tror på at det vil ændre måden vi arbejder på, og jeg vil være med fra start.',
+        en: 'I use AI as a daily work tool, from vibe coding with GitHub and Vercel to automating everyday life, studies, and work. I believe it will change the way we work, and I want to be part of it from the start.',
       },
     },
     { number: '04', title: services[2].title, desc: services[2].desc },
@@ -460,10 +460,15 @@ function AboutTeaser({ t }) {
         >
           <Link
             to="/om"
-            className="inline-block mt-7 text-[13px] tracking-wide border-b border-[var(--color-text)]/30 pb-0.5 hover:border-[var(--color-text)] transition-colors"
+            className="group inline-flex items-center gap-3 mt-8 px-6 py-3 rounded-sm text-[14px] tracking-wide shadow-sm hover:shadow-md transition-shadow"
+            style={{ background: 'var(--color-burgundy)', color: 'var(--color-base)' }}
           >
-            {t('Mød din kommende generalist - hvordan jeg arbejder og hvorfor →', 'Meet your next generalist - how I work and why →')}
+            <span>{t('Mød din kommende generalist', 'Meet your next generalist')}</span>
+            <span className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">→</span>
           </Link>
+          <p className="mt-3 text-[12px] opacity-55">
+            {t('hvordan jeg arbejder og hvorfor', 'how I work and why')}
+          </p>
         </motion.div>
       </div>
     </section>

@@ -10,7 +10,6 @@ import {
   Marquee,
   ImageDuo,
   TiltPair,
-  PullQuote,
   NextProject,
 } from '../../components/work/blocks'
 
@@ -149,13 +148,6 @@ export default function EtsyComposeStudio({ project }) {
         left={{ src: `${IMG}/listing-what-you-get.jpg`, alt: 'What you get' }}
         right={{ src: `${IMG}/listing-how-to-download.jpg`, alt: 'How to download' }}
       />
-
-      <PullQuote accent={accent}>
-        {t(
-          '«Et system slår en god idé. Det er det der gør en butik til en forretning.»',
-          '“A system beats a good idea. That’s what turns a shop into a business.”',
-        )}
-      </PullQuote>
 
       <TextBlock number="06" label={t('Resultat', 'Outcome')} accent={accent} width="wide">
         <p className="mb-4">

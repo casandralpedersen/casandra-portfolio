@@ -7,8 +7,8 @@ export const projects = [
     cover: '/images/projects/o-bar.jpeg',
     accent: '#8B2A2A',
     description: {
-      da: 'COO & operationel partner fra idé til drift — byggede et midlertidigt byrum ved Royal Arena til en fungerende forretning.',
-      en: 'COO & operational partner from idea to operation — built a temporary urban space by Royal Arena into a working business.',
+      da: 'COO & operationel partner fra idé til drift. Byggede et midlertidigt byrum ved Royal Arena til en fungerende forretning.',
+      en: 'COO & operational partner from idea to operation. Built a temporary urban space by Royal Arena into a working business.',
     },
   },
   {
@@ -19,8 +19,8 @@ export const projects = [
     cover: '/images/projects/poster-frank-ocean.png',
     accent: '#A8392C',
     description: {
-      da: 'Design og drift af en Etsy-butik med digitale produkter — fra produktfotografi til SEO og konvertering.',
-      en: 'Design and operation of an Etsy shop with digital products — from product photography to SEO and conversion.',
+      da: 'Design og drift af en Etsy-butik med digitale produkter, fra produktfotografi til SEO og konvertering.',
+      en: 'Design and operation of an Etsy shop with digital products, from product photography to SEO and conversion.',
     },
   },
   {

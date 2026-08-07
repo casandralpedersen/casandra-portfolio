@@ -134,7 +134,7 @@ export default function LayoutMagasin() {
       <div className="texture px-8 md:px-16 pt-12">
         <div className="flex items-baseline justify-between border-b-2 border-[var(--color-text)] pb-3">
           <span className="text-[11px] tracking-[0.3em] uppercase font-semibold">{t('Om mig', 'About')}</span>
-          <span className="text-[11px] tracking-[0.3em] uppercase opacity-50">Nr. 01 — 2025</span>
+          <span className="text-[11px] tracking-[0.3em] uppercase opacity-50">Nr. 01 · 2025</span>
         </div>
         <div className="flex items-baseline justify-between border-b border-[var(--color-text)]/30 py-2 text-[10px] tracking-[0.25em] uppercase opacity-40">
           <span>{t(aboutLabel.da, aboutLabel.en)}</span>

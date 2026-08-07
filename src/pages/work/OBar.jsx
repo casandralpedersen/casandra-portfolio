@@ -126,7 +126,7 @@ function useStages(t) {
       num: '01',
       label: t('Opstart', 'Start'),
       title: t('Fra tom asfaltplads', 'From an empty lot'),
-      text: t('Vi startede fra ingenting - en tom plads uden strøm, vand eller faciliteter. Min opgave var at få helheden til at hænge sammen og bygge en forretning op fra bunden.', 'We started from nothing - an empty lot with no power, water or facilities. My job was to make it all come together and build a business from the ground up.'),
+      text: t('Vi startede fra ingenting - en tom plads uden strøm, vand eller faciliteter.', 'We started from nothing - an empty lot with no power, water or facilities.'),
     },
     {
       img: 'o-bar-build.jpg',
@@ -256,31 +256,31 @@ function BusinessSection({ t, reduce }) {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden px-6 md:px-10 py-24 md:py-32"
+      className="relative overflow-hidden px-6 md:px-10 py-16 md:py-24"
       style={{ background: `radial-gradient(120% 100% at 80% 20%, ${NIGHT_BOT} 0%, ${NIGHT_TOP} 75%)`, color: CREAM }}
     >
       <div className="max-w-[1100px] mx-auto">
         <div className="max-w-2xl">
           <span className="block h-[2px] w-16 mb-5" style={{ background: AMBER }} />
           <p className="text-[11px] tracking-[0.2em] uppercase mb-4" style={{ color: AMBER }}>
-            {t('Forretningen', 'The business')}
+            {t('Modellen', 'The model')}
           </p>
           <h2 className="mb-6 leading-[1.02]" style={{ fontFamily: TITLE_FONT, fontWeight: 700, fontSize: 'clamp(30px, 4.4vw, 56px)', color: CREAM }}>
-            {t('Drevet af arenaens kalender', 'Driven by the arena’s calendar')}
+            {t('Åben når arenaen var åben', 'Open when the arena was open')}
           </h2>
           <p className="text-[15px] md:text-[17px] leading-relaxed mb-4" style={{ color: CREAM, opacity: 0.82 }}>
             {t(
-              'Ø Bar åbnede kun på dage med event i Royal Arena - hvor op til 17.000 gæster strømmede forbi. En efterspørgselsdrevet model med 8-11 timers åbningsdage.',
-              'Ø Bar only opened on days with an event at Royal Arena - where up to 17,000 guests streamed past. A demand-driven model with 8-11 hour opening days.',
+              'Ø Bar åbnede kun på dage med event i Royal Arena - hvor op til 17.000 gæster strømmede forbi.',
+              'Ø Bar only opened on days with an event at Royal Arena - where up to 17,000 guests streamed past.',
             )}
           </p>
           <p className="text-[15px] md:text-[17px] leading-relaxed" style={{ color: CREAM, opacity: 0.82 }}>
             {t(
-              'Rent forretningsmæssigt en stærk model: ingen omkostninger på stille dage uden event - og bemanding og varer sat ind præcis der, hvor gæsterne var. Fra 2024 til 2025 blev omsætningen pr. dag næsten fordoblet på tværs af alle dage.',
-              'Commercially a strong model: no costs on quiet days without an event - with staff and stock deployed exactly where the guests were. From 2024 to 2025 revenue per day nearly doubled across every kind of day.',
+              'Fra 2024 til 2025 blev omsætningen pr. dag næsten fordoblet på tværs af alle dage.',
+              'From 2024 to 2025 revenue per day nearly doubled across every kind of day.',
             )}
           </p>
-          <div className="mt-12 flex flex-wrap gap-x-12 md:gap-x-16 gap-y-6">
+          <div className="mt-10 flex flex-wrap gap-x-12 md:gap-x-16 gap-y-6">
             {[
               { n: '~500', l: t('gæster på en gennemsnitsdag', 'guests on an average day') },
               { n: '~2.000', l: t('på en rekorddag', 'on a record day') },
@@ -294,7 +294,7 @@ function BusinessSection({ t, reduce }) {
           </div>
         </div>
 
-        <div className="mt-16 md:mt-20">
+        <div className="mt-8 md:mt-10">
           <div className="flex items-center gap-6 justify-end mb-8 text-[12px] tracking-wide" style={{ color: CREAM }}>
             <span className="flex items-center gap-2"><span className="rounded-sm" style={{ width: 12, height: 12, background: 'rgba(242,196,118,0.4)' }} />2024</span>
             <span className="flex items-center gap-2"><span className="rounded-sm" style={{ width: 12, height: 12, background: AMBER }} />2025</span>
@@ -340,24 +340,19 @@ function BusinessSection({ t, reduce }) {
 function CompetencyGrid({ t }) {
   const items = [
     {
-      title: t('Forretningsdrift', 'Business operations'),
-      text: t('Byggede driften fra bunden - åbne/lukke-procedurer og daglig afvikling på tværs af uforudsigelige eventdage.', 'Built operations from scratch - opening/closing procedures and daily running across unpredictable event days.'),
-      skills: t('Drift · proces', 'Operations · process'),
-    },
-    {
-      title: t('Personale & rekruttering', 'People & hiring'),
+      title: t('HR & personale', 'HR & people'),
       text: t('Team leder for bartenderne: ansættelseskontrakter, oplæring samt vagt- og sygemeldingsprocedurer.', 'Team lead for the bartenders: employment contracts, onboarding and shift and sick-leave procedures.'),
-      skills: t('Ledelse · HR · oplæring', 'Leadership · HR · onboarding'),
+      skills: t('HR · Rekruttering · Oplæring · Vagtplanlægning', 'HR · Recruitment · Onboarding · Scheduling'),
     },
     {
-      title: t('Marketing & brand', 'Marketing & brand'),
-      text: t('Visuel identitet, menu- og prisskilte, Google Business og SoMe - så stedet var til at finde og genkende.', 'Visual identity, menu and price signage, Google Business and social media - so the place was findable and recognisable.'),
-      skills: t('Marketing · branding · Figma · Canva Pro', 'Marketing · branding · Figma · Canva Pro'),
+      title: t('Marketing', 'Marketing'),
+      text: t('Udvikling og eksekvering af markedsføringskampagner samt løbende SoMe-indhold.', 'Development and execution of marketing campaigns plus ongoing social media content.'),
+      skills: t('Marketing · Kampagner · SoMe · Content', 'Marketing · Campaigns · Social · Content'),
     },
     {
-      title: t('Systemer & processer', 'Systems & process'),
-      text: t('Satte faste procedurer op, så baren kunne køre ensartet - uanset hvem der stod bag disken.', 'Set up fixed procedures so the bar ran consistently - no matter who was behind the counter.'),
-      skills: t('Systematik · optimering', 'Systematisation · optimisation'),
+      title: t('Visuel identitet & grafisk design', 'Visual identity & graphic design'),
+      text: t('Opbyggede Ø Bars visuelle identitet fra bunden: logo, skiltning og menukort, med løbende vedligeholdelse og design af menu- og prisskilte.', 'Built Ø Bar’s visual identity from scratch: logo, signage and menus, with ongoing upkeep and design of menu and price signs.'),
+      skills: t('Visuel identitet · Branding · Menu- og prisskilte · Figma', 'Visual identity · Branding · Menu and price signs · Figma'),
     },
   ]
   return (
@@ -367,21 +362,18 @@ function CompetencyGrid({ t }) {
         <p className="text-[11px] tracking-[0.2em] uppercase mb-4" style={{ color: OLIVE }}>
           {t('Hvad jeg stod for', 'What I owned')}
         </p>
-        <h2 className="mb-3 leading-[1.02] max-w-3xl" style={{ fontFamily: TITLE_FONT, fontWeight: 700, fontSize: 'clamp(28px, 4vw, 52px)', color: 'var(--color-text)' }}>
+        <h2 className="mb-12 leading-[1.02] max-w-3xl" style={{ fontFamily: TITLE_FONT, fontWeight: 700, fontSize: 'clamp(28px, 4vw, 52px)', color: 'var(--color-text)' }}>
           {t('Konkret ansvar bag titlen', 'Concrete ownership behind the title')}
         </h2>
-        <p className="max-w-xl text-[15px] md:text-[17px] leading-relaxed opacity-70 mb-12">
-          {t('Fire områder jeg ejede fra ende til anden - og hvad det krævede at få dem til at fungere.', 'Four areas I owned end to end - and what it took to make them work.')}
-        </p>
 
-        <div className="grid md:grid-cols-2 gap-x-14 gap-y-11">
+        <div className="grid md:grid-cols-3 gap-x-10 gap-y-11">
           {items.map((it, i) => (
             <motion.div
               key={it.title}
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ ease: EASE, duration: 0.6, delay: (i % 2) * 0.1 }}
+              transition={{ ease: EASE, duration: 0.6, delay: i * 0.08 }}
               className="border-t pt-5"
               style={{ borderColor: 'rgba(41,92,125,0.18)' }}
             >
@@ -412,12 +404,12 @@ function SoMeSection({ t }) {
             {t('Marketing', 'Marketing')}
           </p>
           <h2 className="mb-6 leading-[1.05]" style={{ fontFamily: TITLE_FONT, fontWeight: 700, fontSize: 'clamp(28px, 4vw, 52px)', color: 'var(--color-text)' }}>
-            {t('Synlige online, før baren åbnede', 'Visible online before the bar opened')}
+            {t('Synlige online', 'Visible online')}
           </h2>
           <p className="text-[16px] md:text-[18px] leading-relaxed opacity-80 mb-5">
             {t(
-              'Vi byggede kendskab og trafik på sociale medier med en blanding af betalte annoncer og organisk indhold - så gæsterne allerede kendte Ø Bar, når de kom forbi arenaen.',
-              'We built awareness and traffic on social media with a mix of paid ads and organic content - so guests already knew Ø Bar when they passed the arena.',
+              'Vi byggede kendskab og trafik på sociale medier med en blanding af betalte annoncer og organisk indhold.',
+              'We built awareness and traffic on social media with a mix of paid ads and organic content.',
             )}
           </p>
           <p className="text-[16px] md:text-[18px] leading-relaxed opacity-80 mb-7">
@@ -478,8 +470,8 @@ export default function OBar() {
             </p>
             <p>
               {t(
-                'Jeg var med fra idé og opstart som COO og operationel partner - driftsmæssigt en ligeværdig del af teamet.',
-                'I was there from idea and start-up as COO and operational partner - an equal part of the team on the operational side.',
+                'Jeg var med fra idé og opstart som COO og operationel partner.',
+                'I was there from idea and start-up as COO and operational partner.',
               )}
             </p>
           </div>
@@ -488,11 +480,11 @@ export default function OBar() {
 
       <AssembleScene t={t} reduce={reduce} />
 
-      <BusinessSection t={t} reduce={reduce} />
-
       <CompetencyGrid t={t} />
 
       <SoMeSection t={t} />
+
+      <BusinessSection t={t} reduce={reduce} />
     </main>
   )
 }

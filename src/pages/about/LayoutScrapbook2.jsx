@@ -297,7 +297,7 @@ export default function LayoutScrapbook2() {
             {t('Lidt om din nysgerrige generalist', 'A little about your curious generalist')}
           </motion.p>
 
-          {/* Photos — absolute right */}
+          {/* Photos - absolute right */}
           <div className="hidden md:block absolute right-0 top-0 w-[42%] h-[320px] pointer-events-none">
             <Photo src="/images/sitwavemepic.png" rotate={-3} className="absolute right-24 top-0 z-20 pointer-events-auto" w={210} h={260} tapeColor="rgba(90,134,171,0.25)" />
             <Star className="left-4 top-4" color={BLUE} size={30} />
