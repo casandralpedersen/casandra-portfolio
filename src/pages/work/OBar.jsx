@@ -91,8 +91,8 @@ function Hero({ t, reduce }) {
           style={{ color: CREAM, opacity: 0.85 }}
         >
           {t(
-            'Fra tom asfaltplads til fungerende forretning ved Royal Arena.',
-            'From an empty asphalt lot to a working business by Royal Arena.',
+            'Fra tom asfaltplads til fungerende forretning. Mødested og bar foran Royal Arena.',
+            'From an empty asphalt lot to a working business. A meeting place and bar in front of Royal Arena.',
           )}
         </motion.p>
 

@@ -65,8 +65,8 @@ export const experience = [
     note: { da: 'International merkantil studentereksamen · Snit 8,5', en: 'International business high school · Avg. 8.5' },
     type: 'edu',
     details: {
-      da: 'International merkantil studentereksamen med fokus på økonomi, markedsføring, afsætning og international handel. Del af traditionsudvalget. Udvekslingsophold i Spanien (2020-2021) og praktik i Sevilla (2023). Afsluttet med snit 8,5.',
-      en: 'International business high school with focus on economics, marketing, sales and international trade. Part of the traditions committee. Exchange year in Spain (2020-2021) and internship in Seville (2023). Graduated with average 8.5.',
+      da: 'International merkantil studentereksamen med fokus på økonomi, markedsføring, afsætning og international handel. Del af traditionsudvalget. Praktik i Sevilla (2023). Afsluttet med snit 8,5.',
+      en: 'International business high school with focus on economics, marketing, sales and international trade. Part of the traditions committee. Internship in Seville (2023). Graduated with average 8.5.',
     },
   },
   {

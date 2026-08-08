@@ -100,8 +100,8 @@ const fadeUp = (delay) => ({
 })
 
 const DRIVEN_BY_WORDS = {
-  da: ['målbar forandring', 'bevidste designvalg', 'tal fra en A/B-test', 'smil', 'hyldeblomstdrik', 'nysgerrighed & proaktivitet'],
-  en: ['measurable change', 'intentional design decisions', 'seeing stats from an A/B test', 'smiles', 'elderflower drink', 'curiosity & proactivity'],
+  da: ['målbar forandring', 'bevidste designvalg', 'tal fra en A/B-test', 'smil', 'hyldeblomstdrik', 'udfordringer', 'frihed under ansvar', 'god kaffe'],
+  en: ['measurable change', 'intentional design decisions', 'seeing stats from an A/B test', 'smiles', 'elderflower drink', 'a challenge', 'freedom with responsibility', 'good coffee'],
 }
 
 function RotatingWord({ words }) {
@@ -141,7 +141,6 @@ function getContrastTextColor(hex) {
 }
 
 const placeholderProjects = [
-  { number: '05', accent: 'var(--color-burgundy)' },
   { number: '06', accent: 'var(--color-blue)' },
 ]
 
@@ -247,7 +246,7 @@ function WorkGrid({ t }) {
                   : {}
               }
             >
-              {t('Kommer snart', 'Coming soon')}
+              {t('Hovedstadens Rekrutteringsservice', 'Hovedstadens Rekrutteringsservice')}
             </motion.h3>
             <p
               className="flex items-center gap-2 text-[11px] tracking-[0.1em] uppercase mt-1.5"
@@ -298,7 +297,7 @@ function Services({ t }) {
   ]
 
   return (
-    <section ref={ref} className="relative px-6 md:px-10 py-20 overflow-hidden">
+    <section id="kogt-ned" ref={ref} className="relative px-6 md:px-10 py-20 overflow-hidden">
       <motion.div
         initial={{ y: 18, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -388,10 +387,10 @@ function Contact({ t }) {
       <motion.h2
         initial={{ y: 30, opacity: 0 }}
         animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.8, delay: 0.1 } } : {}}
-        className="leading-[1.05] max-w-2xl"
-        style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(30px, 4.8vw, 64px)', color: 'var(--color-base)' }}
+        className="leading-[1.1] max-w-2xl"
+        style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(24px, 3.6vw, 46px)', color: 'var(--color-base)' }}
       >
-        {t('Nok om mig. Hvad arbejder du på?', 'Enough about me. What are you working on?')}
+        {t('Nok om mig. Hvad arbejder du på? Og mangler du mon mig?', 'Enough about me. What are you working on? And could you use someone like me?')}
       </motion.h2>
 
       <motion.a
@@ -412,7 +411,7 @@ function AboutTeaser({ t }) {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="px-10 py-24 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+    <section ref={ref} className="px-10 pt-0 pb-24 -mt-16 md:-mt-24 flex flex-col md:flex-row items-center gap-10 md:gap-16">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.8 } } : {}}
@@ -426,19 +425,28 @@ function AboutTeaser({ t }) {
         />
       </motion.div>
 
-      <div className="flex-1 max-w-md">
+      <div className="flex-1 max-w-2xl">
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } } : {}}
-          className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-6"
+          className="text-[11px] tracking-[0.16em] uppercase opacity-50 mb-4"
+        >
+          {t('Om mig', 'About me')}
+        </motion.p>
+
+        <motion.h2
+          initial={{ y: 24, opacity: 0 }}
+          animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay: 0.05 } } : {}}
+          className="leading-[1.1] mb-6"
+          style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(24px, 2.9vw, 38px)', color: 'var(--color-burgundy)' }}
         >
           {t('Jeg arbejder med design, IT og forretning', 'I work with design, IT and business')}
-        </motion.p>
+        </motion.h2>
 
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay: 0.1 } } : {}}
-          className="space-y-4 text-[15px] leading-relaxed opacity-75"
+          className="space-y-4 text-[17px] leading-relaxed opacity-75"
         >
           <p>
             {t(
@@ -452,6 +460,12 @@ function AboutTeaser({ t }) {
               'It gives me an eye for what actually works - for the business and the customer alike.'
             )}
           </p>
+          <p>
+            {t(
+              'Jeg arbejder bedst med frihed under ansvar, og tager gerne ejerskab fra start til slut. Jeg spørger hellere en gang for meget end at gætte, siger til når noget ikke giver mening, og deler undervejs frem for at vente på det færdige resultat.',
+              'I work best with freedom and responsibility, and I happily take ownership from start to finish. I would rather ask one time too many than guess, I speak up when something does not add up, and I share along the way instead of waiting for the finished result.'
+            )}
+          </p>
         </motion.div>
 
         <motion.div
@@ -463,11 +477,11 @@ function AboutTeaser({ t }) {
             className="group inline-flex items-center gap-3 mt-8 px-6 py-3 rounded-sm text-[14px] tracking-wide shadow-sm hover:shadow-md transition-shadow"
             style={{ background: 'var(--color-burgundy)', color: 'var(--color-base)' }}
           >
-            <span>{t('Mød din kommende generalist', 'Meet your next generalist')}</span>
+            <span>{t('Mød personen bag kompetencerne', 'Meet the person behind the skills')}</span>
             <span className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1">→</span>
           </Link>
           <p className="mt-3 text-[12px] opacity-55">
-            {t('hvordan jeg arbejder og hvorfor', 'how I work and why')}
+            {t('værdier, arbejdsmetoder og hvorfor', 'values, ways of working and why')}
           </p>
         </motion.div>
       </div>
@@ -556,20 +570,66 @@ export default function Home() {
           </AnimatePresence>
         </motion.div>
 
-        <div className="relative z-10 flex flex-col mt-24 md:mt-32 pointer-events-none">
+        <div className="relative z-10 flex flex-col mt-24 md:mt-32">
           <motion.p
             variants={fadeUp(0.9)}
             initial="hidden"
             animate="show"
-            className="text-[clamp(1.5rem,3vw,2.75rem)] leading-snug max-w-2xl"
+            className="pointer-events-none text-[clamp(1.5rem,3vw,2.75rem)] leading-snug max-w-2xl"
           >
-            <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0 }}>Hi</span>
+            <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0 }}>{t('Hejsa', 'Hey')}</span>
             <span style={{ color: 'var(--color-burgundy)' }}>,</span>
-            <span className="opacity-75">
-              {t(' jeg er Casandra, UX-designer i København med en baggrund i business og marketing, drevet af ', " I'm Casandra, a Copenhagen-based UX designer with a background in business and marketing, driven by ")}
-              <RotatingWord words={t(DRIVEN_BY_WORDS.da, DRIVEN_BY_WORDS.en)} />.
+            <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0 }}> {t('Casandra her.', 'Casandra here.')}</span>
+          </motion.p>
+
+          <motion.p
+            variants={fadeUp(1.0)}
+            initial="hidden"
+            animate="show"
+            className="pointer-events-none text-[clamp(1.05rem,1.7vw,1.4rem)] leading-snug max-w-xl mt-4 opacity-75"
+          >
+            {t('Jeg er interesseret i alt der hedder mennesker, teknologi, forretning og god kommunikation. ', 'I’m interested in anything to do with people, technology, business and great communication. ')}
+            <span className="opacity-100">
+              {t('Derudover er jeg drevet af ', 'On top of that, I’m driven by ')}
+              <span style={{ color: 'var(--color-burgundy)', fontWeight: 600 }}>
+                <RotatingWord words={t(DRIVEN_BY_WORDS.da, DRIVEN_BY_WORDS.en)} />
+              </span>
+              .
             </span>
           </motion.p>
+
+          <motion.div
+            variants={fadeUp(1.15)}
+            initial="hidden"
+            animate="show"
+            className="flex flex-wrap items-center gap-x-8 gap-y-3 mt-9"
+          >
+            <motion.button
+              whileHover={{ y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => document.getElementById('kogt-ned')?.scrollIntoView({ behavior: 'smooth' })}
+              className="flex items-center gap-2.5 px-6 py-3.5 text-[14px] tracking-wide transition-opacity hover:opacity-90"
+              style={{ backgroundColor: 'var(--color-burgundy)', color: 'var(--color-base)' }}
+            >
+              {t('Hvad jeg kan', 'What I can do')}
+              <motion.span
+                aria-hidden="true"
+                animate={{ y: [0, 3, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                ↓
+              </motion.span>
+            </motion.button>
+
+            <button
+              onClick={() => document.getElementById('arbejde')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group flex items-center gap-1.5 text-[14px] tracking-wide opacity-60 hover:opacity-100 transition-opacity"
+              style={{ color: 'var(--color-text)' }}
+            >
+              {t('se mine referencer', 'see my references')}
+              <span className="transition-transform group-hover:translate-y-0.5">↓</span>
+            </button>
+          </motion.div>
         </div>
 
       </section>
@@ -590,7 +650,7 @@ export default function Home() {
           className="mb-8 text-center"
         >
           <p className="text-[11px] tracking-[0.18em] uppercase opacity-45 mb-4">
-            {t('Ting jeg har lavet med hænderne', 'Things I made with my hands')}
+            {t('Tidligere arbejde', 'Previous work')}
           </p>
           <h2
             className="leading-none uppercase"

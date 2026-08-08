@@ -47,4 +47,16 @@ export const projects = [
       en: '',
     },
   },
+  {
+    slug: 'blitz',
+    title: { da: 'Blitz', en: 'Blitz' },
+    category: { da: 'Ikondesign', en: 'Icon design' },
+    year: '2025',
+    cover: '/images/projects/blitz/tile-08.png',
+    accent: '#345321',
+    description: {
+      da: 'App-ikonet til Blitz: et B skåret igennem af et lyn, tegnet til at holde helt ned i favicon-størrelse.',
+      en: 'The app icon for Blitz: a B cut through by a bolt, drawn to hold all the way down to favicon size.',
+    },
+  },
 ]

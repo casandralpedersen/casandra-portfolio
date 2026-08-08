@@ -3,10 +3,12 @@ import { useLanguage } from '../context/LanguageContext'
 import { projects } from '../data/projects'
 import EtsyComposeStudio from './work/EtsyComposeStudio'
 import OBar from './work/OBar'
+import Blitz from './work/Blitz'
 
 const pages = {
   'etsy-composestudio': EtsyComposeStudio,
   'o-bar': OBar,
+  blitz: Blitz,
 }
 
 export default function WorkDetail() {
