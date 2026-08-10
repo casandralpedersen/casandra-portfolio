@@ -438,7 +438,7 @@ function AboutTeaser({ t }) {
           initial={{ y: 24, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay: 0.05 } } : {}}
           className="leading-[1.1] mb-6"
-          style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(24px, 2.9vw, 38px)', color: 'var(--color-burgundy)' }}
+          style={{ fontFamily: '"ITCCentury", serif', fontSize: 'clamp(28px, 3.5vw, 47px)', letterSpacing: '0.005em', color: 'var(--color-burgundy)' }}
         >
           {t('Din nysgerrige, selvstændige medarbejder', 'The curious, self-driven colleague you’re after')}
         </motion.h2>
