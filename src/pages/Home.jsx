@@ -440,7 +440,7 @@ function AboutTeaser({ t }) {
           className="leading-[1.1] mb-6"
           style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(24px, 2.9vw, 38px)', color: 'var(--color-burgundy)' }}
         >
-          {t('Jeg arbejder med design, IT og forretning', 'I work with design, IT and business')}
+          {t('Din nysgerrige, selvstændige medarbejder', 'The curious, self-driven colleague you’re after')}
         </motion.h2>
 
         <motion.div
@@ -450,20 +450,14 @@ function AboutTeaser({ t }) {
         >
           <p>
             {t(
-              'Jeg har et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice.',
-              "I have a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service."
+              'Jeg har et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice. Det giver et blik for hvad der faktisk virker, både for virksomheden og kunden.',
+              "I have a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service. It gives me an eye for what actually works - for the business and the customer alike."
             )}
           </p>
           <p>
             {t(
-              'Det giver et blik for hvad der faktisk virker, både for virksomheden og kunden.',
-              'It gives me an eye for what actually works - for the business and the customer alike.'
-            )}
-          </p>
-          <p>
-            {t(
-              'Jeg arbejder bedst med frihed under ansvar, og tager gerne ejerskab fra start til slut. Jeg spørger hellere en gang for meget end at gætte, siger til når noget ikke giver mening, og deler undervejs frem for at vente på det færdige resultat.',
-              'I work best with freedom and responsibility, and I happily take ownership from start to finish. I would rather ask one time too many than guess, I speak up when something does not add up, and I share along the way instead of waiting for the finished result.'
+              'Jeg arbejder bedst med frihed under ansvar, og tager ejerskab fra start til slut. Jeg spørger hellere en gang for meget end at gætte, siger til når noget ikke giver mening, og deler undervejs frem for at vente på det færdige resultat.',
+              'I work best with freedom and responsibility, and I take ownership from start to finish. I would rather ask one time too many than guess, I speak up when something does not add up, and I share along the way instead of waiting for the finished result.'
             )}
           </p>
         </motion.div>
@@ -570,7 +564,7 @@ export default function Home() {
           </AnimatePresence>
         </motion.div>
 
-        <div className="relative z-10 flex flex-col mt-24 md:mt-32">
+        <div className="relative z-10 flex flex-col mt-24 md:mt-32 pointer-events-none">
           <motion.p
             variants={fadeUp(0.9)}
             initial="hidden"
@@ -578,8 +572,7 @@ export default function Home() {
             className="pointer-events-none text-[clamp(1.5rem,3vw,2.75rem)] leading-snug max-w-2xl"
           >
             <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0 }}>{t('Hejsa', 'Hey')}</span>
-            <span style={{ color: 'var(--color-burgundy)' }}>,</span>
-            <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0 }}> {t('Casandra her.', 'Casandra here.')}</span>
+            <span style={{ color: 'var(--color-burgundy)', fontSize: '0.95em', letterSpacing: '0.04em', marginLeft: '0.04em' }}>:)</span>
           </motion.p>
 
           <motion.p
@@ -588,9 +581,9 @@ export default function Home() {
             animate="show"
             className="pointer-events-none text-[clamp(1.05rem,1.7vw,1.4rem)] leading-snug max-w-xl mt-4 opacity-75"
           >
-            {t('Jeg er interesseret i alt der hedder mennesker, teknologi, forretning og god kommunikation. ', 'I’m interested in anything to do with people, technology, business and great communication. ')}
+            {t('Jeg er Casandra - interesseret i alt, der hedder mennesker, teknologi, forretning og god kommunikation. ', 'I’m Casandra - interested in anything to do with people, technology, business and great communication. ')}
             <span className="opacity-100">
-              {t('Derudover er jeg drevet af ', 'On top of that, I’m driven by ')}
+              {t('Og så er jeg drevet af ', 'And I’m driven by ')}
               <span style={{ color: 'var(--color-burgundy)', fontWeight: 600 }}>
                 <RotatingWord words={t(DRIVEN_BY_WORDS.da, DRIVEN_BY_WORDS.en)} />
               </span>
@@ -602,13 +595,13 @@ export default function Home() {
             variants={fadeUp(1.15)}
             initial="hidden"
             animate="show"
-            className="flex flex-wrap items-center gap-x-8 gap-y-3 mt-9"
+            className="flex flex-wrap items-center gap-x-8 gap-y-3 mt-9 pointer-events-none"
           >
             <motion.button
               whileHover={{ y: -1 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => document.getElementById('kogt-ned')?.scrollIntoView({ behavior: 'smooth' })}
-              className="flex items-center gap-2.5 px-6 py-3.5 text-[14px] tracking-wide transition-opacity hover:opacity-90"
+              className="pointer-events-auto flex items-center gap-2.5 px-6 py-3.5 text-[14px] tracking-wide transition-opacity hover:opacity-90"
               style={{ backgroundColor: 'var(--color-burgundy)', color: 'var(--color-base)' }}
             >
               {t('Hvad jeg kan', 'What I can do')}
@@ -623,7 +616,7 @@ export default function Home() {
 
             <button
               onClick={() => document.getElementById('arbejde')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group flex items-center gap-1.5 text-[14px] tracking-wide opacity-60 hover:opacity-100 transition-opacity"
+              className="pointer-events-auto group flex items-center gap-1.5 text-[14px] tracking-wide opacity-60 hover:opacity-100 transition-opacity"
               style={{ color: 'var(--color-text)' }}
             >
               {t('se mine referencer', 'see my references')}
