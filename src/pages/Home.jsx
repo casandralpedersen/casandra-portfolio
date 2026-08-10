@@ -572,7 +572,7 @@ export default function Home() {
             className="pointer-events-none text-[clamp(1.5rem,3vw,2.75rem)] leading-snug max-w-2xl"
           >
             <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0 }}>{t('Hejsa', 'Hey')}</span>
-            <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0, display: 'inline-block', transform: 'skewX(-16deg)' }}>:)</span>
+            <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0, display: 'inline-block', transform: 'skewX(-16deg)', marginLeft: '0.16em' }}>:)</span>
           </motion.p>
 
           <motion.p
