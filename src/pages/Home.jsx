@@ -572,7 +572,7 @@ export default function Home() {
             className="pointer-events-none text-[clamp(1.5rem,3vw,2.75rem)] leading-snug max-w-2xl"
           >
             <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0 }}>{t('Hejsa', 'Hey')}</span>
-            <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0 }}>:)</span>
+            <span style={{ color: 'var(--color-burgundy)', fontFamily: 'Montigny, cursive', fontSize: '1.45em', lineHeight: 0, display: 'inline-block', transform: 'skewX(-16deg)' }}>:)</span>
           </motion.p>
 
           <motion.p
@@ -604,7 +604,7 @@ export default function Home() {
               className="pointer-events-auto flex items-center gap-2.5 px-6 py-3.5 text-[14px] tracking-wide transition-opacity hover:opacity-90"
               style={{ backgroundColor: 'var(--color-burgundy)', color: 'var(--color-base)' }}
             >
-              {t('Hvad jeg kan', 'What I can do')}
+              {t('Mine kompetencer', 'My skills')}
               <motion.span
                 aria-hidden="true"
                 animate={{ y: [0, 3, 0] }}
@@ -619,7 +619,7 @@ export default function Home() {
               className="pointer-events-auto group flex items-center gap-1.5 text-[14px] tracking-wide opacity-60 hover:opacity-100 transition-opacity"
               style={{ color: 'var(--color-text)' }}
             >
-              {t('se mine referencer', 'see my references')}
+              {t('Se mine referencer', 'See my references')}
               <span className="transition-transform group-hover:translate-y-0.5">↓</span>
             </button>
           </motion.div>
