@@ -4,11 +4,13 @@ import { projects } from '../data/projects'
 import EtsyComposeStudio from './work/EtsyComposeStudio'
 import OBar from './work/OBar'
 import Blitz from './work/Blitz'
+import Remakes from './work/Remakes'
 
 const pages = {
   'etsy-composestudio': EtsyComposeStudio,
   'o-bar': OBar,
   blitz: Blitz,
+  remakes: Remakes,
 }
 
 export default function WorkDetail() {

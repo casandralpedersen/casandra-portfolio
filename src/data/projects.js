@@ -39,12 +39,12 @@ export const projects = [
     slug: 'remakes',
     title: { da: 'Remakes', en: 'Remakes' },
     category: { da: 'Personligt projekt', en: 'Personal project' },
-    year: '2022',
-    cover: null,
-    accent: '#2A3A5A',
+    year: '2025',
+    cover: '/images/projects/remakes/after-service.png',
+    accent: '#3B7751',
     description: {
-      da: '',
-      en: '',
+      da: 'Tre steder hvor et godt budskab druknede i dårligt design, og hvad jeg gjorde ved det.',
+      en: 'Three places where a good message drowned in bad design, and what I did about it.',
     },
   },
   {
