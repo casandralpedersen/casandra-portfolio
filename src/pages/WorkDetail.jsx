@@ -5,12 +5,14 @@ import EtsyComposeStudio from './work/EtsyComposeStudio'
 import OBar from './work/OBar'
 import Blitz from './work/Blitz'
 import Remakes from './work/Remakes'
+import HRS from './work/HRS'
 
 const pages = {
   'etsy-composestudio': EtsyComposeStudio,
   'o-bar': OBar,
   blitz: Blitz,
   remakes: Remakes,
+  hrs: HRS,
 }
 
 export default function WorkDetail() {

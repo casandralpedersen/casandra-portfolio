@@ -17,6 +17,7 @@ export const projects = [
     category: { da: 'Ikondesign', en: 'Icon design' },
     year: '2025',
     cover: '/images/projects/blitz/tile-08.png',
+    coverFit: 'contain',
     accent: '#345321',
     description: {
       da: 'App-ikonet til Blitz: et B skåret igennem af et lyn, tegnet til at holde helt ned i favicon-størrelse.',
@@ -29,6 +30,7 @@ export const projects = [
     category: { da: 'Personligt projekt', en: 'Personal project' },
     year: '2025',
     cover: '/images/projects/remakes/after-service.png',
+    coverPosition: 'top center',
     accent: '#3B7751',
     description: {
       da: 'Tre steder hvor et godt budskab druknede i dårligt design, og hvad jeg gjorde ved det.',
@@ -57,6 +59,19 @@ export const projects = [
     description: {
       da: 'Fotografi og visuel identitet for Brødrene Vejen.',
       en: 'Photography and visual identity for Brødrene Vejen.',
+    },
+  },
+  {
+    slug: 'hrs',
+    title: { da: 'Hovedstadens Rekrutteringsservice', en: 'Hovedstadens Rekrutteringsservice' },
+    category: { da: 'Rekrutteringskommunikation', en: 'Recruitment communication' },
+    year: '2026',
+    cover: '/images/projects/hrs/hrs-brancheskifte-event.png',
+    coverPosition: 'top center',
+    accent: '#1A1FA8',
+    description: {
+      da: 'Annoncer, invitationer og events der skal få folk videre i job - designet og skrevet til en målgruppe der står midt i et skifte.',
+      en: 'Ads, invitations and events meant to move people into work - designed and written for an audience in the middle of a change.',
     },
   },
 ]

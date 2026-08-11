@@ -10,14 +10,16 @@ const PILL_NOISE =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E\")"
 
 const SKILLS = [
-  { da: 'UX Design', en: 'UX Design', pos: 'top-[4%] right-[50%]', rotate: -3, delay: 0 },
-  { da: 'Konstruktiv', en: 'Constructive', pos: 'top-[4%] right-[20%]', rotate: 2, delay: 0.05 },
-  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[26%] right-[13%]', rotate: 5, delay: 0.1 },
-  { da: 'Vibe coding', en: 'Vibe coding', pos: 'top-[42%] right-[53%]', rotate: 3, delay: 0.15 },
-  { da: 'Salg & kundeservice', en: 'Sales & customer service', pos: 'top-[42%] right-[13%]', rotate: -4, delay: 0.2 },
-  { da: 'Nysgerrig', en: 'Curious', pos: 'top-[62%] right-[50%]', rotate: -5, delay: 0.25 },
-  { da: 'Problemløsning', en: 'Problem-solving', pos: 'top-[62%] right-[14%]', rotate: 6, delay: 0.3 },
-  { da: 'Omstillingsparat', en: 'Adaptable', pos: 'bottom-[8%] right-[32%]', rotate: 4, delay: 0.35 },
+  { da: 'Kommunikation', en: 'Communication', pos: 'top-[4%] right-[50%]', rotate: -3, delay: 0 },
+  { da: 'Grafisk design', en: 'Graphic design', pos: 'top-[4%] right-[18%]', rotate: 2, delay: 0.05 },
+  { da: 'Marketing', en: 'Marketing', pos: 'top-[22%] right-[52%]', rotate: 4, delay: 0.1 },
+  { da: 'Visuel kommunikation', en: 'Visual communication', pos: 'top-[20%] right-[11%]', rotate: 5, delay: 0.15 },
+  { da: 'Struktur', en: 'Structure', pos: 'top-[40%] right-[54%]', rotate: -4, delay: 0.2 },
+  { da: 'Administration', en: 'Administration', pos: 'top-[37%] right-[12%]', rotate: -4, delay: 0.25 },
+  { da: 'UX', en: 'UX', pos: 'top-[58%] right-[52%]', rotate: -5, delay: 0.3 },
+  { da: 'Løsningsorienteret', en: 'Solution-oriented', pos: 'top-[54%] right-[9%]', rotate: 6, delay: 0.35 },
+  { da: 'Vibe coding', en: 'Vibe coding', pos: 'top-[76%] right-[52%]', rotate: 3, delay: 0.4 },
+  { da: 'Omstillingsparat', en: 'Adaptable', pos: 'top-[72%] right-[13%]', rotate: 4, delay: 0.45 },
 ]
 
 function SkillPill({ label, pos, rotate, delay }) {
@@ -132,17 +134,7 @@ function RotatingWord({ words }) {
   )
 }
 
-function getContrastTextColor(hex) {
-  const r = parseInt(hex.slice(1, 3), 16)
-  const g = parseInt(hex.slice(3, 5), 16)
-  const b = parseInt(hex.slice(5, 7), 16)
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-  return luminance > 0.6 ? 'var(--color-text)' : 'var(--color-base)'
-}
-
-const placeholderProjects = [
-  { number: '06', accent: 'var(--color-blue)' },
-]
+const placeholderProjects = []
 
 function WorkGrid({ t }) {
   const ref = useRef(null)
@@ -151,7 +143,7 @@ function WorkGrid({ t }) {
   return (
     <div ref={ref} className="grid grid-cols-2 md:grid-cols-3">
       {projects.map((project, index) => {
-        const textColor = getContrastTextColor(project.accent)
+        const textColor = 'var(--color-base)'
 
         return (
           <motion.div
@@ -164,6 +156,16 @@ function WorkGrid({ t }) {
               className="group relative block h-[300px] md:h-[300px] overflow-hidden"
               style={{ backgroundColor: project.accent }}
             >
+              <img
+                src={project.cover}
+                alt=""
+                loading="lazy"
+                className={`absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-105 ${
+                  project.coverFit === 'contain' ? 'object-contain p-8' : 'object-cover'
+                }`}
+                style={{ objectPosition: project.coverPosition || 'center' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/5" />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
               <span
                 className="absolute top-5 right-5 text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -490,7 +492,7 @@ export default function Home() {
 
   useEffect(() => {
     const img = new Image()
-    img.src = '/images/mefinalpic.png'
+    img.src = '/images/hero-me-photo.png'
     img.onload = () => {
       const c = document.createElement('canvas')
       c.width = img.naturalWidth
@@ -549,11 +551,11 @@ export default function Home() {
           style={{ zIndex: 0 }}
         >
           <img
-            src="/images/mefinalpic.png"
+            src="/images/hero-me-photo.png"
             alt="Casandra"
             onMouseMove={handleFigureMove}
             className="w-full h-full object-contain object-bottom"
-            style={{ transform: 'translateX(8%) scale(1.12)', transformOrigin: 'bottom center', mixBlendMode: 'multiply' }}
+            style={{ transform: 'translateX(8%) translateY(-17%) scale(0.78)', transformOrigin: 'bottom center', mixBlendMode: 'multiply' }}
           />
 
           <AnimatePresence>
