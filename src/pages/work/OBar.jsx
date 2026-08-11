@@ -363,7 +363,7 @@ function CompetencyGrid({ t }) {
           {t('Hvad jeg stod for', 'What I owned')}
         </p>
         <h2 className="mb-12 leading-[1.02] max-w-3xl" style={{ fontFamily: TITLE_FONT, fontWeight: 700, fontSize: 'clamp(28px, 4vw, 52px)', color: 'var(--color-text)' }}>
-          {t('Konkret ansvar bag titlen', 'Concrete ownership behind the title')}
+          {t('Konkret ansvar', 'Concrete ownership')}
         </h2>
 
         <div className="grid md:grid-cols-3 gap-x-10 gap-y-11">
@@ -414,12 +414,9 @@ function SoMeSection({ t }) {
           </p>
           <p className="text-[16px] md:text-[18px] leading-relaxed opacity-80 mb-7">
             {t(
-              'Ét gennemført visuelt udtryk gik igen på tværs af feed, skilte og annoncer - så brandet var til at genkende, uanset hvor gæsten mødte det.',
-              'One consistent visual language ran across the feed, signage and ads - so the brand was recognisable wherever a guest met it.',
+              'Målet var ét gennemgående visuelt udtryk på tværs af feed, skilte og annoncer, så brandet var til at genkende, uanset hvor og hvornår gæsten mødte det. Som hurtigt eksekverende startup var udtrykket i konstant udvikling, og læringskurven var stejl.',
+              'The goal was one consistent visual language across feed, signage and ads, so the brand was recognisable wherever and whenever a guest met it. As a fast-moving startup it kept evolving, and the learning curve was steep.',
             )}
-          </p>
-          <p className="text-[11px] tracking-[0.14em] uppercase" style={{ color: OLIVE }}>
-            {t('Paid ads · organisk · content · visuel identitet', 'Paid ads · organic · content · visual identity')}
           </p>
         </div>
 
@@ -470,8 +467,8 @@ export default function OBar() {
             </p>
             <p>
               {t(
-                'Jeg var med fra idé og opstart som COO og operationel partner.',
-                'I was there from idea and start-up as COO and operational partner.',
+                'Jeg var med fra idéen opstod til vi var oppe og køre, og så det vokse måned for måned.',
+                'I was there from the moment the idea came up until we were up and running, and watched it grow month by month.',
               )}
             </p>
           </div>

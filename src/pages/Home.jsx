@@ -70,12 +70,12 @@ const services = [
       },
       {
         title: { da: 'Grafisk design', en: 'Graphic design' },
-        desc: { da: 'Menuer, skilte, plakater og andet grafisk materiale, designet i Figma og Canva.', en: 'Menus, signs, posters, and other graphic materials, designed in Figma and Canva.' },
+        desc: { da: 'Menuer, skilte, plakater og andet grafisk materiale, designet i Figma og Canva. Det er også en personlig interesse, og jeg lærer gerne flere programmer.', en: 'Menus, signs, posters, and other graphic materials, designed in Figma and Canva. It is a personal interest too, and I am always up for learning more tools.' },
       },
     ],
   },
   {
-    title: { da: 'Strategi & forretning', en: 'Strategy & business' },
+    title: { da: 'Drift & forretning', en: 'Operations & business' },
     desc: { da: 'Merkantil baggrund med forståelse for budgetter, drift og målgrupper. Erfaring med HR, rekruttering, vagtplaner og marketingplaner.', en: 'A commercial background with an understanding of budgets, operations, and target groups. Experience with HR, recruiting, scheduling, and marketing plans.' },
     aside: [
       { da: 'Budgetter', en: 'Budgets' },
@@ -411,7 +411,7 @@ function AboutTeaser({ t }) {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="px-10 pt-0 pb-24 -mt-16 md:-mt-24 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+    <section ref={ref} className="px-10 md:px-16 lg:px-24 pt-0 pb-24 -mt-16 md:-mt-24 flex flex-col md:flex-row items-center gap-10 md:gap-16">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.8 } } : {}}
@@ -446,7 +446,7 @@ function AboutTeaser({ t }) {
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7, delay: 0.1 } } : {}}
-          className="space-y-4 text-[17px] leading-relaxed opacity-75"
+          className="space-y-4 max-w-[33rem] text-[17px] leading-relaxed opacity-75"
         >
           <p>
             {t(
@@ -456,7 +456,7 @@ function AboutTeaser({ t }) {
           </p>
           <p>
             {t(
-              'Jeg arbejder bedst med frihed under ansvar, og tager ejerskab fra start til slut. Jeg spørger hellere en gang for meget end at gætte, siger til når noget ikke giver mening, og deler undervejs frem for at vente på det færdige resultat.',
+              'Jeg arbejder bedst med frihed under ansvar, og tager ejerskab fra start til slut. Jeg spørger hellere en gang for meget end at gætte, siger til når noget ikke giver mening.',
               'I work best with freedom and responsibility, and I take ownership from start to finish. I would rather ask one time too many than guess, I speak up when something does not add up, and I share along the way instead of waiting for the finished result.'
             )}
           </p>

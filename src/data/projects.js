@@ -12,6 +12,30 @@ export const projects = [
     },
   },
   {
+    slug: 'blitz',
+    title: { da: 'Blitz', en: 'Blitz' },
+    category: { da: 'Ikondesign', en: 'Icon design' },
+    year: '2025',
+    cover: '/images/projects/blitz/tile-08.png',
+    accent: '#345321',
+    description: {
+      da: 'App-ikonet til Blitz: et B skåret igennem af et lyn, tegnet til at holde helt ned i favicon-størrelse.',
+      en: 'The app icon for Blitz: a B cut through by a bolt, drawn to hold all the way down to favicon size.',
+    },
+  },
+  {
+    slug: 'remakes',
+    title: { da: 'Remakes', en: 'Remakes' },
+    category: { da: 'Personligt projekt', en: 'Personal project' },
+    year: '2025',
+    cover: '/images/projects/remakes/after-service.png',
+    accent: '#3B7751',
+    description: {
+      da: 'Tre steder hvor et godt budskab druknede i dårligt design, og hvad jeg gjorde ved det.',
+      en: 'Three places where a good message drowned in bad design, and what I did about it.',
+    },
+  },
+  {
     slug: 'etsy-composestudio',
     title: { da: 'Etsy / CompozeStudio', en: 'Etsy / CompozeStudio' },
     category: { da: 'E-handel & branding', en: 'E-commerce & branding' },
@@ -33,30 +57,6 @@ export const projects = [
     description: {
       da: 'Fotografi og visuel identitet for Brødrene Vejen.',
       en: 'Photography and visual identity for Brødrene Vejen.',
-    },
-  },
-  {
-    slug: 'remakes',
-    title: { da: 'Remakes', en: 'Remakes' },
-    category: { da: 'Personligt projekt', en: 'Personal project' },
-    year: '2025',
-    cover: '/images/projects/remakes/after-service.png',
-    accent: '#3B7751',
-    description: {
-      da: 'Tre steder hvor et godt budskab druknede i dårligt design, og hvad jeg gjorde ved det.',
-      en: 'Three places where a good message drowned in bad design, and what I did about it.',
-    },
-  },
-  {
-    slug: 'blitz',
-    title: { da: 'Blitz', en: 'Blitz' },
-    category: { da: 'Ikondesign', en: 'Icon design' },
-    year: '2025',
-    cover: '/images/projects/blitz/tile-08.png',
-    accent: '#345321',
-    description: {
-      da: 'App-ikonet til Blitz: et B skåret igennem af et lyn, tegnet til at holde helt ned i favicon-størrelse.',
-      en: 'The app icon for Blitz: a B cut through by a bolt, drawn to hold all the way down to favicon size.',
     },
   },
 ]
