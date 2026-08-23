@@ -67,9 +67,9 @@ Din nysgerrige, selvstændige medarbejder
 
 **Afsnit 1**
 
-Jeg har et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice. Det giver et blik for hvad der faktisk virker, både for virksomheden og kunden.
+Jeg har et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra marketing og drift som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice. Det giver et blik for hvad der faktisk virker, både for virksomheden og kunden.
 
-(I have a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service. It gives me an eye for what actually works - for the business and the customer alike.)
+(I have a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from marketing and operations as a COO, to building a visual identity from scratch and working in IT support and customer service. It gives me an eye for what actually works - for the business and the customer alike.)
 
 **Afsnit 2**
 
@@ -152,15 +152,15 @@ Kategori: E-handel & branding (E-commerce & branding)
 Design og drift af en Etsy-butik med digitale produkter, fra produktfotografi til SEO og konvertering.
 (Design and operation of an Etsy shop with digital products, from product photography to SEO and conversion.)
 
-**05 · Brødrene Vejen** — 2023
-Kategori: Fotografi & identitet (Photography & identity)
-Fotografi og visuel identitet for Brødrene Vejen.
-(Photography and visual identity for Brødrene Vejen.)
-
-**06 · Hovedstadens Rekrutteringsservice** — 2026
+**05 · Hovedstadens Rekrutteringsservice** — 2026
 Kategori: Rekrutteringskommunikation (Recruitment communication)
 Annoncer, invitationer og events der skal få folk videre i job - designet og skrevet til en målgruppe der står midt i et skifte.
 (Ads, invitations and events meant to move people into work - designed and written for an audience in the middle of a change.)
+
+**06 · Brødrene Vejen** — 2023
+Kategori: Fotografi & identitet (Photography & identity)
+Fotografi og visuel identitet for Brødrene Vejen.
+(Photography and visual identity for Brødrene Vejen.)
 
 ## Kontakt
 
@@ -217,9 +217,9 @@ Lidt om din nysgerrige generalist
 ### Drevet af evig nysgerrighed og sund kritik
 (Driven by endless curiosity and healthy skepticism)
 
-Jeg har et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice.
+Jeg har et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra marketing og drift som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice.
 
-(I have a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service.)
+(I have a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from marketing and operations as a COO, to building a visual identity from scratch and working in IT support and customer service.)
 
 ### Det starter altid med målgruppen
 (It always starts with the audience)
@@ -725,9 +725,9 @@ Jeg opdaterer og optimerer hjemmesiden i Bricksite, og designer brochurer, plaka
 
 (I update and optimise the website in Bricksite, and design brochures, posters and presentations in Figma and PowerPoint, including the copy for them.)
 
-Derudover står jeg for dokumentation og registrering i Excel, og koordinerer jobmatch-events, workshops og netværksgrupper, herunder program og oplægsholdere. Undervejs har jeg været referent og sparringspartner.
+Jeg stod for dokumentation og registrering af kandidater i Excel. Derudover koordineres der jobmatch-events, workshops og netværksgrupper, herunder program og oplægsholdere. Undervejs har jeg været referent og sparringspartner til møder for tovholderne for forskellige projekter.
 
-(On top of that I handle documentation and registration in Excel, and coordinate job-match events, workshops and network groups, including programme and speakers. Along the way I have been the minute-taker and a sounding board.)
+(I handled documentation and registration of candidates in Excel. On top of that, job-match events, workshops and network groups are coordinated, including programme and speakers. Along the way I have been the minute-taker and a sounding board at meetings for the leads on various projects.)
 
 ## 01 · Brancheskifte-eventet (The career-change event)
 
@@ -756,8 +756,8 @@ Informationen er den samme, men rækkefølgen skifter. Man skimmer en skærm og 
 
 **Billedtekster**
 
-- Stående · mobilvisning og print (Portrait · mobile and print)
 - Liggende · hjemmeside i computerformat (Landscape · website on desktop)
+- Stående · mobilvisning og print (Portrait · mobile and print)
 
 ## Til dagligt (Day to day)
 

@@ -49,18 +49,6 @@ export const projects = [
     },
   },
   {
-    slug: 'brodrene-vejen',
-    title: { da: 'Brødrene Vejen', en: 'Brødrene Vejen' },
-    category: { da: 'Fotografi & identitet', en: 'Photography & identity' },
-    year: '2023',
-    cover: '/images/projects/brodrene-vejen.jpeg',
-    accent: '#4A4A3A',
-    description: {
-      da: 'Fotografi og visuel identitet for Brødrene Vejen.',
-      en: 'Photography and visual identity for Brødrene Vejen.',
-    },
-  },
-  {
     slug: 'hrs',
     title: { da: 'Hovedstadens Rekrutteringsservice', en: 'Hovedstadens Rekrutteringsservice' },
     category: { da: 'Rekrutteringskommunikation', en: 'Recruitment communication' },
@@ -70,6 +58,18 @@ export const projects = [
     description: {
       da: 'Annoncer, invitationer og events der skal få folk videre i job - designet og skrevet til en målgruppe der står midt i et skifte.',
       en: 'Ads, invitations and events meant to move people into work - designed and written for an audience in the middle of a change.',
+    },
+  },
+  {
+    slug: 'brodrene-vejen',
+    title: { da: 'Brødrene Vejen', en: 'Brødrene Vejen' },
+    category: { da: 'Fotografi & identitet', en: 'Photography & identity' },
+    year: '2023',
+    cover: '/images/projects/brodrene-vejen.jpeg',
+    accent: '#4A4A3A',
+    description: {
+      da: 'Fotografi og visuel identitet for Brødrene Vejen.',
+      en: 'Photography and visual identity for Brødrene Vejen.',
     },
   },
 ]

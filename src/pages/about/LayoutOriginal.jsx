@@ -109,8 +109,8 @@ export default function LayoutOriginal() {
           </p>
           <p>
             {t(
-              'Jeg har haft et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice. Det mix, parallelt med relevante studier, gør at jeg har fået forståelse for hvordan ting hænger sammen i teori og praksis.',
-              "I've had a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service. That mix, alongside relevant studies, has given me an understanding of how things fit together in theory and practice."
+              'Jeg har haft et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra marketing og drift som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice. Det mix, parallelt med relevante studier, gør at jeg har fået forståelse for hvordan ting hænger sammen i teori og praksis.',
+              "I've had a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from marketing and operations as a COO, to building a visual identity from scratch and working in IT support and customer service. That mix, alongside relevant studies, has given me an understanding of how things fit together in theory and practice."
             )}
           </p>
           <p>

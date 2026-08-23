@@ -181,8 +181,8 @@ function Context({ t }) {
           </p>
           <p>
             {t(
-              'Derudover står jeg for dokumentation og registrering i Excel, og koordinerer jobmatch-events, workshops og netværksgrupper, herunder program og oplægsholdere. Undervejs har jeg været referent og sparringspartner.',
-              'On top of that I handle documentation and registration in Excel, and coordinate job-match events, workshops and network groups, including programme and speakers. Along the way I have been the minute-taker and a sounding board.',
+              'Jeg stod for dokumentation og registrering af kandidater i Excel. Derudover koordineres der jobmatch-events, workshops og netværksgrupper, herunder program og oplægsholdere. Undervejs har jeg været referent og sparringspartner til møder for tovholderne for forskellige projekter.',
+              'I handled documentation and registration of candidates in Excel. On top of that, job-match events, workshops and network groups are coordinated, including programme and speakers. Along the way I have been the minute-taker and a sounding board at meetings for the leads on various projects.',
             )}
           </p>
         </div>
@@ -262,31 +262,16 @@ function FormatScene({ t, reduce, onZoom, wide, tall }) {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
 
-  const tallX = useTransform(scrollYProgress, [0.1, 0.58], ['150%', '0%'])
-  const tallScale = useTransform(scrollYProgress, [0.1, 0.58], [1.24, 1])
-  const wideY = useTransform(scrollYProgress, [0.46, 0.76], ['30%', '0%'])
-  const wideOpacity = useTransform(scrollYProgress, [0.46, 0.68], [0, 1])
+  const wideY = useTransform(scrollYProgress, [0.1, 0.45], ['30%', '0%'])
+  const wideOpacity = useTransform(scrollYProgress, [0.1, 0.36], [0, 1])
+  const tallX = useTransform(scrollYProgress, [0.42, 0.76], ['150%', '0%'])
+  const tallScale = useTransform(scrollYProgress, [0.42, 0.76], [1.24, 1])
   const labelOpacity = useTransform(scrollYProgress, [0.62, 0.8], [0, 1])
 
   return (
     <section ref={ref} className="relative hidden md:block" style={{ height: '220vh' }}>
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
         <div className="w-full max-w-[1180px] mx-auto px-10 flex items-end justify-center gap-10">
-          <motion.button
-            type="button"
-            onClick={() => onZoom(tall)}
-            className="relative w-[30%] cursor-zoom-in"
-            style={reduce ? {} : { x: tallX, scale: tallScale }}
-          >
-            <img src={tall.src} alt={tall.alt} className="block w-full h-auto" style={{ boxShadow: '0 24px 60px rgba(0,0,0,0.35)' }} />
-            <motion.span
-              className="block mt-4 text-left text-[11px] tracking-[0.16em] uppercase"
-              style={{ color: YELLOW, opacity: reduce ? 1 : labelOpacity }}
-            >
-              {t('Stående · mobilvisning og print', 'Portrait · mobile view and print')}
-            </motion.span>
-          </motion.button>
-
           <motion.button
             type="button"
             onClick={() => onZoom(wide)}
@@ -301,6 +286,21 @@ function FormatScene({ t, reduce, onZoom, wide, tall }) {
               {t('Liggende · hjemmeside i computerformat', 'Landscape · website on desktop')}
             </motion.span>
           </motion.button>
+
+          <motion.button
+            type="button"
+            onClick={() => onZoom(tall)}
+            className="relative w-[30%] cursor-zoom-in"
+            style={reduce ? {} : { x: tallX, scale: tallScale }}
+          >
+            <img src={tall.src} alt={tall.alt} className="block w-full h-auto" style={{ boxShadow: '0 24px 60px rgba(0,0,0,0.35)' }} />
+            <motion.span
+              className="block mt-4 text-left text-[11px] tracking-[0.16em] uppercase"
+              style={{ color: YELLOW, opacity: reduce ? 1 : labelOpacity }}
+            >
+              {t('Stående · mobilvisning og print', 'Portrait · mobile view and print')}
+            </motion.span>
+          </motion.button>
         </div>
       </div>
     </section>
@@ -311,8 +311,8 @@ function FormatStack({ t, onZoom, wide, tall }) {
   return (
     <div className="md:hidden px-6 pt-12 pb-4 space-y-10">
       {[
-        { shot: tall, label: t('Stående · mobilvisning og print', 'Portrait · mobile view and print') },
         { shot: wide, label: t('Liggende · hjemmeside i computerformat', 'Landscape · website on desktop') },
+        { shot: tall, label: t('Stående · mobilvisning og print', 'Portrait · mobile view and print') },
       ].map(({ shot, label }) => (
         <button key={shot.src} type="button" onClick={() => onZoom(shot)} className="block w-full cursor-zoom-in">
           <img src={shot.src} alt={shot.alt} className="block w-full h-auto" style={{ boxShadow: '0 16px 40px rgba(0,0,0,0.35)' }} />

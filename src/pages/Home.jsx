@@ -458,8 +458,8 @@ function AboutTeaser({ t }) {
         >
           <p>
             {t(
-              'Jeg har et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra drift, rekruttering og marketing som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice. Det giver et blik for hvad der faktisk virker, både for virksomheden og kunden.',
-              "I have a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from operations, recruitment and marketing as a COO, to building a visual identity from scratch and working in IT support and customer service. It gives me an eye for what actually works - for the business and the customer alike."
+              'Jeg har et arbejdsliv drevet af nysgerrighed og indre motivation, og det har fået mig i mange spændende retninger. Alt fra marketing og drift som COO, til at bygge visuel identitet fra bunden og arbejde med IT-support og kundeservice. Det giver et blik for hvad der faktisk virker, både for virksomheden og kunden.',
+              "I have a working life driven by curiosity and inner motivation, and it's taken me in many interesting directions. Everything from marketing and operations as a COO, to building a visual identity from scratch and working in IT support and customer service. It gives me an eye for what actually works - for the business and the customer alike."
             )}
           </p>
           <p>
