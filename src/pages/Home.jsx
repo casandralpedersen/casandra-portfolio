@@ -165,7 +165,13 @@ function WorkGrid({ t }) {
                 }`}
                 style={{ objectPosition: project.coverPosition || 'center' }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/5" />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.62) 20%, rgba(0,0,0,0.22) 42%, rgba(0,0,0,0.06) 70%, rgba(0,0,0,0) 100%)',
+                }}
+              />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
               <span
                 className="absolute top-5 right-5 text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -214,7 +220,7 @@ function WorkGrid({ t }) {
                   </h3>
                 )}
                 <p
-                  className="text-[11px] tracking-[0.1em] uppercase mt-1.5"
+                  className="text-[11px] tracking-[0.1em] uppercase mt-1.5 break-words"
                   style={{ color: textColor, opacity: 0.6 }}
                 >
                   {t(project.category.da, project.category.en)}

@@ -4,7 +4,7 @@ export const projects = [
     title: { da: 'Ø Bar', en: 'Ø Bar' },
     category: { da: 'Forretning, drift & brand', en: 'Business, operations & brand' },
     year: '2024–2025',
-    cover: '/images/projects/o-bar.jpeg',
+    cover: '/images/projects/o-bar/o-bar-event.jpg',
     accent: '#8B2A2A',
     description: {
       da: 'COO & operationel partner fra idé til drift. Byggede et midlertidigt byrum ved Royal Arena til en fungerende forretning.',
@@ -29,8 +29,7 @@ export const projects = [
     title: { da: 'Remakes', en: 'Remakes' },
     category: { da: 'Personligt projekt', en: 'Personal project' },
     year: '2025',
-    cover: '/images/projects/remakes/after-service.png',
-    coverPosition: 'top center',
+    cover: '/images/projects/remakes/before-itu.jpg',
     accent: '#3B7751',
     description: {
       da: 'Tre steder hvor et godt budskab druknede i dårligt design, og hvad jeg gjorde ved det.',
@@ -42,7 +41,7 @@ export const projects = [
     title: { da: 'Etsy / CompozeStudio', en: 'Etsy / CompozeStudio' },
     category: { da: 'E-handel & branding', en: 'E-commerce & branding' },
     year: '2025-2026',
-    cover: '/images/projects/poster-frank-ocean.png',
+    cover: '/images/projects/poster-fruit-cover.jpg',
     accent: '#A8392C',
     description: {
       da: 'Design og drift af en Etsy-butik med digitale produkter, fra produktfotografi til SEO og konvertering.',
@@ -66,8 +65,7 @@ export const projects = [
     title: { da: 'Hovedstadens Rekrutteringsservice', en: 'Hovedstadens Rekrutteringsservice' },
     category: { da: 'Rekrutteringskommunikation', en: 'Recruitment communication' },
     year: '2026',
-    cover: '/images/projects/hrs/hrs-brancheskifte-event.png',
-    coverPosition: 'top center',
+    cover: '/images/projects/hrs/hrs-greensm-foto.jpg',
     accent: '#1A1FA8',
     description: {
       da: 'Annoncer, invitationer og events der skal få folk videre i job - designet og skrevet til en målgruppe der står midt i et skifte.',
