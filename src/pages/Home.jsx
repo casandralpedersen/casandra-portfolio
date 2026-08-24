@@ -141,7 +141,7 @@ function WorkGrid({ t }) {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <div ref={ref} className="grid grid-cols-2 md:grid-cols-3">
+    <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       {projects.map((project, index) => {
         const textColor = 'var(--color-base)'
 
@@ -153,7 +153,7 @@ function WorkGrid({ t }) {
           >
             <Link
               to={`/arbejde/${project.slug}`}
-              className="group relative block h-[300px] md:h-[300px] overflow-hidden"
+              className="group relative block h-[260px] sm:h-[300px] overflow-hidden"
               style={{ backgroundColor: project.accent }}
             >
               <img
@@ -184,7 +184,7 @@ function WorkGrid({ t }) {
                   <>
                     <h3
                       className="leading-tight break-words"
-                      style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: textColor }}
+                      style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
                     >
                       {t(project.title.da, project.title.en)}
                     </h3>
@@ -196,7 +196,7 @@ function WorkGrid({ t }) {
                 ) : index === 2 ? (
                   <h3
                     className="leading-tight break-words flex items-baseline gap-2"
-                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: textColor }}
+                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
                   >
                     {t(project.title.da, project.title.en)}
                     <span className="text-base opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-out">
@@ -206,7 +206,7 @@ function WorkGrid({ t }) {
                 ) : index === 3 ? (
                   <motion.h3
                     className="leading-tight break-words"
-                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: textColor }}
+                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
                     whileHover={{ rotate: [0, -6, 6, -4, 0], transition: { duration: 0.5, ease: 'easeInOut' } }}
                   >
                     {t(project.title.da, project.title.en)}
@@ -214,7 +214,7 @@ function WorkGrid({ t }) {
                 ) : (
                   <h3
                     className="leading-tight break-words transition-transform duration-300 ease-out origin-bottom-left group-hover:-rotate-3"
-                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: textColor }}
+                    style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: textColor }}
                   >
                     {t(project.title.da, project.title.en)}
                   </h3>
@@ -247,7 +247,7 @@ function WorkGrid({ t }) {
           <div className="absolute bottom-0 left-0 p-4 md:p-6">
             <motion.h3
               className="leading-tight"
-              style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(16px, 2.4vw, 28px)', color: 'var(--color-base)', opacity: 0.6 }}
+              style={{ fontFamily: 'VSOP, serif', fontSize: 'clamp(20px, 2.4vw, 28px)', color: 'var(--color-base)', opacity: 0.6 }}
               whileHover={
                 index === 1
                   ? { y: [0, -4, 0], transition: { duration: 1.1, repeat: Infinity, ease: 'easeInOut' } }
@@ -305,7 +305,7 @@ function Services({ t }) {
   ]
 
   return (
-    <section id="kogt-ned" ref={ref} className="relative px-6 md:px-10 py-20 overflow-hidden">
+    <section id="kogt-ned" ref={ref} className="relative px-6 md:px-10 py-14 md:py-20 overflow-hidden">
       <motion.div
         initial={{ y: 18, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -382,7 +382,7 @@ function Contact({ t }) {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="px-10 py-32 flex flex-col items-start" style={{ backgroundColor: 'var(--color-blue)' }}>
+    <section ref={ref} className="px-6 md:px-10 py-24 md:py-32 flex flex-col items-start" style={{ backgroundColor: 'var(--color-blue)' }}>
       <motion.p
         initial={{ y: 20, opacity: 0 }}
         animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.7 } } : {}}
@@ -419,12 +419,11 @@ function AboutTeaser({ t }) {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="px-10 md:px-16 lg:px-24 pt-0 pb-24 -mt-16 md:-mt-24 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+    <section ref={ref} className="px-6 md:px-16 lg:px-24 pt-0 pb-20 md:pb-24 -mt-10 md:-mt-24 flex flex-col md:flex-row items-center gap-8 md:gap-16">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.8 } } : {}}
-        className="flex-1 max-w-md relative"
-        style={{ height: 420 }}
+        className="flex-1 w-full max-w-md relative h-[300px] md:h-[420px]"
       >
         <img
           src="/images/sitwavemepic.png"
@@ -494,9 +493,20 @@ function AboutTeaser({ t }) {
 export default function Home() {
   const { t } = useLanguage()
   const [showSkills, setShowSkills] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(min-width: 768px)').matches : false
+  )
   const alphaRef = useRef(null)
 
   useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)')
+    const onChange = (e) => setIsDesktop(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  useEffect(() => {
+    if (!isDesktop) return
     const img = new Image()
     img.src = '/images/hero-me-photo.png'
     img.onload = () => {
@@ -507,7 +517,7 @@ export default function Home() {
       ctx.drawImage(img, 0, 0)
       alphaRef.current = { data: ctx.getImageData(0, 0, c.width, c.height).data, w: c.width, h: c.height }
     }
-  }, [])
+  }, [isDesktop])
 
   function handleFigureMove(e) {
     const a = alphaRef.current
@@ -548,31 +558,32 @@ export default function Home() {
       </svg>
 
       {/* Hero */}
-      <section className="relative min-h-[88vh] overflow-hidden px-10 pt-6 pb-16 flex flex-col justify-start">
+      <section className="relative md:min-h-[88vh] overflow-hidden px-6 md:px-10 pt-6 pb-12 md:pb-16 flex flex-col justify-start">
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 1.0, delay: 0.05 } }}
           onMouseLeave={() => setShowSkills(false)}
-          className="absolute top-0 right-0 w-[76%] h-full"
+          className="order-2 relative w-full h-[52vh] mt-4 md:order-none md:absolute md:top-0 md:right-0 md:mt-0 md:w-[76%] md:h-full"
           style={{ zIndex: 0 }}
         >
           <img
             src="/images/hero-me-photo.png"
             alt="Casandra"
-            onMouseMove={handleFigureMove}
-            className="w-full h-full object-contain object-bottom"
-            style={{ transform: 'translateX(8%) translateY(-17%) scale(0.78)', transformOrigin: 'bottom center', mixBlendMode: 'multiply' }}
+            onMouseMove={isDesktop ? handleFigureMove : undefined}
+            className="hero-figure w-full h-full object-contain object-bottom"
+            style={{ transformOrigin: 'bottom center', mixBlendMode: 'multiply' }}
           />
 
           <AnimatePresence>
-            {showSkills &&
+            {isDesktop &&
+              showSkills &&
               SKILLS.map((s) => (
                 <SkillPill key={s.en} label={t(s.da, s.en)} pos={s.pos} rotate={s.rotate} delay={s.delay} />
               ))}
           </AnimatePresence>
         </motion.div>
 
-        <div className="relative z-10 flex flex-col mt-24 md:mt-32 pointer-events-none">
+        <div className="order-1 md:order-none relative z-10 flex flex-col mt-10 md:mt-32 pointer-events-none">
           <motion.p
             variants={fadeUp(0.9)}
             initial="hidden"
@@ -642,7 +653,7 @@ export default function Home() {
       <Services t={t} />
 
       {/* Projekter */}
-      <section id="arbejde" className="px-10 py-12">
+      <section id="arbejde" className="px-6 md:px-10 py-12">
         <motion.div
           initial={{ y: 18, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
