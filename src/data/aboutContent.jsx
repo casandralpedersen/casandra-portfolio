@@ -39,11 +39,11 @@ export const aboutBlocks = [
   {
     type: 'text',
     noteTitle: {
-      da: 'Teori og **praksis** i samspil',
-      en: 'Theory meets **practice**',
+      da: 'Teori og **praksis**',
+      en: 'Theory and **practice**',
     },
-    da: 'Det mix, parallelt med relevante studier, gør at jeg har fået forståelse for hvordan ting hænger sammen i teori og praksis.',
-    en: 'That mix, alongside relevant studies, has given me an understanding of how things fit together in theory and practice.',
+    da: 'Et arbejdsliv parallelt med relevante studier, gør at jeg har fået forståelse for hvordan ting hænger sammen i teori og praksis.',
+    en: 'A working life alongside relevant studies has given me an understanding of how things fit together in theory and practice.',
   },
   {
     type: 'text',

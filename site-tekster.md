@@ -234,12 +234,12 @@ Mit mål er, at folk ikke bare ser indholdet - men forstår det, stoler på det 
 
 (My goal is that people don't just see the content - but understand it, trust it and act on it.)
 
-### Teori og praksis i samspil
-(Theory meets practice)
+### Teori og praksis
+(Theory and practice)
 
-Det mix, parallelt med relevante studier, gør at jeg har fået forståelse for hvordan ting hænger sammen i teori og praksis.
+Et arbejdsliv parallelt med relevante studier, gør at jeg har fået forståelse for hvordan ting hænger sammen i teori og praksis.
 
-(That mix, alongside relevant studies, has given me an understanding of how things fit together in theory and practice.)
+(A working life alongside relevant studies has given me an understanding of how things fit together in theory and practice.)
 
 ### Brænder for optimering
 (Passionate about optimisation)
