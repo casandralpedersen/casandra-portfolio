@@ -8,6 +8,18 @@
   font-display: swap;
 }
 
+/* VSOP tegner ø å Ø Å som kopier af o a O A, og mangler æ Æ helt. Da glyfferne
+   findes i fontens cmap falder browseren ikke selv tilbage, så vi skærer de seks
+   tegn ud af familien og henter dem fra en serif med korrekte glyffer. Resten af
+   teksten bliver i VSOP. */
+@font-face {
+  font-family: "VSOP";
+  src: local("Georgia"), local("Times New Roman"), local("Times");
+  unicode-range: U+E5, U+F8, U+C5, U+D8, U+E6, U+C6;
+  font-weight: normal;
+  font-style: normal;
+}
+
 @font-face {
   font-family: "Ultramarine";
   src: url("/fonts/Ultramarine.otf") format("opentype");

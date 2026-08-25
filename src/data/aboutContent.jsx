@@ -84,12 +84,8 @@ export const aboutBlocks = [
   },
 ]
 
-const DANISH_SPECIAL = /[æøåÆØÅ]/
-const SERIF_FALLBACK = 'Georgia, "Times New Roman", serif'
-
-// VSOP mangler æ/ø/å-glyffer, så citater med disse bogstaver falder tilbage til en anden serif
-export function quoteFont(text) {
-  return DANISH_SPECIAL.test(text) ? SERIF_FALLBACK : 'var(--font-display)'
+export function quoteFont() {
+  return 'var(--font-display)'
 }
 
 export function renderEmphasised(text, color = 'var(--color-burgundy)', italic = false) {
@@ -105,32 +101,4 @@ export function renderEmphasised(text, color = 'var(--color-burgundy)', italic =
     )
     return li < arr.length - 1 ? [...parts, <br key={`br-${li}`} />] : parts
   })
-}
-
-const SPECIAL = /([æøåÆØÅ])/
-
-// VSOP mangler æ/ø/å-glyffer (de tegnes som a/o/a), så vi pakker kun selve specialtegnet i en serif med korrekt glyf
-function wrapSpecial(text, keyPrefix) {
-  return text.split(SPECIAL).map((seg, i) =>
-    SPECIAL.test(seg) ? (
-      <span key={`${keyPrefix}-${i}`} style={{ fontFamily: SERIF_FALLBACK }}>
-        {seg}
-      </span>
-    ) : (
-      seg
-    )
-  )
-}
-
-export function renderTitle(text, color = 'var(--color-burgundy)') {
-  const parts = text.split(/\*\*(.+?)\*\*/g)
-  return parts.map((part, i) =>
-    i % 2 === 1 ? (
-      <em key={i} className="not-italic" style={{ color }}>
-        {wrapSpecial(part, `e${i}`)}
-      </em>
-    ) : (
-      <span key={i}>{wrapSpecial(part, `p${i}`)}</span>
-    )
-  )
 }
