@@ -405,7 +405,7 @@ function Contact({ t }) {
         href={`mailto:${EMAIL}`}
         initial={{ y: 16, opacity: 0 }}
         animate={inView ? { y: 0, opacity: 1, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6, delay: 0.4 } } : {}}
-        className="mt-10 px-8 py-4 text-[14px] tracking-wide hover:opacity-85 transition-opacity"
+        className="mt-10 px-8 py-4 rounded-sm text-[14px] tracking-wide hover:opacity-85 transition-opacity"
         style={{ backgroundColor: 'var(--color-burgundy)', color: 'var(--color-base)' }}
       >
         {t('Skriv til mig', 'Email me')}
@@ -620,7 +620,7 @@ export default function Home() {
               whileHover={{ y: -1 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => document.getElementById('kogt-ned')?.scrollIntoView({ behavior: 'smooth' })}
-              className="pointer-events-auto flex items-center gap-2.5 px-6 py-3.5 text-[14px] tracking-wide transition-opacity hover:opacity-90"
+              className="pointer-events-auto flex items-center gap-2.5 px-6 py-3.5 rounded-sm text-[14px] tracking-wide transition-opacity hover:opacity-90"
               style={{ backgroundColor: 'var(--color-burgundy)', color: 'var(--color-base)' }}
             >
               {t('Mine kompetencer', 'My skills')}

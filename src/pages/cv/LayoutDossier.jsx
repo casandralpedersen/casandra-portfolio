@@ -115,7 +115,7 @@ export default function LayoutDossier() {
           <a
             href={CV_PDF_URL}
             download={CV_PDF_NAME}
-            className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-2.5 text-[11px] tracking-[0.1em] uppercase transition-opacity hover:opacity-90 print:hidden"
+            className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-sm text-[11px] tracking-[0.1em] uppercase transition-opacity hover:opacity-90 print:hidden"
             style={{ background: 'var(--color-burgundy)', color: 'var(--color-base)' }}
           >
             <DownloadIcon />
